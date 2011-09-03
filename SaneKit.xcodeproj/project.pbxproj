@@ -17,6 +17,7 @@
 		4D54DA9914127E3400E1CCC7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		4D54DABA141286E200E1CCC7 /* SKScanDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D54DAB8141286E200E1CCC7 /* SKScanDevice.h */; };
 		4D54DABB141286E200E1CCC7 /* SKScanDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D54DAB9141286E200E1CCC7 /* SKScanDevice.m */; };
+		4D54DB0F14128E2300E1CCC7 /* SKStructs.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D54DB0E14128E2300E1CCC7 /* SKStructs.h */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -26,7 +27,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* SaneKit */;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = SaneKit;
 		};
 /* End PBXContainerItemProxy section */
@@ -42,10 +43,11 @@
 		4D54DA55141271C000E1CCC7 /* libsane.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsane.dylib; path = /usr/local/lib/libsane.dylib; sourceTree = "<absolute>"; };
 		4D54DA691412797600E1CCC7 /* SaneKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SaneKit.h; path = Classes/SaneKit.h; sourceTree = "<group>"; };
 		4D54DA6A1412797600E1CCC7 /* SaneKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SaneKit.m; path = Classes/SaneKit.m; sourceTree = "<group>"; };
-		4D54DA7214127CEB00E1CCC7 /* scantool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = scantool; path = build/Debug/scantool; sourceTree = "<group>"; };
+		4D54DA7214127CEB00E1CCC7 /* scantool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = scantool; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D54DA7A14127D2B00E1CCC7 /* scantool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = scantool.m; path = Tools/scantool.m; sourceTree = "<group>"; };
 		4D54DAB8141286E200E1CCC7 /* SKScanDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKScanDevice.h; path = Classes/SKScanDevice.h; sourceTree = "<group>"; };
 		4D54DAB9141286E200E1CCC7 /* SKScanDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKScanDevice.m; path = Classes/SKScanDevice.m; sourceTree = "<group>"; };
+		4D54DB0E14128E2300E1CCC7 /* SKStructs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKStructs.h; path = Classes/SKStructs.h; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* SaneKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SaneKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -123,6 +125,7 @@
 				4D54DA6A1412797600E1CCC7 /* SaneKit.m */,
 				4D54DAB8141286E200E1CCC7 /* SKScanDevice.h */,
 				4D54DAB9141286E200E1CCC7 /* SKScanDevice.m */,
+				4D54DB0E14128E2300E1CCC7 /* SKStructs.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 				4D54DA4A1412706C00E1CCC7 /* SKScanManager.h in Headers */,
 				4D54DA6B1412797600E1CCC7 /* SaneKit.h in Headers */,
 				4D54DABA141286E200E1CCC7 /* SKScanDevice.h in Headers */,
+				4D54DB0F14128E2300E1CCC7 /* SKStructs.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
