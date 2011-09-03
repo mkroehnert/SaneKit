@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4D54DA4A1412706C00E1CCC7 /* SKScanManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D54DA481412706C00E1CCC7 /* SKScanManager.h */; };
 		4D54DA4B1412706C00E1CCC7 /* SKScanManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D54DA491412706C00E1CCC7 /* SKScanManager.m */; };
+		4D54DA56141271C000E1CCC7 /* libsane.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D54DA55141271C000E1CCC7 /* libsane.dylib */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -21,6 +22,7 @@
 		32DBCF5E0370ADEE00C91783 /* SaneKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaneKit_Prefix.pch; sourceTree = "<group>"; };
 		4D54DA481412706C00E1CCC7 /* SKScanManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKScanManager.h; path = Classes/SKScanManager.h; sourceTree = "<group>"; };
 		4D54DA491412706C00E1CCC7 /* SKScanManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKScanManager.m; path = Classes/SKScanManager.m; sourceTree = "<group>"; };
+		4D54DA55141271C000E1CCC7 /* libsane.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsane.dylib; path = /usr/local/lib/libsane.dylib; sourceTree = "<absolute>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* SaneKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SaneKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -32,6 +34,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
+				4D54DA56141271C000E1CCC7 /* libsane.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,6 +52,7 @@
 		0867D691FE84028FC02AAC07 /* SaneKit */ = {
 			isa = PBXGroup;
 			children = (
+				4D54DA55141271C000E1CCC7 /* libsane.dylib */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				089C1665FE841158C02AAC07 /* Resources */,
