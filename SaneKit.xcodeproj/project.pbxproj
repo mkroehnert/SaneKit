@@ -10,6 +10,8 @@
 		4D54DA4A1412706C00E1CCC7 /* SKScanManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D54DA481412706C00E1CCC7 /* SKScanManager.h */; };
 		4D54DA4B1412706C00E1CCC7 /* SKScanManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D54DA491412706C00E1CCC7 /* SKScanManager.m */; };
 		4D54DA56141271C000E1CCC7 /* libsane.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D54DA55141271C000E1CCC7 /* libsane.dylib */; };
+		4D54DA6B1412797600E1CCC7 /* SaneKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D54DA691412797600E1CCC7 /* SaneKit.h */; };
+		4D54DA6C1412797600E1CCC7 /* SaneKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D54DA6A1412797600E1CCC7 /* SaneKit.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -23,6 +25,8 @@
 		4D54DA481412706C00E1CCC7 /* SKScanManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKScanManager.h; path = Classes/SKScanManager.h; sourceTree = "<group>"; };
 		4D54DA491412706C00E1CCC7 /* SKScanManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKScanManager.m; path = Classes/SKScanManager.m; sourceTree = "<group>"; };
 		4D54DA55141271C000E1CCC7 /* libsane.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsane.dylib; path = /usr/local/lib/libsane.dylib; sourceTree = "<absolute>"; };
+		4D54DA691412797600E1CCC7 /* SaneKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SaneKit.h; path = Classes/SaneKit.h; sourceTree = "<group>"; };
+		4D54DA6A1412797600E1CCC7 /* SaneKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SaneKit.m; path = Classes/SaneKit.m; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* SaneKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SaneKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -85,6 +89,8 @@
 			children = (
 				4D54DA481412706C00E1CCC7 /* SKScanManager.h */,
 				4D54DA491412706C00E1CCC7 /* SKScanManager.m */,
+				4D54DA691412797600E1CCC7 /* SaneKit.h */,
+				4D54DA6A1412797600E1CCC7 /* SaneKit.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -123,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D54DA4A1412706C00E1CCC7 /* SKScanManager.h in Headers */,
+				4D54DA6B1412797600E1CCC7 /* SaneKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D54DA4B1412706C00E1CCC7 /* SKScanManager.m in Sources */,
+				4D54DA6C1412797600E1CCC7 /* SaneKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
