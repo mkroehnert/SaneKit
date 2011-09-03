@@ -7,6 +7,7 @@
 //
 
 #import "SaneKit.h"
+#import "SKScanDevice.h"
 #include <sane/sane.h>
 
 static SANE_Int saneVersionCode = 0;
@@ -45,9 +46,12 @@ static SANE_Status saneStatus = 0;
 
 
 /**
- * This method probes for scan devices and lists them on the console
+ * This method probes for scan devices, creates an array of SKScanDevice objects
+ * and returns this array.
+ *
+ * @return NSArray containing SKScanDevice objects
  */
-+(void) listDevices
++(NSArray*) scanForDevices
 {
     SANE_Status scanDeviceStatus;
     const SANE_Device** device_list;
@@ -57,16 +61,19 @@ static SANE_Status saneStatus = 0;
     if (SANE_STATUS_GOOD != scanDeviceStatus)
     {
         NSLog(@"Sane Status: %s\n", sane_strstatus(scanDeviceStatus));
-        return;
+        return [NSMutableArray arrayWithCapacity:0];
     }
     
+    NSMutableArray* deviceArray = [NSMutableArray arrayWithCapacity:1];
     for (int i = 0; device_list[i]; ++i) {
-        NSLog(@"Found:\n\tName: %s\n\tVendor: %s\n\tModel: %s\n\tType: %s\n",
-              device_list[i]->name,
-              device_list[i]->vendor,
-              device_list[i]->model,
-              device_list[i]->type);
+        SKScanDevice* scanDevice =
+            [[SKScanDevice alloc] initWithName:[NSString stringWithCString:device_list[i]->name]
+                                        vendor:[NSString stringWithCString:device_list[i]->vendor]
+                                         model:[NSString stringWithCString:device_list[i]->model]
+                                          type:[NSString stringWithCString:device_list[i]->type]];
+        [deviceArray addObject:scanDevice];
     }
+    return deviceArray;
 }
 
 @end

@@ -14,7 +14,8 @@ int main(int argc, char* argv[])
     
     [SaneKit initSane];
     
-    [SaneKit listDevices];
+    NSArray* deviceList = [SaneKit scanForDevices];
+    NSLog(@"Devices:\n%@", deviceList);
     
     [SaneKit exitSane];
     

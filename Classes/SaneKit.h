@@ -16,6 +16,6 @@
 +(void) initSane;
 +(void) exitSane;
 +(BOOL) isInitialized;
-+(void) listDevices;
++(NSArray*) scanForDevices;
 
 @end
