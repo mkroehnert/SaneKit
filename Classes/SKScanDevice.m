@@ -216,6 +216,8 @@
     }
     while (!scanParameters.last_frame);
     
+    sane_cancel(handle->deviceHandle);
+    
     free(buffer);
     return YES;
 }
