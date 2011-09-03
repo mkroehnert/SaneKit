@@ -6,7 +6,8 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#include <SaneKit/SaneKit.h>
+#import <SaneKit/SaneKit.h>
+#import <SaneKit/SKScanDevice.h>
 
 int main(int argc, char* argv[])
 {
@@ -16,6 +17,14 @@ int main(int argc, char* argv[])
     
     NSArray* deviceList = [SaneKit scanForDevices];
     NSLog(@"Devices:\n%@", deviceList);
+    
+    if (0 < [deviceList count])
+    {
+        SKScanDevice* device = [deviceList lastObject];
+        BOOL openStatus = [device open];
+        
+        [device close];
+    }
     
     [SaneKit exitSane];
     
