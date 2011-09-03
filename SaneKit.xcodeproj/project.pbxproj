@@ -15,7 +15,7 @@
 		4D54DA7814127CFE00E1CCC7 /* SaneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* SaneKit.framework */; };
 		4D54DA7B14127D2B00E1CCC7 /* scantool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D54DA7A14127D2B00E1CCC7 /* scantool.m */; };
 		4D54DA9914127E3400E1CCC7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
-		4D54DABA141286E200E1CCC7 /* SKScanDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D54DAB8141286E200E1CCC7 /* SKScanDevice.h */; };
+		4D54DABA141286E200E1CCC7 /* SKScanDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D54DAB8141286E200E1CCC7 /* SKScanDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4D54DABB141286E200E1CCC7 /* SKScanDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D54DAB9141286E200E1CCC7 /* SKScanDevice.m */; };
 		4D54DB0F14128E2300E1CCC7 /* SKStructs.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D54DB0E14128E2300E1CCC7 /* SKStructs.h */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
