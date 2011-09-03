@@ -15,5 +15,6 @@
 
 +(void) initSane;
 +(void) exitSane;
++(BOOL) isInitialized;
 
 @end

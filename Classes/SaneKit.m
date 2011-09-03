@@ -34,4 +34,13 @@ static SANE_Status saneStatus = 0;
 	sane_exit();
 }
 
+
+/**
+ * @return YES if SaneKit is initialized correctly, NO in every other case
+ */
++(BOOL) isInitialized
+{
+    return (SANE_STATUS_GOOD == saneStatus) ? YES : NO;
+}
+
 @end
