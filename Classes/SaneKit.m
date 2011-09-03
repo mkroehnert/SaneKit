@@ -24,4 +24,14 @@ static SANE_Status saneStatus = 0;
     saneStatus = sane_init(&saneVersionCode, saneAuthCallback);
 }
 
+
+/**
+ * This method does a cleanup of the Sane library structures before shutting down
+ * the program.
+ */
++(void) exitSane
+{
+	sane_exit();
+}
+
 @end

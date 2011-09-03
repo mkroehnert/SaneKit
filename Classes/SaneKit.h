@@ -14,5 +14,6 @@
 }
 
 +(void) initSane;
++(void) exitSane;
 
 @end
