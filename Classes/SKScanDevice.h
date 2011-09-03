@@ -22,4 +22,7 @@ struct SaneHandle;
 -(void) dealloc;
 -(NSString*) description;
 
+-(BOOL) open;
+-(void) close;
+
 @end

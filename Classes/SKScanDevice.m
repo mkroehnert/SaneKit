@@ -54,4 +54,28 @@
     return deviceDescription;
 }
 
+
+/**
+ * Open the scan device.
+ *
+ * @return YES if successful, NO otherwise
+ */
+-(BOOL) open
+{
+	SANE_Status openStatus = 0;
+    openStatus = sane_open([name UTF8String], handle->deviceHandle);
+    
+    return (SANE_STATUS_GOOD == openStatus) ? YES : NO;
+}
+
+
+/**
+ * Close the scan device.
+ */
+-(void) close
+{
+	sane_close(handle->deviceHandle);
+}
+
+
 @end
