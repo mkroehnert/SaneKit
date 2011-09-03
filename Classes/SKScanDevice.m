@@ -7,6 +7,7 @@
 //
 
 #import "SKScanDevice.h"
+#import "SKStructs.h"
 #include <sane/sane.h>
 
 @implementation SKScanDevice
@@ -23,6 +24,7 @@
         vendor = [aVendor retain];
         model = [aModel retain];
         type = [aType retain];
+        handle = malloc(sizeof(handle));
     }
     return self;
 }
@@ -37,6 +39,7 @@
     [vendor release];
     [model release];
     [type release];
+    free(handle);
     
     [super dealloc];
 }

@@ -8,12 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 
+struct SaneHandle;
 
 @interface SKScanDevice : NSObject {
     NSString* name;
     NSString* vendor;
     NSString* model;
     NSString* type;
+    struct SaneHandle* handle;
 }
 
 -(id) initWithName:(NSString*) aName vendor:(NSString*) aVendor model:(NSString*) aModel type:(NSString*) aType;
