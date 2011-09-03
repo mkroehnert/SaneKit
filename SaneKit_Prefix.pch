@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'SaneKit' target in the 'SaneKit' project.
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
