@@ -26,5 +26,6 @@ struct SaneHandle;
 -(void) close;
 
 -(void) printOptions;
+-(void) printParameters;
 
 @end
