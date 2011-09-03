@@ -21,7 +21,11 @@ int main(int argc, char* argv[])
     if (0 < [deviceList count])
     {
         SKScanDevice* device = [deviceList lastObject];
-        BOOL openStatus = [device open];
+        BOOL success = [device open];
+        if (success)
+        {
+             [device printOptions];
+        }
         
         [device close];
     }
