@@ -160,4 +160,65 @@
 }
 
 
+/**
+ * This method does a basic scan but currently doesn't do anything with the read data.
+ */
+-(BOOL) doScan
+{
+	SANE_Status scanStatus = 0;
+    SANE_Parameters scanParameters;
+    
+    scanStatus = sane_start (handle->deviceHandle);
+    if (SANE_STATUS_GOOD != scanStatus)
+    {
+        NSLog(@"Sane start error: %s", sane_strstatus(scanStatus));
+        return NO;
+    }
+    
+    SANE_Int readBytes = 0;
+    SANE_Int maxBufferSize = 32 * 1024;
+    SANE_Byte* buffer = malloc(maxBufferSize);
+    SANE_Word totalBytes = 0;
+
+    do
+    {
+        scanStatus = sane_get_parameters(handle->deviceHandle, &scanParameters);
+        if (SANE_STATUS_GOOD != scanStatus)
+        {
+            NSLog(@"Sane get parameters error: %s", sane_strstatus(scanStatus));
+            free(buffer);
+            return NO;
+        }
+
+        [SKScanDevice checkParameters: (&scanParameters)];
+
+        if (scanParameters.lines >= 0)
+            NSLog(@"Scanning image of size %dx%d pixels at %d bits/pixel\nFormat: %d\nDepth: %d",
+                  scanParameters.pixels_per_line,
+                  scanParameters.lines,
+                  8 * scanParameters.bytes_per_line / scanParameters.pixels_per_line,
+                  scanParameters.format,
+                  scanParameters.depth
+            );
+        const int SCALE_FACTOR = ((scanParameters.format == SANE_FRAME_RGB || scanParameters.format == SANE_FRAME_GRAY) ? 1:3);
+        int hundredPercent = scanParameters.bytes_per_line
+                             * scanParameters.lines
+                             * SCALE_FACTOR;
+        do
+        {
+            scanStatus = sane_read(handle->deviceHandle, buffer, maxBufferSize, &readBytes);
+            totalBytes += (SANE_Word)readBytes;
+            double progr = ((totalBytes * 100.0) / (double) hundredPercent);
+            progr = fminl(progr, 100.0);
+            NSLog(@"Progress: %3.1f%%, total bytes: %d\n", progr, totalBytes);
+        }
+        while (SANE_STATUS_GOOD == scanStatus || SANE_STATUS_EOF != scanStatus);
+    }
+    while (!scanParameters.last_frame);
+    
+    free(buffer);
+    return YES;
+}
+
+
 @end

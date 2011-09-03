@@ -28,4 +28,6 @@ struct SaneHandle;
 -(void) printOptions;
 -(void) printParameters;
 
+-(BOOL) doScan;
+
 @end
