@@ -78,4 +78,25 @@
 }
 
 
+/**
+ * Prints all options available from the current device.
+ */
+-(void) printOptions
+{
+    SANE_Int numOptions = 0;
+    SANE_Status optionStatus = 0;
+    
+    optionStatus = sane_control_option(handle->deviceHandle, 0, SANE_ACTION_GET_VALUE, &numOptions, 0);
+    
+    const SANE_Option_Descriptor* optionDescr;
+    for (int i = 0; i < numOptions; ++i)
+    {
+        optionDescr = sane_get_option_descriptor(handle->deviceHandle, i);
+        if (optionDescr && optionDescr->name)
+            NSLog(@"Option #%d: %s", i, optionDescr->name);
+    }
+    
+}
+
+
 @end

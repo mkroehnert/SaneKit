@@ -25,4 +25,6 @@ struct SaneHandle;
 -(BOOL) open;
 -(void) close;
 
+-(void) printOptions;
+
 @end
