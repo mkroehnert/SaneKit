@@ -16,5 +16,6 @@
 +(void) initSane;
 +(void) exitSane;
 +(BOOL) isInitialized;
++(void) listDevices;
 
 @end

@@ -14,6 +14,8 @@ int main(int argc, char* argv[])
     
     [SaneKit initSane];
     
+    [SaneKit listDevices];
+    
     [SaneKit exitSane];
     
     [pool drain];

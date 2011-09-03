@@ -43,4 +43,30 @@ static SANE_Status saneStatus = 0;
     return (SANE_STATUS_GOOD == saneStatus) ? YES : NO;
 }
 
+
+/**
+ * This method probes for scan devices and lists them on the console
+ */
++(void) listDevices
+{
+    SANE_Status scanDeviceStatus;
+    const SANE_Device** device_list;
+    
+    scanDeviceStatus = sane_get_devices(&device_list, SANE_TRUE);
+
+    if (SANE_STATUS_GOOD != scanDeviceStatus)
+    {
+        NSLog(@"Sane Status: %s\n", sane_strstatus(scanDeviceStatus));
+        return;
+    }
+    
+    for (int i = 0; device_list[i]; ++i) {
+        NSLog(@"Found:\n\tName: %s\n\tVendor: %s\n\tModel: %s\n\tType: %s\n",
+              device_list[i]->name,
+              device_list[i]->vendor,
+              device_list[i]->model,
+              device_list[i]->type);
+    }
+}
+
 @end
