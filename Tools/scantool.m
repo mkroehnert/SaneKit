@@ -24,7 +24,8 @@ int main(int argc, char* argv[])
         BOOL success = [device open];
         if (success)
         {
-             [device printOptions];
+            [device printOptions];
+            [device printParameters];
         }
         
         [device close];
