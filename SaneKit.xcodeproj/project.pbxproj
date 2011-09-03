@@ -10,11 +10,24 @@
 		4D54DA4A1412706C00E1CCC7 /* SKScanManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D54DA481412706C00E1CCC7 /* SKScanManager.h */; };
 		4D54DA4B1412706C00E1CCC7 /* SKScanManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D54DA491412706C00E1CCC7 /* SKScanManager.m */; };
 		4D54DA56141271C000E1CCC7 /* libsane.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D54DA55141271C000E1CCC7 /* libsane.dylib */; };
-		4D54DA6B1412797600E1CCC7 /* SaneKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D54DA691412797600E1CCC7 /* SaneKit.h */; };
+		4D54DA6B1412797600E1CCC7 /* SaneKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D54DA691412797600E1CCC7 /* SaneKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4D54DA6C1412797600E1CCC7 /* SaneKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D54DA6A1412797600E1CCC7 /* SaneKit.m */; };
+		4D54DA7814127CFE00E1CCC7 /* SaneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* SaneKit.framework */; };
+		4D54DA7B14127D2B00E1CCC7 /* scantool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D54DA7A14127D2B00E1CCC7 /* scantool.m */; };
+		4D54DA9914127E3400E1CCC7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4D54DA7614127CF900E1CCC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* SaneKit */;
+			remoteInfo = SaneKit;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -27,12 +40,23 @@
 		4D54DA55141271C000E1CCC7 /* libsane.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsane.dylib; path = /usr/local/lib/libsane.dylib; sourceTree = "<absolute>"; };
 		4D54DA691412797600E1CCC7 /* SaneKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SaneKit.h; path = Classes/SaneKit.h; sourceTree = "<group>"; };
 		4D54DA6A1412797600E1CCC7 /* SaneKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SaneKit.m; path = Classes/SaneKit.m; sourceTree = "<group>"; };
+		4D54DA7214127CEB00E1CCC7 /* scantool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = scantool; path = build/Debug/scantool; sourceTree = "<group>"; };
+		4D54DA7A14127D2B00E1CCC7 /* scantool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = scantool.m; path = Tools/scantool.m; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* SaneKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SaneKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4D54DA7014127CEB00E1CCC7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D54DA7814127CFE00E1CCC7 /* SaneKit.framework in Frameworks */,
+				4D54DA9914127E3400E1CCC7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF560486A6940098B216 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -49,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				8DC2EF5B0486A6940098B216 /* SaneKit.framework */,
+				4D54DA7214127CEB00E1CCC7 /* scantool */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -56,7 +81,7 @@
 		0867D691FE84028FC02AAC07 /* SaneKit */ = {
 			isa = PBXGroup;
 			children = (
-				4D54DA55141271C000E1CCC7 /* libsane.dylib */,
+				4D54DA6E14127C8600E1CCC7 /* Tools */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				089C1665FE841158C02AAC07 /* Resources */,
@@ -69,6 +94,7 @@
 		0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				4D54DA55141271C000E1CCC7 /* libsane.dylib */,
 				1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */,
 				1058C7B2FEA5585E11CA2CBB /* Other Frameworks */,
 			);
@@ -121,6 +147,14 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
+		4D54DA6E14127C8600E1CCC7 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4D54DA7A14127D2B00E1CCC7 /* scantool.m */,
+			);
+			name = Tools;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -136,6 +170,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		4D54DA7114127CEB00E1CCC7 /* scantool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4D54DA7914127D2300E1CCC7 /* Build configuration list for PBXNativeTarget "scantool" */;
+			buildPhases = (
+				4D54DA6F14127CEB00E1CCC7 /* Sources */,
+				4D54DA7014127CEB00E1CCC7 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4D54DA7714127CF900E1CCC7 /* PBXTargetDependency */,
+			);
+			name = scantool;
+			productName = scantool;
+			productReference = 4D54DA7214127CEB00E1CCC7 /* scantool */;
+			productType = "com.apple.product-type.tool";
+		};
 		8DC2EF4F0486A6940098B216 /* SaneKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "SaneKit" */;
@@ -169,6 +220,7 @@
 			projectRoot = "";
 			targets = (
 				8DC2EF4F0486A6940098B216 /* SaneKit */,
+				4D54DA7114127CEB00E1CCC7 /* scantool */,
 			);
 		};
 /* End PBXProject section */
@@ -185,6 +237,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4D54DA6F14127CEB00E1CCC7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D54DA7B14127D2B00E1CCC7 /* scantool.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF540486A6940098B216 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -195,6 +255,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4D54DA7714127CF900E1CCC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* SaneKit */;
+			targetProxy = 4D54DA7614127CF900E1CCC7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C1666FE841158C02AAC07 /* InfoPlist.strings */ = {
@@ -277,6 +345,52 @@
 			};
 			name = Release;
 		};
+		4D54DA7414127CED00E1CCC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = scantool;
+			};
+			name = Debug;
+		};
+		4D54DA7514127CED00E1CCC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = scantool;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -294,6 +408,15 @@
 			buildConfigurations = (
 				1DEB91B208733DA50010E9CD /* Debug */,
 				1DEB91B308733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4D54DA7914127D2300E1CCC7 /* Build configuration list for PBXNativeTarget "scantool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4D54DA7414127CED00E1CCC7 /* Debug */,
+				4D54DA7514127CED00E1CCC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
