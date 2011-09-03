@@ -63,7 +63,7 @@
 -(BOOL) open
 {
 	SANE_Status openStatus = 0;
-    openStatus = sane_open([name UTF8String], handle->deviceHandle);
+    openStatus = sane_open([name UTF8String], &(handle->deviceHandle));
     
     return (SANE_STATUS_GOOD == openStatus) ? YES : NO;
 }
