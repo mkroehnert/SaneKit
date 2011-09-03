@@ -7,8 +7,21 @@
 //
 
 #import "SaneKit.h"
+#include <sane/sane.h>
+
+static SANE_Int saneVersionCode = 0;
+static SANE_Status saneStatus = 0;
 
 @implementation SaneKit
 
+/**
+ * This method is called the first time before the class is used.
+ * It initializes the Sane library before it gets used.
+ */
++(void) initSane
+{
+    SANE_Auth_Callback saneAuthCallback = NULL;
+    saneStatus = sane_init(&saneVersionCode, saneAuthCallback);
+}
 
 @end
