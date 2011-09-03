@@ -26,6 +26,7 @@ int main(int argc, char* argv[])
         {
             [device printOptions];
             [device printParameters];
+            [device doScan];
         }
         
         [device close];
