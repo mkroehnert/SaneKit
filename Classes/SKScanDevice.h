@@ -28,7 +28,6 @@ struct SaneHandle;
 
 -(SKScanParameters*) scanParameters;
 -(void) printOptions;
--(void) printParameters;
 
 -(BOOL) doScan;
 

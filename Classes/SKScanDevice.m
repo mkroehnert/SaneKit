@@ -165,26 +165,8 @@
         if (optionDescr && optionDescr->name)
             NSLog(@"Option #%d: %s", i, optionDescr->name);
     }
-    
-}
 
 
-/**
- * Print the current parameters.
- */
--(void) printParameters
-{
-    SANE_Parameters parameters;
-    SANE_Status status;
-    status = sane_get_parameters(handle->deviceHandle, &parameters);
-    NSLog(@"Parameters:\n\tFormat: %d\n\tLastFrame: %d\n\tBytes/Line: %d\n\tPixels/Line: %d\n\tLines: %d\n\tDepth: %d",
-          parameters.format,
-          parameters.last_frame,
-          parameters.bytes_per_line,
-          parameters.pixels_per_line,
-          parameters.lines,
-          parameters.depth
-          );    
 }
 
 
@@ -214,7 +196,7 @@
         if (![parameters checkParameters])
             continue;
 
-        NSLog(@"Scan parameters: %@\n", parameters);
+        NSLog(@"Scan parameters:\n%@\n", parameters);
         int hundredPercent = [parameters totalBytes];
         {
             scanStatus = sane_read(handle->deviceHandle, buffer, maxBufferSize, &readBytes);

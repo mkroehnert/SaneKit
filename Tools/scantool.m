@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
         if (success)
         {
             [device printOptions];
-            [device printParameters];
+            NSLog(@"%@", [device scanParameters]);
             [device doScan];
         }
         
