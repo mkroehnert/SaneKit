@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 struct SaneHandle;
+@class SKScanParameters;
 
 @interface SKScanDevice : NSObject {
     NSString* name;
@@ -25,6 +26,7 @@ struct SaneHandle;
 -(BOOL) open;
 -(void) close;
 
+-(SKScanParameters*) scanParameters;
 -(void) printOptions;
 -(void) printParameters;
 

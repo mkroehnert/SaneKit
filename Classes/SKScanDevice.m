@@ -7,6 +7,7 @@
 //
 
 #import "SKScanDevice.h"
+#import "SKScanParameters.h"
 #import "SKStructs.h"
 #include <sane/sane.h>
 #include <math.h>
@@ -121,6 +122,33 @@
 
 
 /**
+ * This method reads the current scan parameters from the current SANE_Handle and creates
+ * an SKScanParameters instance from them.
+ *
+ * @return a fully initialized SKScanParameters instance
+ */
+-(SKScanParameters*) scanParameters
+{
+    SANE_Status parameterStatus;
+    SANE_Parameters scanParameters;
+    parameterStatus = sane_get_parameters(handle->deviceHandle, &scanParameters);
+    if (SANE_STATUS_GOOD != parameterStatus)
+    {
+        NSLog(@"Sane get parameters error: %s", sane_strstatus(parameterStatus));
+        return nil;
+    }
+    
+    SKScanParameters* parameters = [[SKScanParameters alloc] initWithFormat: scanParameters.format
+                                                                  lastFrame: scanParameters.last_frame
+                                                               bytesPerLine: scanParameters.bytes_per_line
+                                                               pixelsPerLin: scanParameters.pixels_per_line
+                                                                      lines: scanParameters.lines
+                                                                      depth: scanParameters.depth];
+    
+    return [parameters autorelease];
+}
+
+/**
  * Prints all options available from the current device.
  */
 -(void) printOptions
@@ -178,39 +206,22 @@
     SANE_Int readBytes = 0;
     SANE_Int maxBufferSize = 32 * 1024;
     SANE_Byte* buffer = malloc(maxBufferSize);
-    SANE_Word totalBytes = 0;
+    SANE_Word totalBytesRead = 0;
 
     do
     {
-        scanStatus = sane_get_parameters(handle->deviceHandle, &scanParameters);
-        if (SANE_STATUS_GOOD != scanStatus)
-        {
-            NSLog(@"Sane get parameters error: %s", sane_strstatus(scanStatus));
-            free(buffer);
-            return NO;
-        }
+        SKScanParameters* parameters = [self scanParameters];
+        if (![parameters checkParameters])
+            continue;
 
-        [SKScanDevice checkParameters: (&scanParameters)];
-
-        if (scanParameters.lines >= 0)
-            NSLog(@"Scanning image of size %dx%d pixels at %d bits/pixel\nFormat: %d\nDepth: %d",
-                  scanParameters.pixels_per_line,
-                  scanParameters.lines,
-                  8 * scanParameters.bytes_per_line / scanParameters.pixels_per_line,
-                  scanParameters.format,
-                  scanParameters.depth
-            );
-        const int SCALE_FACTOR = ((scanParameters.format == SANE_FRAME_RGB || scanParameters.format == SANE_FRAME_GRAY) ? 1:3);
-        int hundredPercent = scanParameters.bytes_per_line
-                             * scanParameters.lines
-                             * SCALE_FACTOR;
-        do
+        NSLog(@"Scan parameters: %@\n", parameters);
+        int hundredPercent = [parameters totalBytes];
         {
             scanStatus = sane_read(handle->deviceHandle, buffer, maxBufferSize, &readBytes);
-            totalBytes += (SANE_Word)readBytes;
-            double progr = ((totalBytes * 100.0) / (double) hundredPercent);
+            totalBytesRead += (SANE_Word)readBytes;
+            double progr = ((totalBytesRead * 100.0) / (double) hundredPercent);
             progr = fminl(progr, 100.0);
-            NSLog(@"Progress: %3.1f%%, total bytes: %d\n", progr, totalBytes);
+            NSLog(@"Progress: %3.1f%%, total bytes: %d\n", progr, totalBytesRead);
         }
         while (SANE_STATUS_GOOD == scanStatus || SANE_STATUS_EOF != scanStatus);
     }
