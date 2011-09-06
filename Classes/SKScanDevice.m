@@ -11,7 +11,8 @@
 #import "SKStructs.h"
 #include <sane/sane.h>
 #include <math.h>
-#include <assert.h>
+
+#import <AppKit/AppKit.h>
 
 @interface SKScanDevice (private)
 
@@ -185,11 +186,6 @@
         return NO;
     }
     
-    SANE_Int readBytes = 0;
-    SANE_Int maxBufferSize = 32 * 1024;
-    SANE_Byte* buffer = malloc(maxBufferSize);
-    SANE_Word totalBytesRead = 0;
-
     do
     {
         SKScanParameters* parameters = [self scanParameters];
@@ -198,20 +194,48 @@
 
         NSLog(@"Scan parameters:\n%@\n", parameters);
         int hundredPercent = [parameters totalBytes];
+
+        SANE_Int readBytes = 0;
+        // TODO: correct for (lines < 0)
+        const SANE_Int maxBufferSize = hundredPercent * sizeof(SANE_Byte);
+        SANE_Byte* buffer = malloc(maxBufferSize);
+        memset(buffer, 0, maxBufferSize);
+        SANE_Word totalBytesRead = 0;
+
+        do
         {
-            scanStatus = sane_read(handle->deviceHandle, buffer, maxBufferSize, &readBytes);
+            scanStatus = sane_read(handle->deviceHandle, (buffer + totalBytesRead ), (maxBufferSize - totalBytesRead - 1), &readBytes);
             totalBytesRead += (SANE_Word)readBytes;
             double progr = ((totalBytesRead * 100.0) / (double) hundredPercent);
             progr = fminl(progr, 100.0);
             NSLog(@"Progress: %3.1f%%, total bytes: %d\n", progr, totalBytesRead);
         }
         while (SANE_STATUS_GOOD == scanStatus || SANE_STATUS_EOF != scanStatus);
+        NSBitmapImageRep* bitmap = [[NSBitmapImageRep alloc]
+                                    initWithBitmapDataPlanes: &buffer
+                                    pixelsWide: [parameters widthPixel]
+                                    pixelsHigh: [parameters heightPixel]
+                                    bitsPerSample: 8
+                                    samplesPerPixel: 3  // or 4 with alpha
+                                    hasAlpha: NO
+                                    isPlanar: NO // only use the first element of buffer
+                                    colorSpaceName: NSDeviceRGBColorSpace
+                                    bitmapFormat: 0
+                                    bytesPerRow: [parameters widthPixel] * 3  // 0 == determine automatically
+                                    bitsPerPixel: [parameters bitsPerPixel]];  // 0 == determine automatically
+        
+        if (nil != bitmap)
+        {
+            NSDictionary* imageProperties = [NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:1.0] forKey:NSImageCompressionFactor];
+            NSData* bitmapData = [bitmap representationUsingType: NSTIFFFileType properties: imageProperties];
+            [bitmapData writeToFile: @"test.tiff" atomically: NO];
+        }
+        free(buffer);
     }
     while (!scanParameters.last_frame);
     
     sane_cancel(handle->deviceHandle);
     
-    free(buffer);
     return YES;
 }
 
