@@ -77,6 +77,25 @@
 }
 
 
+-(NSInteger) widthPixel
+{
+	return pixelsPerLine;
+}
+
+
+-(NSInteger) heightPixel
+{
+	return lines;
+}
+
+
+-(NSInteger) bitsPerPixel
+{
+    return 8 * bytesPerLine / pixelsPerLine;
+}
+
+
+
 /**
  * @return a string describing the current instance
  */

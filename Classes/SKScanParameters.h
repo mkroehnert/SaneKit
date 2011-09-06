@@ -39,6 +39,9 @@ typedef enum
                depth:(NSInteger) theDepth;
 -(BOOL) checkParameters;
 -(NSInteger) totalBytes;
+-(NSInteger) widthPixel;
+-(NSInteger) heightPixel;
+-(NSInteger) bitsPerPixel;
 
 -(NSString*) description;
 
