@@ -15,42 +15,10 @@
 #import <AppKit/AppKit.h>
 
 @interface SKScanDevice (private)
-
-+(void) checkParameters:(SANE_Parameters*) parameters;
-
 @end
 
 
 @implementation SKScanDevice (private)
-
-+(void) checkParameters:(SANE_Parameters*) parameters
-{
-    if (!parameters || !parameters->format || !parameters->depth)
-        return;
-    
-    // TODO: replace assert() calls
-    switch (parameters->format)
-    {
-        case SANE_FRAME_RED:
-        case SANE_FRAME_GREEN:
-        case SANE_FRAME_BLUE:
-            assert (parameters->depth == 8);
-            break;
-            
-        case SANE_FRAME_GRAY:
-            assert ((parameters->depth == 1)
-                    || (parameters->depth == 8)
-                    || (parameters->depth == 16));
-        case SANE_FRAME_RGB:
-            assert ((parameters->depth == 8)
-                    || (parameters->depth == 16));
-            break;
-            
-        default:
-            break;
-    }
-}
-
 @end
 
 
