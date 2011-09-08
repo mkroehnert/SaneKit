@@ -120,7 +120,7 @@
 /**
  * Prints all options available from the current device.
  */
--(void) printOptions
+-(void) scanOptions
 {
     SANE_Int numOptions = 0;
     SANE_Status optionStatus = 0;
