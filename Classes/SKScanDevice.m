@@ -120,7 +120,7 @@
 /**
  * Prints all options available from the current device.
  */
--(void) scanOptions
+-(NSArray*) scanOptions
 {
     SANE_Int numOptions = 0;
     SANE_Status optionStatus = 0;
@@ -130,15 +130,17 @@
     if (!optionDescr)
     {
     	NSLog(@"Unable to retrieve options");
-        return;
+        return nil;
     }
     
     optionStatus = sane_control_option(handle->deviceHandle, 0, SANE_ACTION_GET_VALUE, &numOptions, 0);
     if (SANE_STATUS_GOOD != optionStatus)
     {
     	NSLog(@"Error retrieving number of available options");
-        return;
+        return nil;
     }
+
+    NSMutableArray* optionsArray = [NSMutableArray arrayWithCapacity: numOptions];
     
     for (int i = 0; i < numOptions; ++i)
     {
@@ -149,6 +151,9 @@
 
 
     }
+
+    // turn mutable array into non mutable array
+    return [NSArray arrayWithArray: optionsArray];
 }
 
 
