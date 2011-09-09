@@ -143,11 +143,12 @@
     for (int i = 0; i < numOptions; ++i)
     {
         optionDescr = sane_get_option_descriptor(handle->deviceHandle, i);
-        if (optionDescr && optionDescr->name)
-            NSLog(@"Option #%d: %s", i, optionDescr->name);
+        if (!optionDescr || !optionDescr->name || !optionDescr->type)
+            continue;
+        NSLog(@"Option #%d <%d>: %s,", i, optionDescr->type, optionDescr->name);
+
+
     }
-
-
 }
 
 
