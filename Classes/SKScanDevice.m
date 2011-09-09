@@ -124,10 +124,17 @@
 {
     SANE_Int numOptions = 0;
     SANE_Status optionStatus = 0;
+    const SANE_Option_Descriptor* optionDescr;
+    
+    optionDescr = sane_get_option_descriptor(handle->deviceHandle, 0);
+    if (!optionDescr)
+    {
+    	NSLog(@"Unable to retrieve options");
+        return;
+    }
     
     optionStatus = sane_control_option(handle->deviceHandle, 0, SANE_ACTION_GET_VALUE, &numOptions, 0);
     
-    const SANE_Option_Descriptor* optionDescr;
     for (int i = 0; i < numOptions; ++i)
     {
         optionDescr = sane_get_option_descriptor(handle->deviceHandle, i);
