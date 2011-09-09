@@ -134,6 +134,11 @@
     }
     
     optionStatus = sane_control_option(handle->deviceHandle, 0, SANE_ACTION_GET_VALUE, &numOptions, 0);
+    if (SANE_STATUS_GOOD != optionStatus)
+    {
+    	NSLog(@"Error retrieving number of available options");
+        return;
+    }
     
     for (int i = 0; i < numOptions; ++i)
     {
