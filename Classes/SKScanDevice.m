@@ -8,7 +8,9 @@
 
 #import "SKScanDevice.h"
 #import "SKScanParameters.h"
+#import "SKScanOption.h"
 #import "SKStructs.h"
+
 #include <sane/sane.h>
 #include <math.h>
 
@@ -148,8 +150,52 @@
         if (!optionDescr || !optionDescr->name || !optionDescr->type)
             continue;
         NSLog(@"Option #%d <%d>: %s,", i, optionDescr->type, optionDescr->name);
+        id objcValue = nil;
 
+        if ( (SANE_TYPE_FIXED == optionDescr->type || SANE_TYPE_INT == optionDescr->type)
+             && (sizeof(SANE_Int) == optionDescr->size))
+        {
+            SANE_Int value = 0;
+            optionStatus = sane_control_option(handle->deviceHandle, i, SANE_ACTION_GET_VALUE, &value, NULL);
 
+            if (SANE_STATUS_GOOD != optionStatus)
+                continue;
+            
+            objcValue = [NSNumber numberWithInt: value];
+        }
+        else if (SANE_TYPE_STRING == optionDescr->type && 0 < optionDescr->size)
+        {
+            SANE_String value = calloc(optionDescr->size + 1, sizeof(SANE_Char));
+            optionStatus = sane_control_option(handle->deviceHandle, i, SANE_ACTION_GET_VALUE, value, NULL);
+            
+            if (SANE_STATUS_GOOD != optionStatus)
+                continue;
+
+            objcValue = [NSString stringWithCString: value];
+            free(value);
+        }
+        else if (SANE_TYPE_BOOL == optionDescr->type
+                 && (sizeof(SANE_Word) == optionDescr->size))
+        {
+            SANE_Bool value = SANE_FALSE;
+            optionStatus = sane_control_option(handle->deviceHandle, i, SANE_ACTION_GET_VALUE, &value, NULL);
+
+            if (SANE_STATUS_GOOD != optionStatus)
+                continue;
+
+            objcValue = [NSNumber numberWithBool: ((SANE_TRUE == value) ? YES : NO)];
+        }
+        else
+        {
+            objcValue = [NSString stringWithFormat: @"Type: %d", optionDescr->type];
+        }
+ 
+        
+        SKScanOption* option = [[SKScanOption alloc] initWithName: [NSString stringWithCString: optionDescr->name]
+                                           andIndex: i
+                                           andValue: objcValue];
+        [option autorelease];
+        [optionsArray addObject: option];
     }
 
     // turn mutable array into non mutable array
