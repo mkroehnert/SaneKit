@@ -27,9 +27,9 @@ int main(int argc, char* argv[])
             [device printOptions];
             NSLog(@"%@", [device scanParameters]);
             [device doScan];
+            [device close];
         }
         
-        [device close];
     }
     
     [SaneKit exitSane];
