@@ -22,6 +22,12 @@
 		4DE6612C14134FC0001F309B /* SKScanParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE6612A14134FC0001F309B /* SKScanParameters.m */; };
 		4DE662EC14196E0B001F309B /* SKScanOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DE662EA14196E0B001F309B /* SKScanOption.h */; };
 		4DE662ED14196E0B001F309B /* SKScanOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE662EB14196E0B001F309B /* SKScanOption.m */; };
+		4DE66486141B5F5D001F309B /* SKScanOptionInt.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DE66484141B5F5D001F309B /* SKScanOptionInt.h */; };
+		4DE66487141B5F5D001F309B /* SKScanOptionInt.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE66485141B5F5D001F309B /* SKScanOptionInt.m */; };
+		4DE6648A141B5F7E001F309B /* SKScanOptionBool.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DE66488141B5F7D001F309B /* SKScanOptionBool.h */; };
+		4DE6648B141B5F7E001F309B /* SKScanOptionBool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE66489141B5F7D001F309B /* SKScanOptionBool.m */; };
+		4DE6648E141B5FBF001F309B /* SKScanOptionString.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DE6648C141B5FBF001F309B /* SKScanOptionString.h */; };
+		4DE6648F141B5FBF001F309B /* SKScanOptionString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE6648D141B5FBF001F309B /* SKScanOptionString.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -56,6 +62,12 @@
 		4DE6612A14134FC0001F309B /* SKScanParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKScanParameters.m; path = Classes/SKScanParameters.m; sourceTree = "<group>"; };
 		4DE662EA14196E0B001F309B /* SKScanOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKScanOption.h; path = Classes/SKScanOption.h; sourceTree = "<group>"; };
 		4DE662EB14196E0B001F309B /* SKScanOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKScanOption.m; path = Classes/SKScanOption.m; sourceTree = "<group>"; };
+		4DE66484141B5F5D001F309B /* SKScanOptionInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKScanOptionInt.h; path = Classes/SKScanOptionInt.h; sourceTree = "<group>"; };
+		4DE66485141B5F5D001F309B /* SKScanOptionInt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKScanOptionInt.m; path = Classes/SKScanOptionInt.m; sourceTree = "<group>"; };
+		4DE66488141B5F7D001F309B /* SKScanOptionBool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKScanOptionBool.h; path = Classes/SKScanOptionBool.h; sourceTree = "<group>"; };
+		4DE66489141B5F7D001F309B /* SKScanOptionBool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKScanOptionBool.m; path = Classes/SKScanOptionBool.m; sourceTree = "<group>"; };
+		4DE6648C141B5FBF001F309B /* SKScanOptionString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKScanOptionString.h; path = Classes/SKScanOptionString.h; sourceTree = "<group>"; };
+		4DE6648D141B5FBF001F309B /* SKScanOptionString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKScanOptionString.m; path = Classes/SKScanOptionString.m; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* SaneKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SaneKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -138,6 +150,12 @@
 				4DE6612A14134FC0001F309B /* SKScanParameters.m */,
 				4DE662EA14196E0B001F309B /* SKScanOption.h */,
 				4DE662EB14196E0B001F309B /* SKScanOption.m */,
+				4DE66484141B5F5D001F309B /* SKScanOptionInt.h */,
+				4DE66485141B5F5D001F309B /* SKScanOptionInt.m */,
+				4DE66488141B5F7D001F309B /* SKScanOptionBool.h */,
+				4DE66489141B5F7D001F309B /* SKScanOptionBool.m */,
+				4DE6648C141B5FBF001F309B /* SKScanOptionString.h */,
+				4DE6648D141B5FBF001F309B /* SKScanOptionString.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -189,6 +207,9 @@
 				4D54DB0F14128E2300E1CCC7 /* SKStructs.h in Headers */,
 				4DE6612B14134FC0001F309B /* SKScanParameters.h in Headers */,
 				4DE662EC14196E0B001F309B /* SKScanOption.h in Headers */,
+				4DE66486141B5F5D001F309B /* SKScanOptionInt.h in Headers */,
+				4DE6648A141B5F7E001F309B /* SKScanOptionBool.h in Headers */,
+				4DE6648E141B5FBF001F309B /* SKScanOptionString.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +300,9 @@
 				4D54DABB141286E200E1CCC7 /* SKScanDevice.m in Sources */,
 				4DE6612C14134FC0001F309B /* SKScanParameters.m in Sources */,
 				4DE662ED14196E0B001F309B /* SKScanOption.m in Sources */,
+				4DE66487141B5F5D001F309B /* SKScanOptionInt.m in Sources */,
+				4DE6648B141B5F7E001F309B /* SKScanOptionBool.m in Sources */,
+				4DE6648F141B5FBF001F309B /* SKScanOptionString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -54,4 +54,22 @@
 	return index;
 }
 
+
+-(BOOL) isBool
+{
+	return NO;
+}
+
+
+-(BOOL) isInt
+{
+	return NO;
+}
+
+
+-(BOOL) isString
+{
+	return NO;
+}
+
 @end

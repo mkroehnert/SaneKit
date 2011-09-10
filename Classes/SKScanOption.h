@@ -23,4 +23,8 @@
 -(void*) value;
 -(NSInteger) index;
 
+-(BOOL) isBool;
+-(BOOL) isInt;
+-(BOOL) isString;
+
 @end
