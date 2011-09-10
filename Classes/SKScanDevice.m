@@ -17,10 +17,16 @@
 #import <AppKit/AppKit.h>
 
 @interface SKScanDevice (private)
+- (SANE_Status) getValue:(void*) theValue forOptionWithIndex:(NSInteger) theIndex;
 @end
 
 
 @implementation SKScanDevice (private)
+- (SANE_Status) getValue:(void*) theValue forOptionWithIndex:(NSInteger) theIndex;
+{
+    return sane_control_option(handle->deviceHandle, theIndex, SANE_ACTION_GET_VALUE, theValue, NULL);
+}
+
 @end
 
 
