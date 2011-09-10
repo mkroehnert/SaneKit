@@ -38,7 +38,7 @@
         vendor = [aVendor retain];
         model = [aModel retain];
         type = [aType retain];
-        handle = malloc(sizeof(handle));
+        handle = calloc(1, sizeof(handle));
     }
     return self;
 }
@@ -225,20 +225,20 @@
             continue;
 
         NSLog(@"Scan parameters:\n%@\n", parameters);
-        int hundredPercent = [parameters totalBytes];
+        int totalBytesToRead = [parameters totalBytes];
+        NSLog(@"100%% = %d", totalBytesToRead);
 
         SANE_Int readBytes = 0;
         // TODO: correct for (lines < 0)
-        const SANE_Int maxBufferSize = hundredPercent * sizeof(SANE_Byte);
-        SANE_Byte* buffer = malloc(maxBufferSize);
-        memset(buffer, 0, maxBufferSize);
+        const SANE_Int maxBufferSize = totalBytesToRead * sizeof(SANE_Byte);
+        SANE_Byte* buffer = calloc(totalBytesToRead, sizeof(SANE_Byte));
         SANE_Word totalBytesRead = 0;
 
         do
         {
             scanStatus = sane_read(handle->deviceHandle, (buffer + totalBytesRead ), (maxBufferSize - totalBytesRead - 1), &readBytes);
             totalBytesRead += (SANE_Word)readBytes;
-            double progr = ((totalBytesRead * 100.0) / (double) hundredPercent);
+            double progr = ((totalBytesRead * 100.0) / (double) totalBytesToRead);
             progr = fminl(progr, 100.0);
             NSLog(@"Progress: %3.1f%%, total bytes: %d\n", progr, totalBytesRead);
         }
