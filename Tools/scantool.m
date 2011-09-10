@@ -8,6 +8,7 @@
 
 #import <SaneKit/SaneKit.h>
 #import <SaneKit/SKScanDevice.h>
+#import <SaneKit/SKScanOption.h>
 
 int main(int argc, char* argv[])
 {
@@ -24,12 +25,24 @@ int main(int argc, char* argv[])
         BOOL success = [device open];
         if (success)
         {
-            [device printOptions];
+            NSArray* options = [device scanOptions];
+            NSLog(@"Options:\n%@", options);
+            
+            // resolution is the 5th parameter for my scanner
+            SKScanOption* resolution = [options objectAtIndex: 4];
+            [resolution setValue: [NSNumber numberWithInt: 300] forKey: @"value"];
+            
+            [device setScanOption: resolution];
+            
+            options = [device scanOptions];
+            NSLog(@"Options:\n%@", options);
+            
+            // also call sane_get_parameters to get an idea of the image parameters
             NSLog(@"%@", [device scanParameters]);
+            
             [device doScan];
             [device close];
         }
-        
     }
     
     [SaneKit exitSane];
