@@ -9,6 +9,9 @@
 #import "SKScanDevice.h"
 #import "SKScanParameters.h"
 #import "SKScanOption.h"
+#import "SKScanOptionBool.h"
+#import "SKScanOptionInt.h"
+#import "SKScanOptionString.h"
 #import "SKStructs.h"
 
 #include <sane/sane.h>
@@ -159,6 +162,7 @@
     }
 
     NSMutableArray* optionsArray = [NSMutableArray arrayWithCapacity: numOptions];
+    SKScanOption* option;
     
     for (int i = 0; i < numOptions; ++i)
     {
@@ -178,6 +182,9 @@
                 continue;
             
             objcValue = [NSNumber numberWithInt: value];
+            option = [[SKScanOptionInt alloc] initWithName: [NSString stringWithCString: optionDescr->name]
+                                               andIndex: i
+                                               andValue: objcValue];
         }
         else if (SANE_TYPE_STRING == optionDescr->type && 0 < optionDescr->size)
         {
@@ -188,6 +195,9 @@
                 continue;
 
             objcValue = [NSString stringWithCString: value];
+            option = [[SKScanOptionString alloc] initWithName: [NSString stringWithCString: optionDescr->name]
+                                                  andIndex: i
+                                                  andValue: objcValue];
             free(value);
         }
         else if (SANE_TYPE_BOOL == optionDescr->type
@@ -200,16 +210,15 @@
                 continue;
 
             objcValue = [NSNumber numberWithBool: ((SANE_TRUE == value) ? YES : NO)];
+            option = [[SKScanOptionBool alloc] initWithName: [NSString stringWithCString: optionDescr->name]
+                                                  andIndex: i
+                                                  andValue: objcValue];
         }
         else
         {
             objcValue = [NSString stringWithFormat: @"Type: %d", optionDescr->type];
         }
  
-        
-        SKScanOption* option = [[SKScanOption alloc] initWithName: [NSString stringWithCString: optionDescr->name]
-                                           andIndex: i
-                                           andValue: objcValue];
         [option autorelease];
         [optionsArray addObject: option];
     }
