@@ -126,7 +126,9 @@
 }
 
 /**
- * Prints all options available from the current device.
+ * Reads all options available from the current device and processes them into SKScanOption objects.
+ *
+ * @return NSArray instance returning all valid options as SKScanOption objects
  */
 -(NSArray*) scanOptions
 {
@@ -141,7 +143,7 @@
         return nil;
     }
     
-    optionStatus = sane_control_option(handle->deviceHandle, 0, SANE_ACTION_GET_VALUE, &numOptions, 0);
+    optionStatus = [self getValue: &numOptions forOptionWithIndex: 0];
     if (SANE_STATUS_GOOD != optionStatus)
     {
     	NSLog(@"Error retrieving number of available options");
@@ -155,14 +157,14 @@
         optionDescr = sane_get_option_descriptor(handle->deviceHandle, i);
         if (!optionDescr || !optionDescr->name || !optionDescr->type)
             continue;
-        NSLog(@"Option #%d <%d>: %s,", i, optionDescr->type, optionDescr->name);
+
         id objcValue = nil;
 
         if ( (SANE_TYPE_FIXED == optionDescr->type || SANE_TYPE_INT == optionDescr->type)
              && (sizeof(SANE_Int) == optionDescr->size))
         {
             SANE_Int value = 0;
-            optionStatus = sane_control_option(handle->deviceHandle, i, SANE_ACTION_GET_VALUE, &value, NULL);
+            optionStatus = [self getValue: &value forOptionWithIndex: i];
 
             if (SANE_STATUS_GOOD != optionStatus)
                 continue;
@@ -172,7 +174,7 @@
         else if (SANE_TYPE_STRING == optionDescr->type && 0 < optionDescr->size)
         {
             SANE_String value = calloc(optionDescr->size + 1, sizeof(SANE_Char));
-            optionStatus = sane_control_option(handle->deviceHandle, i, SANE_ACTION_GET_VALUE, value, NULL);
+            optionStatus = [self getValue: value forOptionWithIndex: i];
             
             if (SANE_STATUS_GOOD != optionStatus)
                 continue;
@@ -184,7 +186,7 @@
                  && (sizeof(SANE_Word) == optionDescr->size))
         {
             SANE_Bool value = SANE_FALSE;
-            optionStatus = sane_control_option(handle->deviceHandle, i, SANE_ACTION_GET_VALUE, &value, NULL);
+            optionStatus = [self getValue: &value forOptionWithIndex: i];
 
             if (SANE_STATUS_GOOD != optionStatus)
                 continue;
