@@ -20,4 +20,7 @@
 
 -(NSString*) description;
 
+-(void*) value;
+-(NSInteger) index;
+
 @end

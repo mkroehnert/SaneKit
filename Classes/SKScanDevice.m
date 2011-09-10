@@ -219,6 +219,14 @@
 }
 
 
+-(BOOL) setScanOption:(SKScanOption*) theOption
+{
+	[self setValue: [theOption value] forOptionWithIndex: [theOption index]];
+    return YES;
+}
+
+
+
 /**
  * This method does a basic scan but currently doesn't do anything with the read data.
  */

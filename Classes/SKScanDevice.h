@@ -10,6 +10,7 @@
 
 struct SaneHandle;
 @class SKScanParameters;
+@class SKScanOption;
 
 @interface SKScanDevice : NSObject {
     NSString* name;
@@ -28,6 +29,7 @@ struct SaneHandle;
 
 -(SKScanParameters*) scanParameters;
 -(NSArray*) scanOptions;
+-(BOOL) setScanOption:(SKScanOption*) theOption;
 
 -(BOOL) doScan;
 

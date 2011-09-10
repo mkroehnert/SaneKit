@@ -39,4 +39,19 @@
 }
 
 
+-(void*) value
+{
+    NSException* exception = [NSException exceptionWithName: @"SubclassResponsibility"
+                                                     reason: @"Method should be implemented by subclass"
+                                                   userInfo: nil];
+    [exception raise];
+    return NULL;
+}
+
+
+-(NSInteger) index
+{
+	return index;
+}
+
 @end
