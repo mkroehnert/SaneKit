@@ -20,7 +20,8 @@
 		4D54DB0F14128E2300E1CCC7 /* SKStructs.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D54DB0E14128E2300E1CCC7 /* SKStructs.h */; };
 		4DE6612B14134FC0001F309B /* SKScanParameters.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DE6612914134FC0001F309B /* SKScanParameters.h */; };
 		4DE6612C14134FC0001F309B /* SKScanParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE6612A14134FC0001F309B /* SKScanParameters.m */; };
-		4DE662EC14196E0B001F309B /* SKScanOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DE662EA14196E0B001F309B /* SKScanOption.h */; };
+		4DE6625C1415692F001F309B /* compare_images.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE6625B1415692F001F309B /* compare_images.m */; };
+		4DE662EC14196E0B001F309B /* SKScanOption.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DE662EA14196E0B001F309B /* SKScanOption.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4DE662ED14196E0B001F309B /* SKScanOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE662EB14196E0B001F309B /* SKScanOption.m */; };
 		4DE66486141B5F5D001F309B /* SKScanOptionInt.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DE66484141B5F5D001F309B /* SKScanOptionInt.h */; };
 		4DE66487141B5F5D001F309B /* SKScanOptionInt.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE66485141B5F5D001F309B /* SKScanOptionInt.m */; };
@@ -60,6 +61,8 @@
 		4D54DB0E14128E2300E1CCC7 /* SKStructs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKStructs.h; path = Classes/SKStructs.h; sourceTree = "<group>"; };
 		4DE6612914134FC0001F309B /* SKScanParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKScanParameters.h; path = Classes/SKScanParameters.h; sourceTree = "<group>"; };
 		4DE6612A14134FC0001F309B /* SKScanParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKScanParameters.m; path = Classes/SKScanParameters.m; sourceTree = "<group>"; };
+		4DE662561415690C001F309B /* imagereader */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = imagereader; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DE6625B1415692F001F309B /* compare_images.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = compare_images.m; path = Tools/compare_images.m; sourceTree = "<group>"; };
 		4DE662EA14196E0B001F309B /* SKScanOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKScanOption.h; path = Classes/SKScanOption.h; sourceTree = "<group>"; };
 		4DE662EB14196E0B001F309B /* SKScanOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKScanOption.m; path = Classes/SKScanOption.m; sourceTree = "<group>"; };
 		4DE66484141B5F5D001F309B /* SKScanOptionInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKScanOptionInt.h; path = Classes/SKScanOptionInt.h; sourceTree = "<group>"; };
@@ -83,6 +86,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4DE662541415690C001F309B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF560486A6940098B216 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -100,6 +110,7 @@
 			children = (
 				8DC2EF5B0486A6940098B216 /* SaneKit.framework */,
 				4D54DA7214127CEB00E1CCC7 /* scantool */,
+				4DE662561415690C001F309B /* imagereader */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -190,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				4D54DA7A14127D2B00E1CCC7 /* scantool.m */,
+				4DE6625B1415692F001F309B /* compare_images.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -233,6 +245,22 @@
 			productReference = 4D54DA7214127CEB00E1CCC7 /* scantool */;
 			productType = "com.apple.product-type.tool";
 		};
+		4DE662551415690C001F309B /* compare_images */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4DE6625A1415692D001F309B /* Build configuration list for PBXNativeTarget "compare_images" */;
+			buildPhases = (
+				4DE662531415690C001F309B /* Sources */,
+				4DE662541415690C001F309B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = compare_images;
+			productName = imagereader;
+			productReference = 4DE662561415690C001F309B /* imagereader */;
+			productType = "com.apple.product-type.tool";
+		};
 		8DC2EF4F0486A6940098B216 /* SaneKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "SaneKit" */;
@@ -267,6 +295,7 @@
 			targets = (
 				8DC2EF4F0486A6940098B216 /* SaneKit */,
 				4D54DA7114127CEB00E1CCC7 /* scantool */,
+				4DE662551415690C001F309B /* compare_images */,
 			);
 		};
 /* End PBXProject section */
@@ -288,6 +317,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D54DA7B14127D2B00E1CCC7 /* scantool.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4DE662531415690C001F309B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4DE6625C1415692F001F309B /* compare_images.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +480,52 @@
 			};
 			name = Release;
 		};
+		4DE662581415690E001F309B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = imagereader;
+			};
+			name = Debug;
+		};
+		4DE662591415690E001F309B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = imagereader;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -469,6 +552,15 @@
 			buildConfigurations = (
 				4D54DA7414127CED00E1CCC7 /* Debug */,
 				4D54DA7514127CED00E1CCC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4DE6625A1415692D001F309B /* Build configuration list for PBXNativeTarget "compare_images" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4DE662581415690E001F309B /* Debug */,
+				4DE662591415690E001F309B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
