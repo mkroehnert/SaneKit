@@ -14,6 +14,8 @@
     NSInteger boolValue;
 }
 
+-(id) initWithBoolValue:(BOOL) aBool optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
+
 -(NSString*) description;
 
 -(void*) value;

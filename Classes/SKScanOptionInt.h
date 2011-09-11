@@ -14,6 +14,8 @@
 	NSInteger intValue;
 }
 
+-(id) initWithIntValue:(NSInteger) anInt optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
+
 -(NSString*) description;
 
 -(void*) value;

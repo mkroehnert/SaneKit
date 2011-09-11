@@ -11,6 +11,17 @@
 
 @implementation SKScanOptionString
 
+-(id) initWithStringValue:(NSString*) aString optionName:(NSString*) theName optionIndex:(NSInteger) theIndex
+{
+	self = [super initWithName: theName andIndex: theIndex];
+    if (self)
+    {
+    	value = [aString retain];
+    }
+    return self;
+}
+
+
 -(NSString*) description
 {
 	return [NSString stringWithFormat:@"Option: %@, Value: %@", name, value];

@@ -24,6 +24,18 @@
 }
 
 
+-(id) initWithName:(NSString*) aName andIndex:(NSInteger) anIndex
+{
+	self = [super init];
+    if (self)
+    {
+    	name = [aName retain];
+        index = anIndex;
+    }
+    return self;
+}
+
+
 -(void) dealloc
 {
 	[name release];

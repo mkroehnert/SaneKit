@@ -14,6 +14,8 @@
     const char* stringValue;
 }
 
+-(id) initWithStringValue:(NSString*) aString optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
+
 -(NSString*) description;
 
 -(void*) value;
