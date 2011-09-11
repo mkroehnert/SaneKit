@@ -11,11 +11,18 @@
 
 @implementation SKScanOptionInt
 
+-(NSString*) description
+{
+	return [NSString stringWithFormat:@"Option: %@, Value: %@", name, value];
+}
+
+
 -(void*) value
 {
     intValue = [(NSNumber*)value intValue];
     return &intValue;
 }
+
 
 -(BOOL) isInt
 {

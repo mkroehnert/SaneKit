@@ -13,11 +13,18 @@
 
 @implementation SKScanOptionBool
 
+-(NSString*) description
+{
+	return [NSString stringWithFormat:@"Option: %@, Value: %@", name, value];
+}
+
+
 -(void*) value
 {
 	boolValue = (YES == [(NSNumber*) value boolValue]) ? SANE_TRUE : SANE_FALSE;
     return &boolValue;
 }
+
 
 -(BOOL) isBool
 {

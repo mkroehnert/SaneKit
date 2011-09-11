@@ -14,6 +14,8 @@
 	NSInteger intValue;
 }
 
+-(NSString*) description;
+
 -(void*) value;
 
 -(BOOL) isInt;

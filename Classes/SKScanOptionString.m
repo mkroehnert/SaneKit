@@ -11,6 +11,12 @@
 
 @implementation SKScanOptionString
 
+-(NSString*) description
+{
+	return [NSString stringWithFormat:@"Option: %@, Value: %@", name, value];
+}
+
+
 -(void*) value
 {
 	stringValue = [(NSString*)value UTF8String];

@@ -18,7 +18,6 @@
 -(id) initWithName:(NSString*) aName andIndex:(NSInteger) anIndex andValue:(id) aValue;
 -(void) dealloc;
 
--(NSString*) description;
 
 -(void*) value;
 -(NSInteger) index;

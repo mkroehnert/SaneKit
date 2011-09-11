@@ -14,6 +14,8 @@
     const char* stringValue;
 }
 
+-(NSString*) description;
+
 -(void*) value;
 
 -(BOOL) isString;

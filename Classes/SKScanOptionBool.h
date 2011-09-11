@@ -14,6 +14,8 @@
     NSInteger boolValue;
 }
 
+-(NSString*) description;
+
 -(void*) value;
 
 -(BOOL) isBool;
