@@ -12,7 +12,6 @@
 @interface SKScanOption : NSObject {
     NSString* name;
     NSInteger index;
-    id value;
 }
 
 -(id) initWithName:(NSString*) aName andIndex:(NSInteger) anIndex andValue:(id) aValue;

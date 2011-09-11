@@ -11,10 +11,12 @@
 
 @interface SKScanOptionBool : SKScanOption
 {
+    NSNumber* value;
     NSInteger boolValue;
 }
 
 -(id) initWithBoolValue:(BOOL) aBool optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
+-(void) dealloc;
 
 -(NSString*) description;
 

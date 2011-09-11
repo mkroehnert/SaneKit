@@ -11,10 +11,12 @@
 
 @interface SKScanOptionInt : SKScanOption
 {
+    NSNumber* value;
 	NSInteger intValue;
 }
 
 -(id) initWithIntValue:(NSInteger) anInt optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
+-(void) dealloc;
 
 -(NSString*) description;
 

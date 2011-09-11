@@ -22,6 +22,14 @@
 }
 
 
+-(void) dealloc
+{
+	[value release];
+
+    [super dealloc];
+}
+
+
 -(NSString*) description
 {
 	return [NSString stringWithFormat:@"Option: %@, Value: %@", name, value];
