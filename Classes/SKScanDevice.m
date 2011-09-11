@@ -9,9 +9,6 @@
 #import "SKScanDevice.h"
 #import "SKScanParameters.h"
 #import "SKScanOption.h"
-#import "SKScanOptionBool.h"
-#import "SKScanOptionInt.h"
-#import "SKScanOptionString.h"
 #import "SKStructs.h"
 
 #include <sane/sane.h>
@@ -170,8 +167,6 @@
         if (!optionDescr || !optionDescr->name || !optionDescr->type)
             continue;
 
-        id objcValue = nil;
-
         if ( (SANE_TYPE_FIXED == optionDescr->type || SANE_TYPE_INT == optionDescr->type)
              && (sizeof(SANE_Int) == optionDescr->size))
         {
@@ -181,10 +176,9 @@
             if (SANE_STATUS_GOOD != optionStatus)
                 continue;
             
-            objcValue = [NSNumber numberWithInt: value];
-            option = [[SKScanOptionInt alloc] initWithName: [NSString stringWithCString: optionDescr->name]
-                                               andIndex: i
-                                               andValue: objcValue];
+            option = [[SKScanOption alloc] initWithIntValue: value
+                                                 optionName: [NSString stringWithCString: optionDescr->name]
+                                                optionIndex: i];
         }
         else if (SANE_TYPE_STRING == optionDescr->type && 0 < optionDescr->size)
         {
@@ -194,10 +188,9 @@
             if (SANE_STATUS_GOOD != optionStatus)
                 continue;
 
-            objcValue = [NSString stringWithCString: value];
-            option = [[SKScanOptionString alloc] initWithName: [NSString stringWithCString: optionDescr->name]
-                                                  andIndex: i
-                                                  andValue: objcValue];
+            option = [[SKScanOption alloc] initWithCStringValue: value
+                                                     optionName: [NSString stringWithCString: optionDescr->name]
+                                                    optionIndex: i];
             free(value);
         }
         else if (SANE_TYPE_BOOL == optionDescr->type
@@ -209,14 +202,16 @@
             if (SANE_STATUS_GOOD != optionStatus)
                 continue;
 
-            objcValue = [NSNumber numberWithBool: ((SANE_TRUE == value) ? YES : NO)];
-            option = [[SKScanOptionBool alloc] initWithName: [NSString stringWithCString: optionDescr->name]
-                                                  andIndex: i
-                                                  andValue: objcValue];
+            option = [[SKScanOption alloc] initWithBoolValue: ((SANE_TRUE == value) ? YES : NO)
+                                                 optionName: [NSString stringWithCString: optionDescr->name]
+                                                optionIndex: i];
         }
         else
         {
-            objcValue = [NSString stringWithFormat: @"Type: %d", optionDescr->type];
+            NSString* infoString = [NSString stringWithFormat: @"Type: %d", optionDescr->type];
+            option = [[SKScanOption alloc] initWithStringValue: infoString
+                                                    optionName: [NSString stringWithCString: optionDescr->name]
+                                                   optionIndex: i];
         }
  
         [option autorelease];
