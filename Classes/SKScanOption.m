@@ -14,19 +14,6 @@
 
 @implementation SKScanOption
 
--(id) initWithName:(NSString*) aName andIndex:(NSInteger) anIndex andValue:(id) aValue
-{
-	self = [super init];
-    if (self)
-    {
-    	name = [aName retain];
-        index = anIndex;
-        value = [aValue copy];
-    }
-    return self;
-}
-
-
 -(id) initWithName:(NSString*) aName andIndex:(NSInteger) anIndex
 {
 	self = [super init];

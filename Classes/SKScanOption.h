@@ -14,7 +14,6 @@
     NSInteger index;
 }
 
--(id) initWithName:(NSString*) aName andIndex:(NSInteger) anIndex andValue:(id) aValue;
 -(id) initWithName:(NSString*) aName andIndex:(NSInteger) anIndex;
 -(void) dealloc;
 
