@@ -19,6 +19,11 @@
 -(id) initWithName:(NSString*) aName andIndex:(NSInteger) anIndex;
 -(void) dealloc;
 
+// Class cluster methods
+-(id) initWithIntValue:(NSInteger) anInt optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
+-(id) initWithBoolValue:(BOOL) aBool optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
+-(id) initWithCStringValue:(const char*) aCString optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
+-(id) initWithStringValue:(NSString*) aString optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
 
 -(void*) value;
 -(NSInteger) index;

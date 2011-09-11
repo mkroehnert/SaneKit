@@ -7,6 +7,9 @@
 //
 
 #import "SKScanOption.h"
+#import "SKScanOptionBool.h"
+#import "SKScanOptionInt.h"
+#import "SKScanOptionString.h"
 
 
 @implementation SKScanOption
@@ -45,9 +48,39 @@
 }
 
 
--(NSString*) description
+-(id) initWithIntValue:(NSInteger) anInt optionName:(NSString*) theName optionIndex:(NSInteger) theIndex
 {
-	return [NSString stringWithFormat:@"Option: %@, Value: %@", name, value];
+	[self release];
+    return [[SKScanOptionInt alloc] initWithIntValue: anInt
+                                          optionName: theName
+                                         optionIndex: theIndex];
+}
+
+
+-(id) initWithBoolValue:(BOOL) aBool optionName:(NSString*) theName optionIndex:(NSInteger) theIndex
+{
+	[self release];
+    return [[SKScanOptionBool alloc] initWithBoolValue: aBool
+                                            optionName: theName
+                                           optionIndex: theIndex];
+}
+
+
+-(id) initWithCStringValue:(const char*) aCString optionName:(NSString*) theName optionIndex:(NSInteger) theIndex
+{
+	[self release];
+    return [[SKScanOptionString alloc] initWithStringValue: [NSString stringWithCString: aCString]
+                                                optionName: theName
+                                               optionIndex: theIndex];
+}
+
+
+-(id) initWithStringValue:(NSString*) aString optionName:(NSString*) theName optionIndex:(NSInteger) theIndex
+{
+	[self release];
+    return [[SKScanOptionString alloc] initWithStringValue: aString
+                                                optionName: theName
+                                               optionIndex: theIndex];
 }
 
 
