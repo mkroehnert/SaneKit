@@ -90,7 +90,8 @@ static SANE_Bool SKOmitNetworkDevices = SANE_TRUE;
         [deviceArray addObject:scanDevice];
         [scanDevice release];
     }
-    return deviceArray;
+    // return immutable copy
+    return [NSArray arrayWithArray: deviceArray];
 }
 
 @end
