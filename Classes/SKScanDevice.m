@@ -17,22 +17,57 @@
 #import <AppKit/AppKit.h>
 
 @interface SKScanDevice (private)
-- (void) setValue:(void*) theValue forOptionWithIndex:(NSInteger) theIndex;
-- (SANE_Status) getValue:(void*) theValue forOptionWithIndex:(NSInteger) theIndex;
+
+-(SANE_Status) setValue:(void*) theValue forOptionWithIndex:(NSInteger) theIndex;
+-(SANE_Status) getValue:(void*) theValue forOptionWithIndex:(NSInteger) theIndex;
+-(void) setUnit:(SANE_Unit) theUnit onOption:(SKScanOption*) theOption;
+
 @end
 
 
 @implementation SKScanDevice (private)
-- (void) setValue:(void*) theValue forOptionWithIndex:(NSInteger) theIndex;
+
+-(SANE_Status) setValue:(void*) theValue forOptionWithIndex:(NSInteger) theIndex;
 {
 	SANE_Status status;
     SANE_Int info;
     status = sane_control_option(handle->deviceHandle, theIndex, SANE_ACTION_SET_VALUE, theValue, &info);
 }
 
-- (SANE_Status) getValue:(void*) theValue forOptionWithIndex:(NSInteger) theIndex;
+
+-(SANE_Status) getValue:(void*) theValue forOptionWithIndex:(NSInteger) theIndex;
 {
     return sane_control_option(handle->deviceHandle, theIndex, SANE_ACTION_GET_VALUE, theValue, NULL);
+}
+
+
+-(void) setUnit:(SANE_Unit) theUnit onOption:(SKScanOption*) theOption
+{
+    NSString* unitString = nil;
+    switch (theUnit) {
+        case SANE_UNIT_NONE:
+            unitString = @"";
+            break;
+        case SANE_UNIT_PIXEL:
+            unitString = @"pixel";
+            break;
+        case SANE_UNIT_BIT:
+            unitString = @"Bit";
+            break;
+        case SANE_UNIT_MM:
+            unitString = @"mm";
+            break;
+        case SANE_UNIT_DPI:
+            unitString = @"dpi";
+            break;
+        case SANE_UNIT_PERCENT:
+            unitString = @"%";
+            break;
+        case SANE_UNIT_MICROSECOND:
+            unitString = @"uSec";
+            break;
+    }
+    [theOption setUnitString: unitString];
 }
 
 @end
@@ -214,8 +249,13 @@
                                                    optionIndex: i];
         }
  
-        [option autorelease];
-        [optionsArray addObject: option];
+        if (option)
+        {
+            [self setUnit: optionDescr->unit onOption: option];
+
+            [option autorelease];
+            [optionsArray addObject: option];
+        }
     }
 
     // turn mutable array into non mutable array
