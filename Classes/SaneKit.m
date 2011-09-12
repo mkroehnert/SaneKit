@@ -55,16 +55,16 @@ static SANE_Status saneStatus = 0;
 {
     SANE_Status scanDeviceStatus;
     const SANE_Device** device_list;
+    NSMutableArray* deviceArray = [NSMutableArray arrayWithCapacity:1];
     
     scanDeviceStatus = sane_get_devices(&device_list, SANE_TRUE);
 
     if (SANE_STATUS_GOOD != scanDeviceStatus)
     {
         NSLog(@"Sane Status: %s\n", sane_strstatus(scanDeviceStatus));
-        return [NSMutableArray arrayWithCapacity:0];
+        return deviceArray;
     }
     
-    NSMutableArray* deviceArray = [NSMutableArray arrayWithCapacity:1];
     for (int i = 0; device_list[i]; ++i) {
         SKScanDevice* scanDevice =
             [[SKScanDevice alloc] initWithName:[NSString stringWithCString:device_list[i]->name]
