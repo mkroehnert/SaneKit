@@ -77,18 +77,27 @@
 }
 
 
+/**
+ * @return the width of the image to be scanned in pixels
+ */
 -(NSInteger) widthPixel
 {
 	return pixelsPerLine;
 }
 
 
+/**
+ * @return the height of the image to be scanned in pixels
+ */
 -(NSInteger) heightPixel
 {
 	return lines;
 }
 
 
+/**
+ * @return the number of bits of one pixel of the image to be scanned
+ */
 -(NSInteger) bitsPerPixel
 {
     return 8 * bytesPerLine / pixelsPerLine;
