@@ -12,7 +12,7 @@
 
 static SANE_Int SKSaneVersionCode = 0;
 static SANE_Status SKSaneStatus = 0;
-static SANE_Bool SKOmitNetworkDevices = SANE_TRUE;
+static SANE_Bool SKSearchLocalOnlyScanners = SANE_TRUE;
 
 @implementation SaneKit
 
@@ -78,7 +78,7 @@ static SANE_Bool SKOmitNetworkDevices = SANE_TRUE;
  */
 +(void) setScanNetwork:(BOOL) aBool
 {
-	SKOmitNetworkDevices = (YES == aBool) ? SANE_FALSE : SANE_TRUE;
+	SKSearchLocalOnlyScanners = (YES == aBool) ? SANE_FALSE : SANE_TRUE;
 }
 
 
@@ -94,7 +94,7 @@ static SANE_Bool SKOmitNetworkDevices = SANE_TRUE;
     const SANE_Device** device_list;
     NSMutableArray* deviceArray = [NSMutableArray arrayWithCapacity:1];
     
-    scanDeviceStatus = sane_get_devices(&device_list, SKOmitNetworkDevices);
+    scanDeviceStatus = sane_get_devices(&device_list, SKSearchLocalOnlyScanners);
 
     if (SANE_STATUS_GOOD != scanDeviceStatus)
     {
