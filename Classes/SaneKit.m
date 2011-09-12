@@ -10,9 +10,9 @@
 #import "SKScanDevice.h"
 #include <sane/sane.h>
 
-static SANE_Int saneVersionCode = 0;
-static SANE_Status saneStatus = 0;
-static SANE_Bool omitNetworkDevices = SANE_TRUE;
+static SANE_Int SKSaneVersionCode = 0;
+static SANE_Status SKSaneStatus = 0;
+static SANE_Bool SKOmitNetworkDevices = SANE_TRUE;
 
 @implementation SaneKit
 
@@ -23,7 +23,7 @@ static SANE_Bool omitNetworkDevices = SANE_TRUE;
 +(void) initSane
 {
     SANE_Auth_Callback saneAuthCallback = NULL;
-    saneStatus = sane_init(&saneVersionCode, saneAuthCallback);
+    SKSaneStatus = sane_init(&SKSaneVersionCode, saneAuthCallback);
 }
 
 
@@ -42,7 +42,7 @@ static SANE_Bool omitNetworkDevices = SANE_TRUE;
  */
 +(BOOL) isInitialized
 {
-    return (SANE_STATUS_GOOD == saneStatus) ? YES : NO;
+    return (SANE_STATUS_GOOD == SKSaneStatus) ? YES : NO;
 }
 
 
@@ -57,7 +57,7 @@ static SANE_Bool omitNetworkDevices = SANE_TRUE;
  */
 +(void) setScanNetwork:(BOOL) aBool
 {
-	omitNetworkDevices = (YES == aBool) ? SANE_FALSE : SANE_TRUE;
+	SKOmitNetworkDevices = (YES == aBool) ? SANE_FALSE : SANE_TRUE;
 }
 
 
@@ -73,7 +73,7 @@ static SANE_Bool omitNetworkDevices = SANE_TRUE;
     const SANE_Device** device_list;
     NSMutableArray* deviceArray = [NSMutableArray arrayWithCapacity:1];
     
-    scanDeviceStatus = sane_get_devices(&device_list, omitNetworkDevices);
+    scanDeviceStatus = sane_get_devices(&device_list, SKOmitNetworkDevices);
 
     if (SANE_STATUS_GOOD != scanDeviceStatus)
     {
