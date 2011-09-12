@@ -12,6 +12,7 @@
 
 static SANE_Int saneVersionCode = 0;
 static SANE_Status saneStatus = 0;
+static SANE_Bool omitNetworkDevices = SANE_TRUE;
 
 @implementation SaneKit
 
@@ -46,6 +47,21 @@ static SANE_Status saneStatus = 0;
 
 
 /**
+ * If YES is passed to this method [SaneKit scanForDevices] will search for network attached
+ * scanners. If the parameter is NO only scanners connected to the current computer will
+ * be detected.
+ *
+ * Default is NO.
+ *
+ * @warning if scanning on the network is enable the call to [SaneKit scanForDevices] will probably take significantly longer
+ */
++(void) setScanNetwork:(BOOL) aBool
+{
+	omitNetworkDevices = (YES == aBool) ? SANE_FALSE : SANE_TRUE;
+}
+
+
+/**
  * This method probes for scan devices, creates an array of SKScanDevice objects
  * and returns this array.
  *
@@ -57,7 +73,7 @@ static SANE_Status saneStatus = 0;
     const SANE_Device** device_list;
     NSMutableArray* deviceArray = [NSMutableArray arrayWithCapacity:1];
     
-    scanDeviceStatus = sane_get_devices(&device_list, SANE_TRUE);
+    scanDeviceStatus = sane_get_devices(&device_list, omitNetworkDevices);
 
     if (SANE_STATUS_GOOD != scanDeviceStatus)
     {

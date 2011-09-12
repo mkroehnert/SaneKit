@@ -16,6 +16,7 @@
 +(void) initSane;
 +(void) exitSane;
 +(BOOL) isInitialized;
++(void) setScanNetwork:(BOOL) aBool;
 +(NSArray*) scanForDevices;
 
 @end
