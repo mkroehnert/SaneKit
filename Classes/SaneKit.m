@@ -17,11 +17,32 @@ static SANE_Bool SKOmitNetworkDevices = SANE_TRUE;
 @implementation SaneKit
 
 /**
- * This method is called the first time before the class is used.
+ * This method must be called the first time before the class is used.
  * It initializes the Sane library before it gets used.
  */
 +(void) initSane
 {
+    /*
+     TODO: auth callback
+     
+     The authentication function type has the following declaration:
+     
+     #define SANE_MAX_USERNAME_LEN   128
+     #define SANE_MAX_PASSWORD_LEN   128
+     
+     typedef void (*SANE_Authorization_Callback)
+     (SANE_String_Const resource,
+     SANE_Char username[SANE_MAX_USERNAME_LEN],
+     SANE_Char password[SANE_MAX_PASSWORD_LEN]);
+     
+     Three arguments are passed to the authorization function:
+     - resource is a string specifying the name of the resource that requires authorization.
+       A frontend should use this string to build a user-prompt requesting a username and a password.
+     - username and password arguments are (pointers to) an array of
+       SANE_MAX_USERNAME_LEN and SANE_MAX_PASSWORD_LEN characters, respectively.
+       The authorization call should place the entered username and password in these arrays.
+       The returned strings must be ASCII-NUL terminated.
+     */
     SANE_Auth_Callback saneAuthCallback = NULL;
     SKSaneStatus = sane_init(&SKSaneVersionCode, saneAuthCallback);
 }
