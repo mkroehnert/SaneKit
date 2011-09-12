@@ -72,6 +72,7 @@ static SANE_Status saneStatus = 0;
                                          model:[NSString stringWithCString:device_list[i]->model]
                                           type:[NSString stringWithCString:device_list[i]->type]];
         [deviceArray addObject:scanDevice];
+        [scanDevice release];
     }
     return deviceArray;
 }
