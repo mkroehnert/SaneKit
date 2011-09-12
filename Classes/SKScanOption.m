@@ -21,6 +21,7 @@
     {
     	name = [aName retain];
         index = anIndex;
+        unitString = @"";
     }
     return self;
 }
@@ -29,6 +30,8 @@
 -(void) dealloc
 {
 	[name release];
+    if (unitString)
+        [unitString release];
     
     [super dealloc];
 }
@@ -67,6 +70,23 @@
     return [[SKScanOptionString alloc] initWithStringValue: aString
                                                 optionName: theName
                                                optionIndex: theIndex];
+}
+
+
+-(void) setUnitString:(NSString*) aUnit
+{
+	if (!aUnit)
+        return;
+    if (unitString && NSOrderedSame == [unitString compare: aUnit])
+        return;
+    [unitString release];
+    unitString = [aUnit retain];
+}
+
+
+-(NSString*) unitString
+{
+	return unitString;
 }
 
 

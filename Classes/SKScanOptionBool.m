@@ -34,7 +34,7 @@
 
 -(NSString*) description
 {
-	return [NSString stringWithFormat:@"Option: %@, Value: %@", name, value];
+	return [NSString stringWithFormat:@"Option: %@, Value: %@ [Bool]", name, value];
 }
 
 

@@ -11,6 +11,7 @@
 
 @interface SKScanOption : NSObject {
     NSString* name;
+    NSString* unitString;
     NSInteger index;
 }
 
@@ -22,6 +23,9 @@
 -(id) initWithBoolValue:(BOOL) aBool optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
 -(id) initWithCStringValue:(const char*) aCString optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
 -(id) initWithStringValue:(NSString*) aString optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
+
+-(void) setUnitString:(NSString*) aUnit;
+-(NSString*) unitString;
 
 -(void*) value;
 -(NSInteger) index;
