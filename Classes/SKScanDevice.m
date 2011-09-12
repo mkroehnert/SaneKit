@@ -41,7 +41,7 @@
 @implementation SKScanDevice
 
 /**
- * Initialize the class.
+ * Initialize the class using the parameters stored in an instance of SANE_device.
  */
 -(id) initWithName:(NSString*) aName vendor:(NSString*) aVendor model:(NSString*) aModel type:(NSString*) aType
 {
@@ -182,7 +182,7 @@
         }
         else if (SANE_TYPE_STRING == optionDescr->type && 0 < optionDescr->size)
         {
-            SANE_String value = calloc(optionDescr->size + 1, sizeof(SANE_Char));
+            SANE_String value = calloc(optionDescr->size, sizeof(SANE_Char));
             optionStatus = [self getValue: value forOptionWithIndex: i];
             
             if (SANE_STATUS_GOOD != optionStatus)
