@@ -13,6 +13,7 @@
 {
     NSNumber* value;
 	NSInteger intValue;
+    NSArray* numericConstraints;
 }
 
 -(id) initWithIntValue:(NSInteger) anInt optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
@@ -21,6 +22,9 @@
 -(NSString*) description;
 
 -(void*) value;
+
+-(void) setNumericConstraints:(NSArray*) anArray;
+-(NSArray*) numericConstraints;
 
 -(BOOL) isInt;
 

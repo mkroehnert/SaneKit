@@ -33,7 +33,7 @@
 
 -(NSString*) description
 {
-	return [NSString stringWithFormat:@"Option: %@, Value: %@[%@]", name, value, unitString];
+	return [NSString stringWithFormat:@"Option: %@, Value: %@[%@]: %@", name, value, unitString, numericConstraints];
 }
 
 
@@ -41,6 +41,20 @@
 {
     intValue = [(NSNumber*)value intValue];
     return &intValue;
+}
+
+
+-(void) setNumericConstraints:(NSArray*) anArray
+{
+    if (numericConstraints)
+        [numericConstraints release];
+    numericConstraints = [anArray retain];
+}
+
+
+-(NSArray*) numericConstraints
+{
+    return [[numericConstraints retain] autorelease];
 }
 
 
