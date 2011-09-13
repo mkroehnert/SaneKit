@@ -26,6 +26,7 @@
         unitString = @"";
         readOnly = NO;
         emulated = NO;
+        autoSelect = NO;
     }
     return self;
 }
@@ -234,6 +235,26 @@
 -(BOOL) isEmulated;
 {
 	return emulated;
+}
+
+
+/**
+ * Set member autoSelect to value of parameter aBool.
+ *
+ * @warning This method should not be used by the user of SaneKit
+ */
+-(void) setAutoSelect: (BOOL) aBool
+{
+	autoSelect = aBool;
+}
+
+
+/**
+ * @return YES if the device can automatically figure out a value for this option
+ */
+-(BOOL) isAutoSelect;
+{
+	return autoSelect;
 }
 
 @end

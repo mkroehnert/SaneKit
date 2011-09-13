@@ -17,6 +17,7 @@
     NSInteger index;
     BOOL readOnly;
     BOOL emulated;
+    BOOL autoSelect;
 }
 
 -(id) initWithName:(NSString*) aName andIndex:(NSInteger) anIndex;
@@ -49,5 +50,8 @@
 
 -(void) setEmulated: (BOOL) aBool;
 -(BOOL) isEmulated;
+
+-(void) setAutoSelect: (BOOL) aBool;
+-(BOOL) isAutoSelect;
 
 @end
