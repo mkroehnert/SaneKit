@@ -93,6 +93,29 @@
 }
 
 
+/**
+ * Set the title member to the value provided by the parameter theTitle.
+ */
+-(void) setTitle:(NSString*) theTitle
+{
+	if (!theTitle)
+        return;
+    if (title && NSOrderedSame == [title compare: theTitle])
+        return;
+    [title release];
+    title = [theTitle retain];
+}
+
+
+/**
+ * @return NSString instance containing the short title of the option
+ */
+-(NSString*) title;
+{
+	return title;
+}
+
+
 -(void*) value
 {
     NSException* exception = [NSException exceptionWithName: @"SubclassResponsibility"

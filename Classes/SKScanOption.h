@@ -29,6 +29,9 @@
 -(void) setUnitString:(NSString*) aUnit;
 -(NSString*) unitString;
 
+-(void) setTitle:(NSString*) theTitle;
+-(NSString*) title;
+
 -(void*) value;
 -(NSInteger) index;
 
