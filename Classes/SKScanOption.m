@@ -28,6 +28,7 @@
         emulated = NO;
         autoSelect = NO;
         inactive = NO;
+        advanced = NO;
     }
     return self;
 }
@@ -276,6 +277,26 @@
 -(BOOL) isInactive;
 {
 	return inactive;
+}
+
+
+/**
+ * Set member advanced to value of parameter aBool.
+ *
+ * @warning This method should not be used by the user of SaneKit
+ */
+-(void) setAdvanced: (BOOL) aBool
+{
+	advanced = aBool;
+}
+
+
+/**
+ * @return YES if option is an advanced feature
+ */
+-(BOOL) isAdvanced;
+{
+	return advanced;
 }
 
 @end
