@@ -435,4 +435,59 @@
 }
 
 
+/**
+ *
+ */
+-(BOOL) setMode:(NSString*) theMode
+{
+	return YES;
+}
+
+
+/**
+ *
+ */
+-(BOOL) setDepth:(NSInteger) theDepth
+{
+	return YES;
+}
+
+
+/**
+ *
+ */
+-(BOOL) setResolution:(NSInteger) theResolution
+{
+	return YES;
+}
+
+
+/**
+ *
+ */
+-(BOOL) setPreview:(BOOL) doPreview
+{
+	return YES;
+}
+
+
+/**
+ *
+ */
+-(BOOL) setScanRect:(NSRect) scanRect
+{
+    //set tl-x, tl-y, br-y, br-y
+    return YES;
+}
+
+
+/**
+ *
+ */
+-(NSRect) maxScanRect
+{
+    //return {(0, 0) (max widh, max height)}
+    return NSMakeRect(0.0, 0.0, 100.0, 100.0);
+}
+
 @end

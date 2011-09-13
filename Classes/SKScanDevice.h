@@ -27,10 +27,17 @@ struct SaneHandle;
 -(BOOL) open;
 -(void) close;
 
+-(BOOL) doScan;
+
 -(SKScanParameters*) scanParameters;
 -(NSArray*) scanOptions;
 -(BOOL) setScanOption:(SKScanOption*) theOption;
 
--(BOOL) doScan;
+-(BOOL) setMode:(NSString*) theMode;
+-(BOOL) setDepth:(NSInteger) theDepth;
+-(BOOL) setResolution:(NSInteger) theResolution;
+-(BOOL) setPreview:(BOOL) doPreview;
+-(BOOL) setScanRect:(NSRect) scanRect;
+-(NSRect) maxScanRect;
 
 @end
