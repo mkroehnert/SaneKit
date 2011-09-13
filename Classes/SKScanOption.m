@@ -25,6 +25,7 @@
         index = anIndex;
         unitString = @"";
         readOnly = NO;
+        emulated = NO;
     }
     return self;
 }
@@ -213,6 +214,26 @@
 -(BOOL) isReadOnly
 {
 	return readOnly;
+}
+
+
+/**
+ * Set member emulated to value of parameter aBool.
+ *
+ * @warning This method should not be used by the user of SaneKit
+ */
+-(void) setEmulated: (BOOL) aBool
+{
+	emulated = aBool;
+}
+
+
+/**
+ * @return YES if this option is emulated in software by the backend
+ */
+-(BOOL) isEmulated;
+{
+	return emulated;
 }
 
 @end

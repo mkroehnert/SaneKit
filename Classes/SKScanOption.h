@@ -16,6 +16,7 @@
     NSString* unitString;
     NSInteger index;
     BOOL readOnly;
+    BOOL emulated;
 }
 
 -(id) initWithName:(NSString*) aName andIndex:(NSInteger) anIndex;
@@ -45,5 +46,8 @@
 
 -(void) setReadOnly: (BOOL) aBool;
 -(BOOL) isReadOnly;
+
+-(void) setEmulated: (BOOL) aBool;
+-(BOOL) isEmulated;
 
 @end
