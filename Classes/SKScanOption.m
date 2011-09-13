@@ -116,6 +116,29 @@
 }
 
 
+/**
+ * Set the explanation member to the value provided by the parameter theExplanation.
+ */
+-(void) setExplanation:(NSString*) theExplanation
+{
+	if (!theExplanation)
+        return;
+    if (explanation && NSOrderedSame == [explanation compare: theExplanation])
+        return;
+    [explanation release];
+    explanation = [theExplanation retain];
+}
+
+
+/**
+ * @return NSString instance containing a more detailed explanation of the option ("\n" should be treated as paragraph delimiter)
+ */
+-(NSString*) explanation
+{
+	return explanation;
+}
+
+
 -(void*) value
 {
     NSException* exception = [NSException exceptionWithName: @"SubclassResponsibility"

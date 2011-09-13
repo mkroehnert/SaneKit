@@ -32,6 +32,9 @@
 -(void) setTitle:(NSString*) theTitle;
 -(NSString*) title;
 
+-(void) setExplanation:(NSString*) theExplanation;
+-(NSString*) explanation;
+
 -(void*) value;
 -(NSInteger) index;
 
