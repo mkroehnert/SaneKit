@@ -32,6 +32,7 @@
 	SANE_Status status;
     SANE_Int info;
     status = sane_control_option(handle->deviceHandle, theIndex, SANE_ACTION_SET_VALUE, theValue, &info);
+    return info;
 }
 
 
@@ -265,7 +266,14 @@
 
 -(BOOL) setScanOption:(SKScanOption*) theOption
 {
-	[self setValue: [theOption value] forOptionWithIndex: [theOption index]];
+	SANE_Status setStatus = [self setValue: [theOption value] forOptionWithIndex: [theOption index]];
+    
+    if (SANE_INFO_INEXACT & setStatus)
+        NSLog(@"Option value was rounded upon setting the option");
+    else if (SANE_INFO_RELOAD_OPTIONS & setStatus)
+        NSLog(@"Application should reload all options (multiple options have been affected by setting this one)");
+    else if (SANE_INFO_RELOAD_PARAMS & setStatus)
+        NSLog(@"Application should reload all parameters (multiple parameters have been affected by setting this option)");
     return YES;
 }
 
