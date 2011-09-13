@@ -76,6 +76,9 @@
 }
 
 
+/**
+ * Set the unitString member to the value provided by parameter aUnit.
+ */
 -(void) setUnitString:(NSString*) aUnit
 {
 	if (!aUnit)
@@ -87,6 +90,9 @@
 }
 
 
+/**
+ * @return NSString instance containing the textual description of the options unit
+ */
 -(NSString*) unitString
 {
 	return unitString;
@@ -139,6 +145,10 @@
 }
 
 
+/**
+ * This method returns a void pointer to the value stored for the option.
+ * It can be used to set the value with sane_control_option().
+ */
 -(void*) value
 {
     NSException* exception = [NSException exceptionWithName: @"SubclassResponsibility"
@@ -149,24 +159,36 @@
 }
 
 
+/**
+ * @return the index number of the option as provided by the SANE backend
+ */
 -(NSInteger) index
 {
 	return index;
 }
 
 
+/**
+ * @return YES if the option stores a BOOL
+ */
 -(BOOL) isBool
 {
 	return NO;
 }
 
 
+/**
+ * @return YES if option stores an Int
+ */
 -(BOOL) isInt
 {
 	return NO;
 }
 
 
+/**
+ * @return YES if option stores a string
+ */
 -(BOOL) isString
 {
 	return NO;
