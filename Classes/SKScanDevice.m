@@ -22,6 +22,7 @@
 -(SANE_Status) getValue:(void*) theValue forOptionWithIndex:(NSInteger) theIndex;
 -(void) setUnit:(SANE_Unit) theUnit onOption:(SKScanOption*) theOption;
 -(void) setConstraints:(const SANE_Option_Descriptor*) theOptionDescriptor onOption:(SKScanOption*) theOption;
+-(void) setCapabilities:(SANE_Int) theCapabilities onOption:(SKScanOption*) theOption;
 
 @end
 
@@ -101,6 +102,45 @@
             NSLog(@"%s - possible option %d: %s", theOptionDescriptor->name, j, modes[j]);
         }
     }
+}
+
+
+/**
+ *
+ */
+-(void) setCapabilities:(SANE_Int) theCapabilities onOption:(SKScanOption*) theOption
+{
+	if ( (SANE_CAP_SOFT_SELECT & theCapabilities) && (SANE_CAP_HARD_SELECT & theCapabilities) )
+    {
+        NSLog(@"ERROR: SOFT and HARD Select can't be set at the same time");
+        return;
+    }
+	else if (SANE_CAP_SOFT_SELECT & theCapabilities)
+    {
+    	if ( !(SANE_CAP_SOFT_DETECT & theCapabilities) )
+        {
+            NSLog(@"This option MUST be set!");
+            return;
+        }
+        // settable by sane_control_option
+    }
+    else if (SANE_CAP_HARD_SELECT & theCapabilities)
+    {
+    	// (SANE_CAP_SOFT_DETECT & theCapabilities) can be set but must not
+        // notify user to press a physical switch
+    }
+    else if (SANE_CAP_SOFT_DETECT & theCapabilities)
+    {
+            NSLog(@"This option is read only");
+    }
+    if (SANE_CAP_EMULATED & theCapabilities)
+        NSLog(@"This option is emulated");
+    if (SANE_CAP_AUTOMATIC & theCapabilities)
+        NSLog(@"This option can be set automatically");
+    if (SANE_CAP_INACTIVE & theCapabilities)
+        NSLog(@"This option is currently inactive");
+    if (SANE_CAP_ADVANCED & theCapabilities)
+        NSLog(@"This option is marked ADVANCED");
 }
 
 @end
@@ -300,6 +340,8 @@
                 [option setTitle: [NSString stringWithCString: optionDescr->title]];
             if (optionDescr->desc)
                 [option setExplanation: [NSString stringWithCString: optionDescr->desc]];
+            if (optionDescr->cap)
+                [self setCapabilities: optionDescr->cap onOption: option];
 
             [option autorelease];
             [optionsArray addObject: option];
