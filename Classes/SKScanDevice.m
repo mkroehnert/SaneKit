@@ -74,6 +74,10 @@
 }
 
 
+/**
+ * This method stores the constraints from parameter theOptionDescriptor->constraint on the
+ * option object passed in as parameter theOption.
+ */
 -(void) setConstraints:(const SANE_Option_Descriptor*) theOptionDescriptor onOption:(SKScanOption*) theOption
 {
     if (SANE_CONSTRAINT_RANGE == theOptionDescriptor->constraint_type)
@@ -96,7 +100,7 @@
             else if (SANE_TYPE_INT == theOptionDescriptor->type)
                 [optionList addObject: [NSNumber numberWithInt: possibleValues[j] ]];
         }
-        NSLog(@"%s - possible options %@", theOptionDescriptor->name, optionList);
+        [theOption setNumericConstraints: optionList];
     }
     else if (SANE_CONSTRAINT_STRING_LIST == theOptionDescriptor->constraint_type)
     {
