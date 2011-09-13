@@ -43,6 +43,9 @@
 -(void*) value;
 -(NSInteger) index;
 
+-(void) setRangeConstraint:(id) aRange;
+-(id) rangeConstraint;
+
 -(void) setNumericConstraints:(NSArray*) anArray;
 -(NSArray*) numericConstraints;
 

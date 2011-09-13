@@ -174,6 +174,32 @@
 
 
 /**
+ * Set the value of the parameter aRange as the range constraint on this option.
+ * Throws an exception if it is not supported by the current option type.
+ */
+-(void) setRangeConstraint:(id) aRange
+{
+    NSException* exception = [NSException exceptionWithName: @"WrongOptionType"
+                                                     reason: @"This method can only be called on options storing Int/Fixed values"
+                                                   userInfo: nil];
+    [exception raise];
+}
+
+
+/**
+ * @return range constraint of current option (throws exception if not supported by current option type)
+ */
+-(id) rangeConstraint
+{
+    NSException* exception = [NSException exceptionWithName: @"WrongOptionType"
+                                                     reason: @"This method can only be called on options storing Int/Fixed values"
+                                                   userInfo: nil];
+    [exception raise];
+    return nil;
+}
+
+
+/**
  * Set array containing numbers as the constraint values.
  * Throws an exception if it is not supported by the current option type.
  */
