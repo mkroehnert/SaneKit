@@ -21,6 +21,7 @@
 -(SANE_Status) setValue:(void*) theValue forOptionWithIndex:(NSInteger) theIndex;
 -(SANE_Status) getValue:(void*) theValue forOptionWithIndex:(NSInteger) theIndex;
 -(void) setUnit:(SANE_Unit) theUnit onOption:(SKScanOption*) theOption;
+-(void) setConstraints:(const SANE_Option_Descriptor*) theOptionDescriptor onOption:(SKScanOption*) theOption;
 
 @end
 
@@ -69,6 +70,37 @@
             break;
     }
     [theOption setUnitString: unitString];
+}
+
+
+-(void) setConstraints:(const SANE_Option_Descriptor*) theOptionDescriptor onOption:(SKScanOption*) theOption
+{
+    if (SANE_CONSTRAINT_RANGE == theOptionDescriptor->constraint_type)
+    {
+        const SANE_Range* range = theOptionDescriptor->constraint.range;
+        if (SANE_TYPE_FIXED == theOptionDescriptor->type)
+            NSLog(@"%s - Min: %g, Max: %g, Quantisation: %d", theOptionDescriptor->name, SANE_UNFIX(range->min), SANE_UNFIX(range->max), SANE_UNFIX(range->quant));
+        else
+            NSLog(@"%s - Min: %d, Max: %d, Quantisation: %d", theOptionDescriptor->name, range->min, range->max, range->quant);
+    }
+    else if (SANE_CONSTRAINT_WORD_LIST == theOptionDescriptor->constraint_type)
+    {
+        const SANE_Word* possibleValues = theOptionDescriptor->constraint.word_list;
+        const SANE_Int listLength = possibleValues[0];
+        for (int j = 0; possibleValues && j <= listLength; ++j) {
+            if (SANE_TYPE_FIXED == theOptionDescriptor->type)
+                NSLog(@"%s - possible option %d: %g", theOptionDescriptor->name, j, SANE_UNFIX(possibleValues[j]));
+            else
+                NSLog(@"%s - possible option %d: %d", theOptionDescriptor->name, j, possibleValues[j]);
+        }
+    }
+    else if (SANE_CONSTRAINT_STRING_LIST == theOptionDescriptor->constraint_type)
+    {
+        const SANE_String_Const* modes = theOptionDescriptor->constraint.string_list;
+        for (int j = 0; modes && modes[j]; ++j) {
+            NSLog(@"%s - possible option %d: %s", theOptionDescriptor->name, j, modes[j]);
+        }
+    }
 }
 
 @end
@@ -253,6 +285,7 @@
         if (option)
         {
             [self setUnit: optionDescr->unit onOption: option];
+            [self setConstraints: optionDescr onOption: option];
 
             [option autorelease];
             [optionsArray addObject: option];
