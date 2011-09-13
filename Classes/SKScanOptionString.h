@@ -13,6 +13,7 @@
 {
     NSString* value;
     const char* stringValue;
+    NSArray* stringConstraints;
 }
 
 -(id) initWithStringValue:(NSString*) aString optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
@@ -21,6 +22,9 @@
 -(NSString*) description;
 
 -(void*) value;
+
+-(void) setStringConstraints:(NSArray*) anArray;
+-(NSArray*) stringConstraints;
 
 -(BOOL) isString;
 
