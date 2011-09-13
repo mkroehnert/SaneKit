@@ -18,6 +18,7 @@
     BOOL readOnly;
     BOOL emulated;
     BOOL autoSelect;
+    BOOL inactive;
 }
 
 -(id) initWithName:(NSString*) aName andIndex:(NSInteger) anIndex;
@@ -53,5 +54,8 @@
 
 -(void) setAutoSelect: (BOOL) aBool;
 -(BOOL) isAutoSelect;
+
+-(void) setInactive: (BOOL) aBool;
+-(BOOL) isInactive;
 
 @end

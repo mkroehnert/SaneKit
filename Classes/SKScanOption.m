@@ -27,6 +27,7 @@
         readOnly = NO;
         emulated = NO;
         autoSelect = NO;
+        inactive = NO;
     }
     return self;
 }
@@ -255,6 +256,26 @@
 -(BOOL) isAutoSelect;
 {
 	return autoSelect;
+}
+
+
+/**
+ * Set member inactive to value of parameter aBool.
+ *
+ * @warning This method should not be used by the user of SaneKit
+ */
+-(void) setInactive: (BOOL) aBool
+{
+	inactive = aBool;
+}
+
+
+/**
+ * @return YES if option is currently marked inactive
+ */
+-(BOOL) isInactive;
+{
+	return inactive;
 }
 
 @end
