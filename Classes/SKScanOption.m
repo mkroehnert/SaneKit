@@ -205,7 +205,7 @@
  *
  * @warning This method should not be used by the user of SaneKit
  */
--(void) setReadOnly: (BOOL) aBool
+-(void) setReadOnly:(BOOL) aBool
 {
 	readOnly = aBool;
 }
@@ -225,7 +225,7 @@
  *
  * @warning This method should not be used by the user of SaneKit
  */
--(void) setEmulated: (BOOL) aBool
+-(void) setEmulated:(BOOL) aBool
 {
 	emulated = aBool;
 }
@@ -245,7 +245,7 @@
  *
  * @warning This method should not be used by the user of SaneKit
  */
--(void) setAutoSelect: (BOOL) aBool
+-(void) setAutoSelect:(BOOL) aBool
 {
 	autoSelect = aBool;
 }
@@ -265,7 +265,7 @@
  *
  * @warning This method should not be used by the user of SaneKit
  */
--(void) setInactive: (BOOL) aBool
+-(void) setInactive:(BOOL) aBool
 {
 	inactive = aBool;
 }
@@ -285,7 +285,7 @@
  *
  * @warning This method should not be used by the user of SaneKit
  */
--(void) setAdvanced: (BOOL) aBool
+-(void) setAdvanced:(BOOL) aBool
 {
 	advanced = aBool;
 }

@@ -47,19 +47,19 @@
 -(BOOL) isInt;
 -(BOOL) isString;
 
--(void) setReadOnly: (BOOL) aBool;
+-(void) setReadOnly:(BOOL) aBool;
 -(BOOL) isReadOnly;
 
--(void) setEmulated: (BOOL) aBool;
+-(void) setEmulated:(BOOL) aBool;
 -(BOOL) isEmulated;
 
--(void) setAutoSelect: (BOOL) aBool;
+-(void) setAutoSelect:(BOOL) aBool;
 -(BOOL) isAutoSelect;
 
--(void) setInactive: (BOOL) aBool;
+-(void) setInactive:(BOOL) aBool;
 -(BOOL) isInactive;
 
--(void) setAdvanced: (BOOL) aBool;
+-(void) setAdvanced:(BOOL) aBool;
 -(BOOL) isAdvanced;
 
 @end
