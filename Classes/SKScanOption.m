@@ -24,6 +24,7 @@
         explanation = @"";
         index = anIndex;
         unitString = @"";
+        readOnly = NO;
     }
     return self;
 }
@@ -192,6 +193,26 @@
 -(BOOL) isString
 {
 	return NO;
+}
+
+
+/**
+ * Set member readOnly to value of parameter aBool.
+ *
+ * @warning This method should not be used by the user of SaneKit
+ */
+-(void) setReadOnly: (BOOL) aBool
+{
+	readOnly = aBool;
+}
+
+
+/**
+ * @return YES if the option provides read only values
+ */
+-(BOOL) isReadOnly
+{
+	return readOnly;
 }
 
 @end
