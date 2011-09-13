@@ -43,6 +43,9 @@
 -(void*) value;
 -(NSInteger) index;
 
+-(void) setStringConstraints:(NSArray*) anArray;
+-(NSArray*) stringConstraints;
+
 -(BOOL) isBool;
 -(BOOL) isInt;
 -(BOOL) isString;

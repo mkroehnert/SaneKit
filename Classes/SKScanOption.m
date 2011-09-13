@@ -174,6 +174,32 @@
 
 
 /**
+ * Set array containing strings as the constraint values.
+ * Throws an exception if it is not supported by the current option type.
+ */
+-(void) setStringConstraints:(NSArray*) anArray
+{
+    NSException* exception = [NSException exceptionWithName: @"WrongOptionType"
+                                                     reason: @"This method can only be called on options storing String values"
+                                                   userInfo: nil];
+    [exception raise];
+}
+
+
+/**
+ * @return NSArray containing possible string values for this option (throws exception if not supported by current option type)
+ */
+-(NSArray*) stringConstraints
+{
+    NSException* exception = [NSException exceptionWithName: @"WrongOptionType"
+                                                     reason: @"This method can only be called on options storing String values"
+                                                   userInfo: nil];
+    [exception raise];
+    return nil;
+}
+
+
+/**
  * @return YES if the option stores a BOOL
  */
 -(BOOL) isBool
