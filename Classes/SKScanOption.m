@@ -20,6 +20,8 @@
     if (self)
     {
     	name = [aName retain];
+        title = @"";
+        explanation = @"";
         index = anIndex;
         unitString = @"";
     }
@@ -30,8 +32,9 @@
 -(void) dealloc
 {
 	[name release];
-    if (unitString)
-        [unitString release];
+	[title release];
+	[explanation release];
+    [unitString release];
     
     [super dealloc];
 }

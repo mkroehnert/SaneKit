@@ -11,6 +11,8 @@
 
 @interface SKScanOption : NSObject {
     NSString* name;
+    NSString* title;
+    NSString* explanation;
     NSString* unitString;
     NSInteger index;
 }
