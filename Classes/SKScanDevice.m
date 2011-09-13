@@ -201,6 +201,7 @@
     return [parameters autorelease];
 }
 
+
 /**
  * Reads all options available from the current device and processes them into SKScanOption objects.
  *
@@ -286,6 +287,10 @@
         {
             [self setUnit: optionDescr->unit onOption: option];
             [self setConstraints: optionDescr onOption: option];
+            if (optionDescr->title)
+                [option setTitle: [NSString stringWithCString: optionDescr->title]];
+            if (optionDescr->desc)
+                [option setExplanation: [NSString stringWithCString: optionDescr->desc]];
 
             [option autorelease];
             [optionsArray addObject: option];
@@ -297,6 +302,9 @@
 }
 
 
+/**
+ * This method takes an instance of SKScanOption and sets the value on the current scan device.
+ */
 -(BOOL) setScanOption:(SKScanOption*) theOption
 {
 	SANE_Status setStatus = [self setValue: [theOption value] forOptionWithIndex: [theOption index]];
