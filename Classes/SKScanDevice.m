@@ -106,7 +106,8 @@
 
 
 /**
- *
+ * This method sets the various capabilities stored in the parameter theCapabilities on
+ * the option object passed in as paramter theOption.
  */
 -(void) setCapabilities:(SANE_Int) theCapabilities onOption:(SKScanOption*) theOption
 {
@@ -115,32 +116,16 @@
         NSLog(@"ERROR: SOFT and HARD Select can't be set at the same time");
         return;
     }
-	else if (SANE_CAP_SOFT_SELECT & theCapabilities)
+	else if ( (SANE_CAP_SOFT_SELECT & theCapabilities) && ( !(SANE_CAP_SOFT_DETECT & theCapabilities) ) )
     {
-    	if ( !(SANE_CAP_SOFT_DETECT & theCapabilities) )
-        {
-            NSLog(@"This option MUST be set!");
-            return;
-        }
-        // settable by sane_control_option
+        NSLog(@"This option MUST be set!");
+        return;
     }
-    else if (SANE_CAP_HARD_SELECT & theCapabilities)
-    {
-    	// (SANE_CAP_SOFT_DETECT & theCapabilities) can be set but must not
-        // notify user to press a physical switch
-    }
-    else if (SANE_CAP_SOFT_DETECT & theCapabilities)
-    {
-            NSLog(@"This option is read only");
-    }
-    if (SANE_CAP_EMULATED & theCapabilities)
-        NSLog(@"This option is emulated");
-    if (SANE_CAP_AUTOMATIC & theCapabilities)
-        NSLog(@"This option can be set automatically");
-    if (SANE_CAP_INACTIVE & theCapabilities)
-        NSLog(@"This option is currently inactive");
-    if (SANE_CAP_ADVANCED & theCapabilities)
-        NSLog(@"This option is marked ADVANCED");
+    [theOption setReadOnly: (SANE_CAP_SOFT_DETECT & theCapabilities)];
+    [theOption setEmulated: (SANE_CAP_EMULATED & theCapabilities)];
+    [theOption setAutoSelect: (SANE_CAP_AUTOMATIC & theCapabilities)];
+    [theOption setInactive: (SANE_CAP_INACTIVE & theCapabilities)];
+    [theOption setAdvanced: (SANE_CAP_ADVANCED & theCapabilities)];
 }
 
 @end
