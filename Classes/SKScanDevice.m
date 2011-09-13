@@ -235,19 +235,28 @@
         optionDescr = sane_get_option_descriptor(handle->deviceHandle, i);
         if (!optionDescr || !optionDescr->name || !optionDescr->type)
             continue;
-
-        if ( (SANE_TYPE_FIXED == optionDescr->type || SANE_TYPE_INT == optionDescr->type)
-             && (sizeof(SANE_Int) == optionDescr->size))
+        
+        // one FIXED or INT has the same size as SANE_INT/SANE_WORD
+        if ( (SANE_TYPE_FIXED == optionDescr->type || SANE_TYPE_INT == optionDescr->type) )
         {
-            SANE_Int value = 0;
-            optionStatus = [self getValue: &value forOptionWithIndex: i];
-
-            if (SANE_STATUS_GOOD != optionStatus)
-                continue;
+            if (sizeof(SANE_Int) == optionDescr->size)
+            {
+                SANE_Int value = 0;
+                optionStatus = [self getValue: &value forOptionWithIndex: i];
+                
+                if (SANE_STATUS_GOOD != optionStatus)
+                    continue;
+                
+                option = [[SKScanOption alloc] initWithIntValue: value
+                                                     optionName: [NSString stringWithCString: optionDescr->name]
+                                                    optionIndex: i];
+            }
+            else
+            {
+                NSLog(@"%s => size of Fixed/Int vector: %d", optionDescr->name, (optionDescr->size / sizeof(SANE_Int)));
+                option = nil;
+            }
             
-            option = [[SKScanOption alloc] initWithIntValue: value
-                                                 optionName: [NSString stringWithCString: optionDescr->name]
-                                                optionIndex: i];
         }
         else if (SANE_TYPE_STRING == optionDescr->type && 0 < optionDescr->size)
         {
