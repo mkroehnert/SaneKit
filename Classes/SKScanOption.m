@@ -174,6 +174,32 @@
 
 
 /**
+ * Set array containing numbers as the constraint values.
+ * Throws an exception if it is not supported by the current option type.
+ */
+-(void) setNumericConstraints:(NSArray*) anArray
+{
+    NSException* exception = [NSException exceptionWithName: @"WrongOptionType"
+                                                     reason: @"This method can only be called on options storing Int/Fixed values"
+                                                   userInfo: nil];
+    [exception raise];
+}
+
+
+/**
+ * @return NSArray containing possible numeric values for this option (throws exception if not supported by current option type)
+ */
+-(NSArray*) numericConstraints
+{
+    NSException* exception = [NSException exceptionWithName: @"WrongOptionType"
+                                                     reason: @"This method can only be called on options storing Int/Fixed values"
+                                                   userInfo: nil];
+    [exception raise];
+    return nil;
+}
+
+
+/**
  * Set array containing strings as the constraint values.
  * Throws an exception if it is not supported by the current option type.
  */
