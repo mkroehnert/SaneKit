@@ -106,7 +106,7 @@
         {
             [optionList addObject: [NSString stringWithCString: modes[j] ]];
         }
-        NSLog(@"%s - possible options %@", theOptionDescriptor->name, optionList);
+        [theOption setStringConstraints: optionList];
     }
 }
 
