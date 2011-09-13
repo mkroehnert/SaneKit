@@ -88,19 +88,25 @@
     {
         const SANE_Word* possibleValues = theOptionDescriptor->constraint.word_list;
         const SANE_Int listLength = possibleValues[0];
-        for (int j = 0; possibleValues && j <= listLength; ++j) {
+        NSMutableArray* optionList = [NSMutableArray arrayWithCapacity: listLength];
+        for (int j = 0; possibleValues && j <= listLength; ++j)
+        {
             if (SANE_TYPE_FIXED == theOptionDescriptor->type)
-                NSLog(@"%s - possible option %d: %g", theOptionDescriptor->name, j, SANE_UNFIX(possibleValues[j]));
-            else
-                NSLog(@"%s - possible option %d: %d", theOptionDescriptor->name, j, possibleValues[j]);
+                [optionList addObject: [NSNumber numberWithDouble: SANE_UNFIX(possibleValues[j]) ]];
+            else if (SANE_TYPE_INT == theOptionDescriptor->type)
+                [optionList addObject: [NSNumber numberWithInt: possibleValues[j] ]];
         }
+        NSLog(@"%s - possible options %@", theOptionDescriptor->name, optionList);
     }
     else if (SANE_CONSTRAINT_STRING_LIST == theOptionDescriptor->constraint_type)
     {
         const SANE_String_Const* modes = theOptionDescriptor->constraint.string_list;
-        for (int j = 0; modes && modes[j]; ++j) {
-            NSLog(@"%s - possible option %d: %s", theOptionDescriptor->name, j, modes[j]);
+        NSMutableArray* optionList = [NSMutableArray arrayWithCapacity: 1];
+        for (int j = 0; modes && modes[j]; ++j)
+        {
+            [optionList addObject: [NSString stringWithCString: modes[j] ]];
         }
+        NSLog(@"%s - possible options %@", theOptionDescriptor->name, optionList);
     }
 }
 
