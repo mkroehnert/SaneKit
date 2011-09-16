@@ -28,4 +28,6 @@
 
 -(BOOL) isString;
 
+-(void) setStringValue:(NSString*) aString;
+
 @end

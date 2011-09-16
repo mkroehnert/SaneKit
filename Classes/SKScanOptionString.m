@@ -65,4 +65,12 @@
 	return YES;
 }
 
+
+-(void) setStringValue:(NSString*) aString
+{
+    if (value)
+        [value release];
+	value = [aString retain];
+}
+
 @end
