@@ -40,7 +40,15 @@ int main(int argc, char* argv[])
             // also call sane_get_parameters to get an idea of the image parameters
             NSLog(@"%@", [device scanParameters]);
             
-            [device doScan];
+            NSArray* images = [device doScan];
+
+            if (0 < [images count])
+            {
+                NSDictionary* imageProperties = [NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:1.0] forKey:NSImageCompressionFactor];
+                NSData* bitmapData = [[images lastObject] representationUsingType: NSPNGFileType properties: imageProperties];
+                [bitmapData writeToFile: @"test.png" atomically: NO];
+            }
+            
             [device close];
         }
     }
