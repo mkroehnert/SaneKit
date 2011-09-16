@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
             
             // resolution is the 5th parameter for my scanner
             SKScanOption* resolution = [options objectAtIndex: 4];
-            [resolution setValue: [NSNumber numberWithInt: 300] forKey: @"value"];
+            [resolution setIntegerValue: 300];
             
             [device setScanOption: resolution];
             
