@@ -406,8 +406,13 @@
             NSLog(@"Progress: %3.1f%%, total bytes: %d\n", progr, totalBytesRead);
         }
         while (SANE_STATUS_GOOD == scanStatus || SANE_STATUS_EOF != scanStatus);
+        
+        // first create an image rep which owns the bitmapData buffer and free()'s it itself
+        // then copy the buffer contents into the bitmapData buffer
+        // afterwards the buffer can be free()'d without issues and the image rep can
+        // get passed around without creating memory leaks
         NSBitmapImageRep* bitmap = [[NSBitmapImageRep alloc]
-                                    initWithBitmapDataPlanes: &buffer
+                                    initWithBitmapDataPlanes: NULL
                                     pixelsWide: [parameters widthPixel]
                                     pixelsHigh: [parameters heightPixel]
                                     bitsPerSample: 8
@@ -418,6 +423,11 @@
                                     bitmapFormat: 0
                                     bytesPerRow: [parameters widthPixel] * 3  // 0 == determine automatically
                                     bitsPerPixel: [parameters bitsPerPixel]];  // 0 == determine automatically
+
+        // only copy the buffer into the image rep if they have the same size
+        if (maxBufferSize == [bitmap bytesPerPlane])
+            memcpy([bitmap bitmapData], buffer, maxBufferSize);
+        free(buffer);
         
         if (nil != bitmap)
         {
@@ -425,7 +435,6 @@
             NSData* bitmapData = [bitmap representationUsingType: NSTIFFFileType properties: imageProperties];
             [bitmapData writeToFile: @"test.tiff" atomically: NO];
         }
-        free(buffer);
     }
     while (![parameters isLastFrame]);
     
