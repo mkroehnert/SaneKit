@@ -372,7 +372,7 @@
 -(BOOL) doScan
 {
 	SANE_Status scanStatus = 0;
-    SANE_Parameters scanParameters;
+    SKScanParameters* parameters = nil;
     
     scanStatus = sane_start (handle->deviceHandle);
     if (SANE_STATUS_GOOD != scanStatus)
@@ -383,7 +383,7 @@
     
     do
     {
-        SKScanParameters* parameters = [self scanParameters];
+        parameters = [self scanParameters];
         if (![parameters checkParameters])
             continue;
 
@@ -427,7 +427,7 @@
         }
         free(buffer);
     }
-    while (!scanParameters.last_frame);
+    while (![parameters isLastFrame]);
     
     sane_cancel(handle->deviceHandle);
     
