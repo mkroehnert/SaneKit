@@ -50,4 +50,12 @@
 	return YES;
 }
 
+
+-(void) setBoolValue:(BOOL) aBool
+{
+    if (value)
+        [value release];
+	value = [NSNumber numberWithBool: aBool];
+}
+
 @end

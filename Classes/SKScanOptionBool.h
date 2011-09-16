@@ -24,4 +24,6 @@
 
 -(BOOL) isBool;
 
+-(void) setBoolValue:(BOOL) aBool;
+
 @end
