@@ -27,7 +27,7 @@ struct SaneHandle;
 -(BOOL) open;
 -(void) close;
 
--(BOOL) doScan;
+-(NSArray*) doScan;
 
 -(SKScanParameters*) scanParameters;
 -(NSArray*) scanOptions;

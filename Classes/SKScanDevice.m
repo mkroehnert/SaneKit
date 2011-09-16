@@ -367,12 +367,16 @@
 
 
 /**
- * This method does a basic scan but currently doesn't do anything with the read data.
+ * This method does a basic scan and stores the data in an instance of NSBitmapImageRep.
+ *
+ * @return NSArray instance with all scanned images as NSBitmapImageRep
  */
--(BOOL) doScan
+-(NSArray*) doScan
 {
 	SANE_Status scanStatus = 0;
     SKScanParameters* parameters = nil;
+    NSBitmapImageRep* bitmapRep;
+    NSMutableArray* scannedImages = [NSMutableArray arrayWithCapacity: 1];
     
     scanStatus = sane_start (handle->deviceHandle);
     if (SANE_STATUS_GOOD != scanStatus)
@@ -411,36 +415,34 @@
         // then copy the buffer contents into the bitmapData buffer
         // afterwards the buffer can be free()'d without issues and the image rep can
         // get passed around without creating memory leaks
-        NSBitmapImageRep* bitmap = [[NSBitmapImageRep alloc]
-                                    initWithBitmapDataPlanes: NULL
-                                    pixelsWide: [parameters widthPixel]
-                                    pixelsHigh: [parameters heightPixel]
-                                    bitsPerSample: 8
-                                    samplesPerPixel: 3  // or 4 with alpha
-                                    hasAlpha: NO
-                                    isPlanar: NO // only use the first element of buffer
-                                    colorSpaceName: NSDeviceRGBColorSpace
-                                    bitmapFormat: 0
-                                    bytesPerRow: [parameters widthPixel] * 3  // 0 == determine automatically
-                                    bitsPerPixel: [parameters bitsPerPixel]];  // 0 == determine automatically
+        bitmapRep = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes: NULL
+                                                            pixelsWide: [parameters widthPixel]
+                                                            pixelsHigh: [parameters heightPixel]
+                                                         bitsPerSample: 8
+                                                       samplesPerPixel: 3  // or 4 with alpha
+                                                              hasAlpha: NO
+                                                              isPlanar: NO // only use the first element of buffer
+                                                        colorSpaceName: NSDeviceRGBColorSpace
+                                                          bitmapFormat: 0
+                                                           bytesPerRow: [parameters widthPixel] * 3  // 0 == determine automatically
+                                                          bitsPerPixel: [parameters bitsPerPixel]];  // 0 == determine automatically
 
         // only copy the buffer into the image rep if they have the same size
-        if (maxBufferSize == [bitmap bytesPerPlane])
-            memcpy([bitmap bitmapData], buffer, maxBufferSize);
+        if (maxBufferSize == [bitmapRep bytesPerPlane])
+            memcpy([bitmapRep bitmapData], buffer, maxBufferSize);
         free(buffer);
-        
-        if (nil != bitmap)
+
+        if (nil != bitmapRep)
         {
-            NSDictionary* imageProperties = [NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:1.0] forKey:NSImageCompressionFactor];
-            NSData* bitmapData = [bitmap representationUsingType: NSTIFFFileType properties: imageProperties];
-            [bitmapData writeToFile: @"test.tiff" atomically: NO];
+        	[bitmapRep autorelease];
+            [scannedImages addObject: bitmapRep];
         }
     }
     while (![parameters isLastFrame]);
     
     sane_cancel(handle->deviceHandle);
     
-    return YES;
+    return scannedImages;
 }
 
 
