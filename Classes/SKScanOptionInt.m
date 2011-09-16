@@ -64,4 +64,11 @@
 }
 
 
+-(void) setIntegerValue:(NSInteger) anInteger
+{
+    if (value)
+        [value release];
+    value = [NSNumber numberWithInt: anInteger];
+}
+
 @end

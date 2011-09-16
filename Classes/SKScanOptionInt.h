@@ -28,4 +28,6 @@
 
 -(BOOL) isInteger;
 
+-(void) setIntegerValue:(NSInteger) anInteger;
+
 @end
