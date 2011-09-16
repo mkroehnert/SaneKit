@@ -68,7 +68,7 @@
 {
     if (value)
         [value release];
-    value = [NSNumber numberWithInt: anInteger];
+    value = [[NSNumber numberWithInt: anInteger] retain];
 }
 
 @end

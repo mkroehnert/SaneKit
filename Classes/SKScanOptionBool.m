@@ -55,7 +55,7 @@
 {
     if (value)
         [value release];
-	value = [NSNumber numberWithBool: aBool];
+	value = [[NSNumber numberWithBool: aBool] retain];
 }
 
 @end
