@@ -261,7 +261,7 @@
 
 
 /**
- * @return YES if option stores an Int
+ * @return YES if option stores an Integer
  */
 -(BOOL) isInteger
 {
@@ -275,6 +275,45 @@
 -(BOOL) isString
 {
 	return NO;
+}
+
+
+/**
+ * This method stores the parameter aBool as the option value if it can store BOOL values.
+ * In any other case an exception is thrown.
+ */
+-(void) setBoolValue:(BOOL) aBool
+{
+    NSException* exception = [NSException exceptionWithName: @"WrongOptionType"
+                                                     reason: @"This method can only be called on options storing Bool values"
+                                                   userInfo: nil];
+    [exception raise];
+}
+
+
+/**
+ * This method stores the parameter anInt as the option value if it can store Integer values.
+ * In any other case an exception is thrown.
+ */
+-(void) setIntegerValue:(NSInteger) anInteger
+{
+    NSException* exception = [NSException exceptionWithName: @"WrongOptionType"
+                                                     reason: @"This method can only be called on options storing Integer values"
+                                                   userInfo: nil];
+    [exception raise];
+}
+
+
+/**
+ * This method stores the parameter aString as the option value if it can store strings.
+ * In any other case an exception is thrown.
+ */
+-(void) setStringValue:(NSString*) aString
+{
+    NSException* exception = [NSException exceptionWithName: @"WrongOptionType"
+                                                     reason: @"This method can only be called on options storing String values"
+                                                   userInfo: nil];
+    [exception raise];
 }
 
 

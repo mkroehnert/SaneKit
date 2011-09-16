@@ -56,6 +56,10 @@
 -(BOOL) isInteger;
 -(BOOL) isString;
 
+-(void) setBoolValue:(BOOL) aBool;
+-(void) setIntegerValue:(NSInteger) anInteger;
+-(void) setStringValue:(NSString*) aString;
+
 -(void) setReadOnly:(BOOL) aBool;
 -(BOOL) isReadOnly;
 
