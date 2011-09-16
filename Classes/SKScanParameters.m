@@ -66,6 +66,15 @@
 
 
 /**
+ * @return YES if this is the last frame to be scanned
+ */
+-(BOOL) isLastFrame
+{
+	return lastFrame;
+}
+
+
+/**
  * @return the total number of bytes which will be read during the scan
  */
 -(NSInteger) totalBytes

@@ -38,6 +38,7 @@ typedef enum
                lines:(NSInteger) theLines
                depth:(NSInteger) theDepth;
 -(BOOL) checkParameters;
+-(BOOL) isLastFrame;
 -(NSInteger) totalBytes;
 -(NSInteger) widthPixel;
 -(NSInteger) heightPixel;
