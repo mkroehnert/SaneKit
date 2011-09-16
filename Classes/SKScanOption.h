@@ -53,7 +53,7 @@
 -(NSArray*) stringConstraints;
 
 -(BOOL) isBool;
--(BOOL) isInt;
+-(BOOL) isInteger;
 -(BOOL) isString;
 
 -(void) setReadOnly:(BOOL) aBool;

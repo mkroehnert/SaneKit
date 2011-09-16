@@ -58,7 +58,7 @@
 }
 
 
--(BOOL) isInt
+-(BOOL) isInteger
 {
 	return YES;
 }

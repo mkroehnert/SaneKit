@@ -263,7 +263,7 @@
 /**
  * @return YES if option stores an Int
  */
--(BOOL) isInt
+-(BOOL) isInteger
 {
 	return NO;
 }

@@ -26,6 +26,6 @@
 -(void) setNumericConstraints:(NSArray*) anArray;
 -(NSArray*) numericConstraints;
 
--(BOOL) isInt;
+-(BOOL) isInteger;
 
 @end
