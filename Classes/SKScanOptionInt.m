@@ -82,9 +82,15 @@
 
 -(void) setIntegerValue:(NSInteger) anInteger
 {
+    NSNumber* parameter = [NSNumber numberWithInt: anInteger];
+    if (numericConstraints && ![numericConstraints containsObject: parameter])
+    {
+        [NSException raise: @"WrongArgument"
+                    format: @"The parameter needs to be one of %@ but is (%@)", numericConstraints, parameter];
+    }
     if (value)
         [value release];
-    value = [[NSNumber numberWithInt: anInteger] retain];
+    value = [parameter retain];
 }
 
 @end
