@@ -546,11 +546,14 @@
 
 
 /**
- *
+ * Set to YES if the scan should be a preview scan.
  */
 -(BOOL) setPreview:(BOOL) doPreview
 {
-	return YES;
+    SKScanOption* option = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_PREVIEW]];
+    [[option retain] autorelease];
+    [option setBoolValue: doPreview];
+    return [self setScanOption: option];
 }
 
 
