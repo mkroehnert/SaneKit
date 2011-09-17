@@ -24,7 +24,11 @@
 
 -(void) dealloc
 {
-	[value release];
+    if (value)
+    {
+        [value release];
+        value = nil;
+    }
     
     [super dealloc];
 }

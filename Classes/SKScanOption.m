@@ -36,10 +36,26 @@
 
 -(void) dealloc
 {
-	[name release];
-	[title release];
-	[explanation release];
-    [unitString release];
+    if (name)
+    {
+        [name release];
+        name = nil;
+    }
+    if (title)
+    {
+        [title release];
+        title = nil;
+    }
+    if (explanation)
+    {
+        [explanation release];
+        explanation = nil;
+    }
+    if (unitString)
+    {
+        [unitString release];
+        unitString = nil;
+    }
     
     [super dealloc];
 }

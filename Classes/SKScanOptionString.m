@@ -25,9 +25,16 @@
 
 -(void) dealloc
 {
-	[value release];
+    if (value)
+    {
+        [value release];
+        value = nil;
+    }
     if (stringConstraints)
+    {
         [stringConstraints release];
+        stringConstraints = nil;
+    }
 
     [super dealloc];
 }
