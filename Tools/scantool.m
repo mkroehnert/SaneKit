@@ -28,14 +28,11 @@ int main(int argc, char* argv[])
             NSArray* options = [device scanOptions];
             NSLog(@"Options:\n%@", options);
             
-            // resolution is the 5th parameter for my scanner
-            SKScanOption* resolution = [options objectAtIndex: 4];
-            [resolution setIntegerValue: 300];
-            
-            [device setScanOption: resolution];
-            
             options = [device scanOptions];
             NSLog(@"Options:\n%@", options);
+            [device setMode: @"Gray"];
+            [device setResolution: 300];
+
             
             // also call sane_get_parameters to get an idea of the image parameters
             NSLog(@"%@", [device scanParameters]);
