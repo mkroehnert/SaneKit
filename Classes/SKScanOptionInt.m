@@ -80,6 +80,12 @@
 
 -(void) setIntegerValue:(NSInteger) anInteger
 {
+    if (readOnly || inactive)
+    {
+        NSLog(@"Trying to set readonly/inactive option %@", title);
+        return;
+    }
+    
     NSNumber* parameter = [NSNumber numberWithInt: anInteger];
     if (numericConstraints && ![numericConstraints containsObject: parameter])
     {

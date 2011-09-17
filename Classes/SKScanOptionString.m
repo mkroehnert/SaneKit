@@ -85,6 +85,12 @@
 
 -(void) setStringValue:(NSString*) aString
 {
+    if (readOnly || inactive)
+    {
+        NSLog(@"Trying to set readonly/inactive option %@", title);
+        return;
+    }
+    
     if (stringConstraints && ![stringConstraints containsObject: aString])
     {
         [NSException raise: @"WrongArgument"

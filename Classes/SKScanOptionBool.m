@@ -57,6 +57,12 @@
 
 -(void) setBoolValue:(BOOL) aBool
 {
+    if (readOnly || inactive)
+    {
+        NSLog(@"Trying to set readonly/inactive option %@", title);
+        return;
+    }
+    
     if (value)
         [value release];
 	value = [[NSNumber numberWithBool: aBool] retain];
