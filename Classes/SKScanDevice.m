@@ -23,6 +23,7 @@
 -(void) setUnit:(SANE_Unit) theUnit onOption:(SKScanOption*) theOption;
 -(void) setConstraints:(const SANE_Option_Descriptor*) theOptionDescriptor onOption:(SKScanOption*) theOption;
 -(void) setCapabilities:(SANE_Int) theCapabilities onOption:(SKScanOption*) theOption;
+-(void) handleSaneStatusError:(SANE_Status) saneStatus;
 
 @end
 
@@ -34,6 +35,8 @@
 	SANE_Status status;
     SANE_Int info;
     status = sane_control_option(handle->deviceHandle, theIndex, SANE_ACTION_SET_VALUE, theValue, &info);
+    if (SANE_STATUS_GOOD != status)
+        [self handleSaneStatusError: status];
     return info;
 }
 
@@ -142,6 +145,55 @@
     [theOption setAutoSelect: (SANE_CAP_AUTOMATIC & theCapabilities)];
     [theOption setInactive: (SANE_CAP_INACTIVE & theCapabilities)];
     [theOption setAdvanced: (SANE_CAP_ADVANCED & theCapabilities)];
+}
+
+
+/**
+ * Handle status errors returned by libsane
+ */
+-(void) handleSaneStatusError:(SANE_Status) saneStatus
+{
+    switch (saneStatus) {
+        case SANE_STATUS_CANCELLED:
+            NSLog(@"Operation was cancelled");
+            break;
+        case SANE_STATUS_DEVICE_BUSY:
+            NSLog(@"Device is busy right now");
+            break;
+        case SANE_STATUS_JAMMED:
+            NSLog(@"Document feeder is jammed");
+            break;
+        case SANE_STATUS_NO_DOCS:
+            NSLog(@"Document feeder is out of documents");
+            break;
+        case SANE_STATUS_COVER_OPEN:
+            NSLog(@"The scanner cover is open");
+            break;
+        case SANE_STATUS_IO_ERROR:
+            NSLog(@"Error occurred while communicating with the scan device");
+            break;
+        case SANE_STATUS_NO_MEM:
+            NSLog(@"Not enough memory");
+            break;
+        case SANE_STATUS_UNSUPPORTED:
+            NSLog(@"Operation is not supported by the current scan device");
+            break;
+        case SANE_STATUS_INVAL:
+            /*
+             SANE_STATUS_INVAL:
+             The scan cannot be started with the current set of options. 
+             The frontend should reload the option descriptors, as if SANE_INFO_RELOAD_OPTIONS
+             had been returned from a call to sane_control_option(), since the device's capabilities may have changed. 
+             */
+            NSLog(@"Invalid option(s)");
+            break;
+        case SANE_STATUS_ACCESS_DENIED:
+            NSLog(@"Access to option denied due to invalid authentication");
+            break;
+        default:
+            NSLog(@"Unknown option: %d", saneStatus);
+            break;
+    }
 }
 
 @end
@@ -388,6 +440,7 @@
     if (SANE_STATUS_GOOD != scanStatus)
     {
         NSLog(@"Sane start error: %s", sane_strstatus(scanStatus));
+        [self handleSaneStatusError: scanStatus];
         return NO;
     }
     
