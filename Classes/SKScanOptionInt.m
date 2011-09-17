@@ -46,6 +46,18 @@
 
 -(void) setNumericConstraints:(NSArray*) anArray
 {
+    NSEnumerator* anEnumerator = [anArray objectEnumerator];
+    id anObject = nil;
+    while (anObject = [anEnumerator nextObject]) {
+        if (! [anObject isKindOfClass: [NSNumber class]] )
+        {
+            NSException* exception = [NSException exceptionWithName: @"WrongArgumentType"
+                                                             reason: @"This method needs an array of NSNumber values as parameter"
+                                                           userInfo: nil];
+            [exception raise];
+        }
+    }
+
     if (numericConstraints)
         [numericConstraints release];
     numericConstraints = [anArray retain];
