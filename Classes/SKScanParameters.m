@@ -150,6 +150,15 @@
 
 
 /**
+ * @return depth parameter used for current scan (numbers of bits per pixel)
+ */
+-(NSInteger) depth
+{
+	return depth;
+}
+
+
+/**
  * @return a string describing the current instance
  */
 -(NSString*) description

@@ -46,6 +46,7 @@ typedef enum
 -(NSInteger) samplesPerPixel;
 -(NSInteger) bytesPerRow;
 -(NSString*) colorSpaceName;
+-(NSInteger) depth;
 
 -(NSString*) description;
 
