@@ -60,10 +60,8 @@
     while (anObject = [anEnumerator nextObject]) {
         if (! [anObject isKindOfClass: [NSString class]] )
         {
-            NSException* exception = [NSException exceptionWithName: @"WrongArgumentType"
-                                                             reason: @"This method needs an array of String values as parameter"
-                                                           userInfo: nil];
-            [exception raise];
+            [NSException raise: @"WrongArgumentType"
+                        format: @"This method needs an array of String values as parameter"];
         }
     }
 

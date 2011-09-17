@@ -172,10 +172,8 @@
  */
 -(void*) value
 {
-    NSException* exception = [NSException exceptionWithName: @"SubclassResponsibility"
-                                                     reason: @"Method should be implemented by subclass"
-                                                   userInfo: nil];
-    [exception raise];
+    [NSException raise: @"SubclassResponsibility"
+                format: @"Method should be implemented by subclass"];
     return NULL;
 }
 
@@ -195,10 +193,8 @@
  */
 -(void) setRangeConstraint:(id) aRange
 {
-    NSException* exception = [NSException exceptionWithName: @"WrongOptionType"
-                                                     reason: @"This method can only be called on options storing Int/Fixed values"
-                                                   userInfo: nil];
-    [exception raise];
+    [NSException raise: @"WrongOptionType"
+                format: @"This method can only be called on options storing Int/Fixed values"];
 }
 
 
@@ -207,10 +203,8 @@
  */
 -(id) rangeConstraint
 {
-    NSException* exception = [NSException exceptionWithName: @"WrongOptionType"
-                                                     reason: @"This method can only be called on options storing Int/Fixed values"
-                                                   userInfo: nil];
-    [exception raise];
+    [NSException raise: @"WrongOptionType"
+                format: @"This method can only be called on options storing Int/Fixed values"];
     return nil;
 }
 
@@ -221,10 +215,8 @@
  */
 -(void) setNumericConstraints:(NSArray*) anArray
 {
-    NSException* exception = [NSException exceptionWithName: @"WrongOptionType"
-                                                     reason: @"This method can only be called on options storing Int/Fixed values"
-                                                   userInfo: nil];
-    [exception raise];
+    [NSException raise: @"WrongOptionType"
+                format: @"This method can only be called on options storing Int/Fixed values"];
 }
 
 
@@ -233,10 +225,8 @@
  */
 -(NSArray*) numericConstraints
 {
-    NSException* exception = [NSException exceptionWithName: @"WrongOptionType"
-                                                     reason: @"This method can only be called on options storing Int/Fixed values"
-                                                   userInfo: nil];
-    [exception raise];
+    [NSException raise: @"WrongOptionType"
+                format: @"This method can only be called on options storing Int/Fixed values"];
     return nil;
 }
 
@@ -247,10 +237,8 @@
  */
 -(void) setStringConstraints:(NSArray*) anArray
 {
-    NSException* exception = [NSException exceptionWithName: @"WrongOptionType"
-                                                     reason: @"This method can only be called on options storing String values"
-                                                   userInfo: nil];
-    [exception raise];
+    [NSException raise: @"WrongOptionType"
+                format: @"This method can only be called on options storing String values"];
 }
 
 
@@ -259,10 +247,8 @@
  */
 -(NSArray*) stringConstraints
 {
-    NSException* exception = [NSException exceptionWithName: @"WrongOptionType"
-                                                     reason: @"This method can only be called on options storing String values"
-                                                   userInfo: nil];
-    [exception raise];
+    [NSException raise: @"WrongOptionType"
+                format: @"This method can only be called on options storing String values"];
     return nil;
 }
 
@@ -300,10 +286,8 @@
  */
 -(void) setBoolValue:(BOOL) aBool
 {
-    NSException* exception = [NSException exceptionWithName: @"WrongOptionType"
-                                                     reason: @"This method can only be called on options storing Bool values"
-                                                   userInfo: nil];
-    [exception raise];
+    [NSException raise: @"WrongOptionType"
+                format: @"This method can only be called on options storing Bool values"];
 }
 
 
@@ -313,10 +297,8 @@
  */
 -(void) setIntegerValue:(NSInteger) anInteger
 {
-    NSException* exception = [NSException exceptionWithName: @"WrongOptionType"
-                                                     reason: @"This method can only be called on options storing Integer values"
-                                                   userInfo: nil];
-    [exception raise];
+    [NSException raise: @"WrongOptionType"
+                format: @"This method can only be called on options storing Integer values"];
 }
 
 
@@ -326,10 +308,8 @@
  */
 -(void) setStringValue:(NSString*) aString
 {
-    NSException* exception = [NSException exceptionWithName: @"WrongOptionType"
-                                                     reason: @"This method can only be called on options storing String values"
-                                                   userInfo: nil];
-    [exception raise];
+    [NSException raise: @"WrongOptionType"
+                format: @"This method can only be called on options storing String values"];
 }
 
 
