@@ -32,7 +32,8 @@ int main(int argc, char* argv[])
             NSLog(@"Options:\n%@", options);
             [device setMode: @"Gray"];
             [device setResolution: 300];
-            [device setDepth: 16];
+            [device setDepth: 8];
+            [device setPreview: YES];
 
             
             // also call sane_get_parameters to get an idea of the image parameters
