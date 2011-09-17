@@ -48,6 +48,18 @@
 
 -(void) setStringConstraints:(NSArray*) anArray
 {
+    NSEnumerator* anEnumerator = [anArray objectEnumerator];
+    id anObject = nil;
+    while (anObject = [anEnumerator nextObject]) {
+        if (! [anObject isKindOfClass: [NSString class]] )
+        {
+            NSException* exception = [NSException exceptionWithName: @"WrongArgumentType"
+                                                             reason: @"This method needs an array of String values as parameter"
+                                                           userInfo: nil];
+            [exception raise];
+        }
+    }
+
     if (stringConstraints)
         [stringConstraints release];
     stringConstraints = [anArray retain];
