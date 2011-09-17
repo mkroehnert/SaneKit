@@ -558,12 +558,29 @@
 
 
 /**
- *
+ * Set the rectangle which should be scanned in the next scan.
  */
 -(BOOL) setScanRect:(NSRect) scanRect
 {
-    //set tl-x, tl-y, br-y, br-y
-    return YES;
+    SKScanOption* option = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_TL_X]];
+    [[option retain] autorelease];
+    [option setIntegerValue: scanRect.origin.x];
+    [self setScanOption: option];
+
+    option = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_TL_Y]];
+    [[option retain] autorelease];
+    [option setIntegerValue: scanRect.origin.y];
+    [self setScanOption: option];
+
+    option = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_BR_X]];
+    [[option retain] autorelease];
+    [option setIntegerValue: scanRect.origin.x + scanRect.size.width];
+    [self setScanOption: option];
+
+    option = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_BR_Y]];
+    [[option retain] autorelease];
+    [option setIntegerValue: scanRect.origin.y + scanRect.size.height];
+    return [self setScanOption: option];
 }
 
 
