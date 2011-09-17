@@ -131,7 +131,13 @@
         NSLog(@"This option MUST be set!");
         return;
     }
-    [theOption setReadOnly: (SANE_CAP_SOFT_DETECT & theCapabilities)];
+    if(!( (SANE_CAP_SOFT_SELECT | SANE_CAP_HARD_SELECT | SANE_CAP_SOFT_DETECT) & theCapabilities ))
+    {
+        NSLog(@"Option is not useable (if one of these three is not set, option is useless, skip it)");
+        return;
+    }
+    
+    [theOption setReadOnly: (!(SANE_CAP_SOFT_SELECT & theCapabilities) && (SANE_CAP_SOFT_DETECT & theCapabilities))];
     [theOption setEmulated: (SANE_CAP_EMULATED & theCapabilities)];
     [theOption setAutoSelect: (SANE_CAP_AUTOMATIC & theCapabilities)];
     [theOption setInactive: (SANE_CAP_INACTIVE & theCapabilities)];
