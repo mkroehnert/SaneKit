@@ -87,6 +87,11 @@
 
 -(void) setStringValue:(NSString*) aString
 {
+    if (stringConstraints && ![stringConstraints containsObject: aString])
+    {
+        [NSException raise: @"WrongArgument"
+                    format: @"The parameter needs to be one of %@ but is (%@)", stringConstraints, aString];
+    }
     if (value)
         [value release];
 	value = [aString retain];
