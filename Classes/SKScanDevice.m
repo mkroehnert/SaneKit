@@ -522,11 +522,14 @@
 
 
 /**
- *
+ * Set the scan depth on the current device.
  */
 -(BOOL) setDepth:(NSInteger) theDepth
 {
-	return YES;
+    SKScanOption* option = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_BIT_DEPTH]];
+    [[option retain] autorelease];
+    [option setIntegerValue: theDepth];
+    return [self setScanOption: option];
 }
 
 
