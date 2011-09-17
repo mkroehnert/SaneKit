@@ -12,6 +12,7 @@
 #import "SKStructs.h"
 
 #include <sane/sane.h>
+#include <sane/saneopts.h>
 #include <math.h>
 
 #import <AppKit/AppKit.h>
@@ -509,11 +510,14 @@
 
 
 /**
- *
+ * Set the scan mode on the current device.
  */
 -(BOOL) setMode:(NSString*) theMode
 {
-	return YES;
+    SKScanOption* option = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_MODE]];
+    [[option retain] autorelease];
+    [option setStringValue: theMode];
+    return [self setScanOption: option];
 }
 
 
