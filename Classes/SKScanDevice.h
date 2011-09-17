@@ -18,6 +18,7 @@ struct SaneHandle;
     NSString* model;
     NSString* type;
     struct SaneHandle* handle;
+    NSMutableDictionary* options;
 }
 
 -(id) initWithName:(NSString*) aName vendor:(NSString*) aVendor model:(NSString*) aModel type:(NSString*) aType;
