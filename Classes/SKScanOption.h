@@ -34,6 +34,8 @@
 -(void) setUnitString:(NSString*) aUnit;
 -(NSString*) unitString;
 
+-(NSString*) name;
+
 -(void) setTitle:(NSString*) theTitle;
 -(NSString*) title;
 

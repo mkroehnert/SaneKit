@@ -121,6 +121,15 @@
 
 
 /**
+ * @return the option name (unique identifier)
+ */
+-(NSString*) name
+{
+	return name;
+}
+
+
+/**
  * Set the title member to the value provided by the parameter theTitle.
  */
 -(void) setTitle:(NSString*) theTitle
