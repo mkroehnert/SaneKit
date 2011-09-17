@@ -440,12 +440,12 @@
     NSBitmapImageRep* bitmapRep;
     NSMutableArray* scannedImages = [NSMutableArray arrayWithCapacity: 1];
     
-    scanStatus = sane_start (handle->deviceHandle);
+    scanStatus = sane_start(handle->deviceHandle);
     if (SANE_STATUS_GOOD != scanStatus)
     {
         NSLog(@"Sane start error: %s", sane_strstatus(scanStatus));
         [self handleSaneStatusError: scanStatus];
-        return NO;
+        return scannedImages;
     }
     
     do
