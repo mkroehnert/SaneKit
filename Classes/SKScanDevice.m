@@ -531,11 +531,14 @@
 
 
 /**
- *
+ * Set the scan resolution on the current device.
  */
 -(BOOL) setResolution:(NSInteger) theResolution
 {
-	return YES;
+    SKScanOption* option = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_RESOLUTION]];
+    [[option retain] autorelease];
+    [option setIntegerValue: theResolution];
+    return [self setScanOption: option];
 }
 
 
