@@ -19,7 +19,7 @@
 
 @interface SKScanDevice (private)
 
--(SANE_Status) setValue:(void*) theValue forOptionWithIndex:(NSInteger) theIndex;
+-(SANE_Status) setValue:(void*) theValue forOptionWithIndex:(NSInteger) theIndex info:(SANE_Int*) info;
 -(SANE_Status) getValue:(void*) theValue forOptionWithIndex:(NSInteger) theIndex;
 -(void) setUnit:(SANE_Unit) theUnit onOption:(SKScanOption*) theOption;
 -(void) setConstraints:(const SANE_Option_Descriptor*) theOptionDescriptor onOption:(SKScanOption*) theOption;
@@ -31,14 +31,14 @@
 
 @implementation SKScanDevice (private)
 
--(SANE_Status) setValue:(void*) theValue forOptionWithIndex:(NSInteger) theIndex;
+-(SANE_Status) setValue:(void*) theValue forOptionWithIndex:(NSInteger) theIndex info:(SANE_Int*) info;
 {
 	SANE_Status status;
-    SANE_Int info;
-    status = sane_control_option(handle->deviceHandle, theIndex, SANE_ACTION_SET_VALUE, theValue, &info);
+    status = sane_control_option(handle->deviceHandle, theIndex, SANE_ACTION_SET_VALUE, theValue, info);
     if (SANE_STATUS_GOOD != status)
         [self handleSaneStatusError: status];
-    return info;
+    
+    return status;
 }
 
 
@@ -414,13 +414,14 @@
  */
 -(BOOL) setScanOption:(SKScanOption*) theOption
 {
-	SANE_Status setStatus = [self setValue: [theOption value] forOptionWithIndex: [theOption index]];
+    SANE_Int info;
+	SANE_Status setStatus = [self setValue: [theOption value] forOptionWithIndex: [theOption index] info: &info];
     
-    if (SANE_INFO_INEXACT & setStatus)
+    if (SANE_INFO_INEXACT & info)
         NSLog(@"Option value was rounded upon setting the option");
-    else if (SANE_INFO_RELOAD_OPTIONS & setStatus)
+    else if (SANE_INFO_RELOAD_OPTIONS & info)
         NSLog(@"Application should reload all options (multiple options have been affected by setting this one)");
-    else if (SANE_INFO_RELOAD_PARAMS & setStatus)
+    else if (SANE_INFO_RELOAD_PARAMS & info)
         NSLog(@"Application should reload all parameters (multiple parameters have been affected by setting this option)");
     return YES;
 }
