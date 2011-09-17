@@ -419,13 +419,13 @@
                                                             pixelsWide: [parameters widthPixel]
                                                             pixelsHigh: [parameters heightPixel]
                                                          bitsPerSample: 8
-                                                       samplesPerPixel: 3  // or 4 with alpha
+                                                       samplesPerPixel: [parameters samplesPerPixel] // or 4 with alpha
                                                               hasAlpha: NO
                                                               isPlanar: NO // only use the first element of buffer
-                                                        colorSpaceName: NSDeviceRGBColorSpace
+                                                        colorSpaceName: [parameters colorSpaceName]
                                                           bitmapFormat: 0
-                                                           bytesPerRow: [parameters widthPixel] * 3  // 0 == determine automatically
-                                                          bitsPerPixel: [parameters bitsPerPixel]];  // 0 == determine automatically
+                                                           bytesPerRow: [parameters bytesPerRow]    // 0 == determine automatically
+                                                          bitsPerPixel: [parameters bitsPerPixel]]; // 0 == determine automatically
 
         // only copy the buffer into the image rep if they have the same size
         if (maxBufferSize == [bitmapRep bytesPerPlane])

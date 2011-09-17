@@ -8,6 +8,7 @@
 
 #import "SKScanParameters.h"
 #include <sane/sane.h>
+#include <AppKit/NSGraphics.h>
 
 @implementation SKScanParameters
 
@@ -112,6 +113,40 @@
     return 8 * bytesPerLine / pixelsPerLine;
 }
 
+
+/**
+ * @return the number of samples needed for each scanned pixel
+ */
+-(NSInteger) samplesPerPixel
+{
+    // RGB uses 3 bytes per pixel
+    // Gray or single channel only use one
+	return (eRGB == format) ? 3 : 1;
+}
+
+
+/**
+ * @return number of bytes each row of the scanned image will consume
+ */
+-(NSInteger) bytesPerRow
+{
+	return [self widthPixel] * [self samplesPerPixel];
+}
+
+
+/**
+ * @return NSBitmapFormat specification needed to create an NSBitmapImageRep
+ */
+-(NSString*) colorSpaceName
+{
+	if (eGRAY == format)
+        return NSDeviceWhiteColorSpace;
+    else if (eRGB == format)
+        return NSDeviceRGBColorSpace;
+    else
+        return NSDeviceRGBColorSpace;
+    // TODO: is the else branch correct?
+}
 
 
 /**

@@ -43,6 +43,9 @@ typedef enum
 -(NSInteger) widthPixel;
 -(NSInteger) heightPixel;
 -(NSInteger) bitsPerPixel;
+-(NSInteger) samplesPerPixel;
+-(NSInteger) bytesPerRow;
+-(NSString*) colorSpaceName;
 
 -(NSString*) description;
 
