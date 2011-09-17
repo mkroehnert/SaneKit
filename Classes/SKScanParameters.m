@@ -110,7 +110,7 @@
  */
 -(NSInteger) bitsPerPixel
 {
-    return 8 * bytesPerLine / pixelsPerLine;
+    return depth * bytesPerLine / pixelsPerLine;
 }
 
 
@@ -160,7 +160,7 @@
                              @"Scanning image of size %dx%d pixels at %d bits/pixel\nFormat: %d\nDepth: %d",
                              pixelsPerLine,
                              lines,
-                             8 * bytesPerLine / pixelsPerLine,
+                             depth * bytesPerLine / pixelsPerLine,
                              format,
                              depth
                              ];
@@ -168,7 +168,7 @@
         descriptionString = [NSString stringWithFormat:
                              @"Scanning image %d pixels wide (variable length) at %d bits/pixel\nFormat: %d\nDepth: %d",
                              pixelsPerLine,
-                             8 * bytesPerLine / pixelsPerLine,
+                             depth * bytesPerLine / pixelsPerLine,
                              format,
                              depth
                              ];
