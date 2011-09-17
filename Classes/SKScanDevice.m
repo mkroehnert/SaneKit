@@ -352,7 +352,6 @@
                 NSLog(@"%s => size of Fixed/Int vector: %d", optionDescr->name, (optionDescr->size / sizeof(SANE_Int)));
                 option = nil;
             }
-            
         }
         else if (SANE_TYPE_STRING == optionDescr->type && 0 < optionDescr->size)
         {
@@ -481,7 +480,7 @@
         bitmapRep = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes: NULL
                                                             pixelsWide: [parameters widthPixel]
                                                             pixelsHigh: [parameters heightPixel]
-                                                         bitsPerSample: 8
+                                                         bitsPerSample: [parameters depth]
                                                        samplesPerPixel: [parameters samplesPerPixel] // or 4 with alpha
                                                               hasAlpha: NO
                                                               isPlanar: NO // only use the first element of buffer
