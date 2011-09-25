@@ -33,6 +33,8 @@
 
 -(SANE_Status) setValue:(void*) theValue forOptionWithIndex:(NSInteger) theIndex info:(SANE_Int*) info;
 {
+    // no need to check if parameter info is NULL
+    // in the NULL case no additianal information is stored in info
 	SANE_Status status;
     status = sane_control_option(handle->deviceHandle, theIndex, SANE_ACTION_SET_VALUE, theValue, info);
     if (SANE_STATUS_GOOD != status)
