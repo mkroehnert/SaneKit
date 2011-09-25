@@ -164,6 +164,9 @@
 -(NSString*) description
 {
     NSString* descriptionString = @"";
+    if (0 == pixelsPerLine)
+        return @"Scanning image with 0 pixelsPerLine";
+    
     if (lines >= 0)
         descriptionString = [NSString stringWithFormat:
                              @"Scanning image of size %dx%d pixels at %d bits/pixel\nFormat: %d\nDepth: %d",
