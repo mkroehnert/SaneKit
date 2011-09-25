@@ -583,32 +583,36 @@
 {
     SKScanOption* option = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_TL_X]];
     [[option retain] autorelease];
-    [option setIntegerValue: scanRect.origin.x];
+    [option setDoubleValue: scanRect.origin.x];
     [self setScanOption: option];
 
     option = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_TL_Y]];
     [[option retain] autorelease];
-    [option setIntegerValue: scanRect.origin.y];
+    [option setDoubleValue: scanRect.origin.y];
     [self setScanOption: option];
 
     option = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_BR_X]];
     [[option retain] autorelease];
-    [option setIntegerValue: scanRect.origin.x + scanRect.size.width];
+    [option setDoubleValue: scanRect.origin.x + scanRect.size.width];
     [self setScanOption: option];
 
     option = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_BR_Y]];
     [[option retain] autorelease];
-    [option setIntegerValue: scanRect.origin.y + scanRect.size.height];
-    return [self setScanOption: option];
+    [option setDoubleValue: scanRect.origin.y + scanRect.size.height];
+    [self setScanOption: option];
+
+    return YES;
 }
 
 
 /**
- *
+ * @return an NSRect containing the boundaries of the scan area
  */
 -(NSRect) maxScanRect
 {
-    //return {(0, 0) (max widh, max height)}
+//    SKScanOption* xOption = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_TL_X]];
+//    SKScanOption* yOption = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_TL_Y]];
+//    return NSMakeRect([[xOption rangeConstraint] min], [[yOption rangeConstraint] min], [[xOption rangeConstraint] max], [[yOption rangeConstraint] max])
     return NSMakeRect(0.0, 0.0, 100.0, 100.0);
 }
 
