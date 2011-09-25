@@ -9,6 +9,7 @@
 #import "SKScanDevice.h"
 #import "SKScanParameters.h"
 #import "SKScanOption.h"
+#import "SKRange.h"
 #import "SKStructs.h"
 
 #include <sane/sane.h>
@@ -88,11 +89,16 @@
 {
     if (SANE_CONSTRAINT_RANGE == theOptionDescriptor->constraint_type)
     {
+        SKRange* rangeConstraint = nil;
         const SANE_Range* range = theOptionDescriptor->constraint.range;
         if (SANE_TYPE_FIXED == theOptionDescriptor->type)
-            NSLog(@"%s - Min: %g, Max: %g, Quantisation: %d", theOptionDescriptor->name, SANE_UNFIX(range->min), SANE_UNFIX(range->max), SANE_UNFIX(range->quant));
+            NSLog(@"%s (FIXED) - Min: %g, Max: %g, Quantisation: %d", theOptionDescriptor->name, SANE_UNFIX(range->min), SANE_UNFIX(range->max), SANE_UNFIX(range->quant));
         else
-            NSLog(@"%s - Min: %d, Max: %d, Quantisation: %d", theOptionDescriptor->name, range->min, range->max, range->quant);
+        {
+            rangeConstraint = [[SKRange alloc] initWithMinimum: range->min maximum: range->max quantisation: range->quant];
+            NSLog(@"%s (INT) - Min: %d, Max: %d, Quantisation: %d", theOptionDescriptor->name, range->min, range->max, range->quant);
+        }
+        [theOption setRangeConstraint: rangeConstraint];
     }
     else if (SANE_CONSTRAINT_WORD_LIST == theOptionDescriptor->constraint_type)
     {
