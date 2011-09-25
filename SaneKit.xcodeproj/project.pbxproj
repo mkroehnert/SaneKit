@@ -31,6 +31,8 @@
 		4DE6648F141B5FBF001F309B /* SKScanOptionString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE6648D141B5FBF001F309B /* SKScanOptionString.m */; };
 		4DFA0C75142EA32D0076728A /* SKScanOptionFixed.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DFA0C73142EA32D0076728A /* SKScanOptionFixed.h */; };
 		4DFA0C76142EA32D0076728A /* SKScanOptionFixed.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFA0C74142EA32D0076728A /* SKScanOptionFixed.m */; };
+		4DFA0D02142F279D0076728A /* SKRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DFA0D00142F279D0076728A /* SKRange.h */; };
+		4DFA0D03142F279D0076728A /* SKRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFA0D01142F279D0076728A /* SKRange.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -75,6 +77,8 @@
 		4DE6648D141B5FBF001F309B /* SKScanOptionString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKScanOptionString.m; path = Classes/SKScanOptionString.m; sourceTree = "<group>"; };
 		4DFA0C73142EA32D0076728A /* SKScanOptionFixed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKScanOptionFixed.h; path = Classes/SKScanOptionFixed.h; sourceTree = "<group>"; };
 		4DFA0C74142EA32D0076728A /* SKScanOptionFixed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKScanOptionFixed.m; path = Classes/SKScanOptionFixed.m; sourceTree = "<group>"; };
+		4DFA0D00142F279D0076728A /* SKRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKRange.h; path = Classes/SKRange.h; sourceTree = "<group>"; };
+		4DFA0D01142F279D0076728A /* SKRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKRange.m; path = Classes/SKRange.m; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* SaneKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SaneKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -231,6 +235,7 @@
 				4DE6648A141B5F7E001F309B /* SKScanOptionBool.h in Headers */,
 				4DE6648E141B5FBF001F309B /* SKScanOptionString.h in Headers */,
 				4DFA0C75142EA32D0076728A /* SKScanOptionFixed.h in Headers */,
+				4DFA0D02142F279D0076728A /* SKRange.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +355,7 @@
 				4DE6648B141B5F7E001F309B /* SKScanOptionBool.m in Sources */,
 				4DE6648F141B5FBF001F309B /* SKScanOptionString.m in Sources */,
 				4DFA0C76142EA32D0076728A /* SKScanOptionFixed.m in Sources */,
+				4DFA0D03142F279D0076728A /* SKRange.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
