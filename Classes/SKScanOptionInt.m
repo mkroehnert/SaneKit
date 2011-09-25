@@ -50,7 +50,8 @@
 
 -(NSString*) description
 {
-	return [NSString stringWithFormat:@"Option: %@, Value: %@[%@]: %@", name, value, unitString, numericConstraints];
+    id constraint = (nil == numericConstraints) ? (id)rangeConstraint : (id)numericConstraints;
+	return [NSString stringWithFormat:@"Option: %@, Value: %@[%@] <%@>", name, value, unitString, constraint];
 }
 
 
