@@ -123,7 +123,7 @@
         return;
     }
 
-    if (rangeConstraint && ![rangeConstraint isInRange: anInteger])
+    if (rangeConstraint && ![rangeConstraint isIntegerInRange: anInteger])
     {
         [NSException raise: @"WrongArgument"
                     format: @"The parameter needs to be in the Range %@ but is (%d)", rangeConstraint, anInteger];

@@ -43,7 +43,7 @@
  *
  * @return YES if @p anInteger lies in the current objects range
  */
--(BOOL) isInRange:(NSInteger) anInteger
+-(BOOL) isIntegerInRange:(NSInteger) anInteger
 {
 	if (anInteger < minimum)
         return NO;
@@ -61,6 +61,14 @@
         return (0 == ((anInteger - minimum) % quantisation));
     }
 }
+
+
+-(BOOL) isDoubleInRange:(double) aDouble
+{
+	[NSException raise:@"Wrong method" format:@"This method can not be called on an SKRangeFixed instance"];
+    return NO;
+}
+
 
 
 -(NSString*) description
