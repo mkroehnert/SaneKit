@@ -10,6 +10,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface SKRange : NSObject <SKRange> {
     NSInteger minimum;
     NSInteger maximum;
