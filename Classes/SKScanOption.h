@@ -26,8 +26,9 @@
 -(void) dealloc;
 
 // Class cluster methods
--(id) initWithIntValue:(NSInteger) anInt optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
 -(id) initWithBoolValue:(BOOL) aBool optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
+-(id) initWithIntValue:(NSInteger) anInt optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
+-(id) initWithFixedValue:(NSInteger) aFixed optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
 -(id) initWithCStringValue:(const char*) aCString optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
 -(id) initWithStringValue:(NSString*) aString optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
 
@@ -56,10 +57,12 @@
 
 -(BOOL) isBool;
 -(BOOL) isInteger;
+-(BOOL) isDouble;
 -(BOOL) isString;
 
 -(void) setBoolValue:(BOOL) aBool;
 -(void) setIntegerValue:(NSInteger) anInteger;
+-(void) setDoubleValue:(double) aDouble;
 -(void) setStringValue:(NSString*) aString;
 
 -(void) setReadOnly:(BOOL) aBool;

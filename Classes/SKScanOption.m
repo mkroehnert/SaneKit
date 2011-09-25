@@ -9,6 +9,7 @@
 #import "SKScanOption.h"
 #import "SKScanOptionBool.h"
 #import "SKScanOptionInt.h"
+#import "SKScanOptionFixed.h"
 #import "SKScanOptionString.h"
 
 
@@ -61,6 +62,15 @@
 }
 
 
+-(id) initWithBoolValue:(BOOL) aBool optionName:(NSString*) theName optionIndex:(NSInteger) theIndex
+{
+	[self release];
+    return [[SKScanOptionBool alloc] initWithBoolValue: aBool
+                                            optionName: theName
+                                           optionIndex: theIndex];
+}
+
+
 -(id) initWithIntValue:(NSInteger) anInt optionName:(NSString*) theName optionIndex:(NSInteger) theIndex
 {
 	[self release];
@@ -70,12 +80,12 @@
 }
 
 
--(id) initWithBoolValue:(BOOL) aBool optionName:(NSString*) theName optionIndex:(NSInteger) theIndex
+-(id) initWithFixedValue:(NSInteger) aFixed optionName:(NSString*) theName optionIndex:(NSInteger) theIndex
 {
 	[self release];
-    return [[SKScanOptionBool alloc] initWithBoolValue: aBool
-                                            optionName: theName
-                                           optionIndex: theIndex];
+    return [[SKScanOptionFixed alloc] initWithFixedValue: aFixed
+                                              optionName: theName
+                                             optionIndex: theIndex];
 }
 
 
@@ -281,6 +291,15 @@
 
 
 /**
+ * @return YES if option stores an Double
+ */
+-(BOOL) isDouble
+{
+	return NO;
+}
+
+
+/**
  * @return YES if option stores a string
  */
 -(BOOL) isString
@@ -305,6 +324,16 @@
  * In any other case an exception is thrown.
  */
 -(void) setIntegerValue:(NSInteger) anInteger
+{
+    [NSException raise: @"WrongOptionType"
+                format: @"This method can only be called on options storing Integer values"];
+}
+
+/**
+ * This method stores the parameter aDouble as the option value if it can store double values.
+ * In any other case an exception is thrown.
+ */
+-(void) setDoubleValue:(double) aDouble
 {
     [NSException raise: @"WrongOptionType"
                 format: @"This method can only be called on options storing Integer values"];
