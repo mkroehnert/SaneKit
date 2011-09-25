@@ -210,7 +210,7 @@
  * Set the value of the parameter aRange as the range constraint on this option.
  * Throws an exception if it is not supported by the current option type.
  */
--(void) setRangeConstraint:(SKRange*) aRange
+-(void) setRangeConstraint:(id<SKRange>) aRange
 {
     [NSException raise: @"WrongOptionType"
                 format: @"This method can only be called on options storing Int/Fixed values"];
@@ -220,7 +220,7 @@
 /**
  * @return range constraint of current option (throws exception if not supported by current option type)
  */
--(SKRange*) rangeConstraint
+-(id<SKRange>) rangeConstraint
 {
     [NSException raise: @"WrongOptionType"
                 format: @"This method can only be called on options storing Int/Fixed values"];

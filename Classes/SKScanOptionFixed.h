@@ -8,12 +8,14 @@
 
 #import "SKScanOption.h"
 
+@protocol SKRange;
 
 @interface SKScanOptionFixed : SKScanOption
 {
     NSNumber* value;
 	NSInteger fixedValue;
     NSArray* numericConstraints;
+    id<SKRange> rangeConstraint;
 }
 
 -(id) initWithFixedValue:(NSInteger) aFixed optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
@@ -22,6 +24,9 @@
 -(NSString*) description;
 
 -(void*) value;
+
+-(void) setRangeConstraint:(id<SKRange>) aRange;
+-(id<SKRange>) rangeConstraint;
 
 -(void) setNumericConstraints:(NSArray*) anArray;
 -(NSArray*) numericConstraints;

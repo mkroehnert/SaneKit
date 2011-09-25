@@ -7,7 +7,7 @@
 //
 
 #import "SKScanOptionInt.h"
-#import "SKRange.h"
+#import "SKRange_Protocol.h"
 
 
 @implementation SKScanOptionInt
@@ -61,7 +61,7 @@
 }
 
 
--(void) setRangeConstraint:(SKRange*) aRange
+-(void) setRangeConstraint:(id<SKRange>) aRange
 {
     if (numericConstraints)
     {
@@ -74,7 +74,7 @@
 }
 
 
--(SKRange*) rangeConstraint
+-(id<SKRange>) rangeConstraint
 {
     return [[rangeConstraint retain] autorelease];
 }
