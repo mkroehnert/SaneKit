@@ -7,6 +7,7 @@
 //
 
 #import "SKScanOptionInt.h"
+#import "SKRange.h"
 
 
 @implementation SKScanOptionInt
@@ -17,6 +18,8 @@
     if (self)
     {
     	value = [[NSNumber numberWithInt: anInt] retain];
+        numericConstraints = nil;
+        rangeConstraint = nil;
     }
     return self;
 }
@@ -28,6 +31,16 @@
     {
         [value release];
         value = nil;
+    }
+    if (numericConstraints)
+    {
+        [numericConstraints release];
+        numericConstraints = nil;
+    }
+    if (rangeConstraint)
+    {
+        [rangeConstraint release];
+        rangeConstraint = nil;
     }
     
     [super dealloc];
@@ -48,6 +61,25 @@
 }
 
 
+-(void) setRangeConstraint:(SKRange*) aRange
+{
+    if (numericConstraints)
+    {
+    	[numericConstraints release];
+        numericConstraints = nil;
+    }
+    if (rangeConstraint)
+        [rangeConstraint release];
+    rangeConstraint = [aRange retain];
+}
+
+
+-(SKRange*) rangeConstraint
+{
+    return [[rangeConstraint retain] autorelease];
+}
+
+
 -(void) setNumericConstraints:(NSArray*) anArray
 {
     NSEnumerator* anEnumerator = [anArray objectEnumerator];
@@ -60,6 +92,11 @@
         }
     }
 
+    if (rangeConstraint)
+    {
+    	[rangeConstraint release];
+        rangeConstraint = nil;
+    }
     if (numericConstraints)
         [numericConstraints release];
     numericConstraints = [anArray retain];
@@ -84,6 +121,12 @@
     {
         NSLog(@"Trying to set readonly/inactive option %@", title);
         return;
+    }
+
+    if (rangeConstraint && ![rangeConstraint isInRange: anInteger])
+    {
+        [NSException raise: @"WrongArgument"
+                    format: @"The parameter needs to be in the Range %@ but is (%d)", rangeConstraint, anInteger];
     }
     
     NSNumber* parameter = [NSNumber numberWithInt: anInteger];

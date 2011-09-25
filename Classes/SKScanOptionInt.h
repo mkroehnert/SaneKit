@@ -8,12 +8,14 @@
 
 #import "SKScanOption.h"
 
+@class SKRange;
 
 @interface SKScanOptionInt : SKScanOption
 {
     NSNumber* value;
 	NSInteger intValue;
     NSArray* numericConstraints;
+    SKRange* rangeConstraint;
 }
 
 -(id) initWithIntValue:(NSInteger) anInt optionName:(NSString*) theName optionIndex:(NSInteger) theIndex;
@@ -22,6 +24,9 @@
 -(NSString*) description;
 
 -(void*) value;
+
+-(void) setRangeConstraint:(SKRange*) aRange;
+-(SKRange*) rangeConstraint;
 
 -(void) setNumericConstraints:(NSArray*) anArray;
 -(NSArray*) numericConstraints;
