@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class SKRange;
 
 @interface SKScanOption : NSObject {
     NSString* name;
@@ -46,8 +47,8 @@
 -(void*) value;
 -(NSInteger) index;
 
--(void) setRangeConstraint:(id) aRange;
--(id) rangeConstraint;
+-(void) setRangeConstraint:(SKRange*) aRange;
+-(SKRange*) rangeConstraint;
 
 -(void) setNumericConstraints:(NSArray*) anArray;
 -(NSArray*) numericConstraints;
