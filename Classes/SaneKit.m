@@ -11,7 +11,7 @@
 #include <sane/sane.h>
 
 static SANE_Int SKSaneVersionCode = 0;
-static SANE_Status SKSaneStatus = 0;
+static SANE_Status SKSaneStatus = -1; // status codes start at 0
 static SANE_Bool SKSearchLocalOnlyScanners = SANE_TRUE;
 
 @implementation SaneKit
@@ -19,9 +19,16 @@ static SANE_Bool SKSearchLocalOnlyScanners = SANE_TRUE;
 /**
  * This method must be called the first time before the class is used.
  * It initializes the Sane library before it gets used.
+ * If this method gets called twice it issues a warning message and returns
+ * without doing anything.
  */
 +(void) initSane
 {
+    if ([SaneKit isInitialized])
+    {
+    	NSLog(@"[SaneKit initSane] has already been called once! Check your code for duplicate initialization.");
+        return;
+    }
     /*
      TODO: auth callback
      
@@ -51,10 +58,14 @@ static SANE_Bool SKSearchLocalOnlyScanners = SANE_TRUE;
 /**
  * This method does a cleanup of the Sane library structures before shutting down
  * the program.
+ * If [SaneKit initSane] was not called it prints an error message instead.
  */
 +(void) exitSane
 {
-	sane_exit();
+    if ([SaneKit isInitialized])
+        sane_exit();
+    else
+        NSLog(@"[SaneKit exitSane] executed before [SaneKit initSane] was called");
 }
 
 
@@ -85,11 +96,15 @@ static SANE_Bool SKSearchLocalOnlyScanners = SANE_TRUE;
 /**
  * This method probes for scan devices, creates an array of SKScanDevice objects
  * and returns this array.
+ * It raises an exception if it is called before [SaneKit initSane].
  *
  * @return NSArray containing SKScanDevice objects
  */
 +(NSArray*) scanForDevices
 {
+    if (![SaneKit isInitialized])
+    	[NSException raise: @"Initialization Error" format: @"[SaneKit initSane] must be called before [SaneKit scanForDevices]"];
+
     SANE_Status scanDeviceStatus;
     const SANE_Device** device_list;
     NSMutableArray* deviceArray = [NSMutableArray arrayWithCapacity:1];
@@ -98,7 +113,7 @@ static SANE_Bool SKSearchLocalOnlyScanners = SANE_TRUE;
 
     if (SANE_STATUS_GOOD != scanDeviceStatus)
     {
-        NSLog(@"Sane Status: %s\n", sane_strstatus(scanDeviceStatus));
+        NSLog(@"[SaneKit scanForDevices] failed with status: %s\n", sane_strstatus(scanDeviceStatus));
         return deviceArray;
     }
     
