@@ -411,9 +411,13 @@
         }
         else
         {
-            NSString* infoString = [NSString stringWithFormat: @"Type: %d", optionDescr->type];
-            option = [[SKScanOption alloc] initWithStringValue: infoString
-                                                    optionName: [NSString stringWithCString: optionDescr->name]
+            // only SANE_TYPE_BUTTON and SANE_TYPE_GROUP are left
+            // only title and type are valid for SANE_TYPE_GROUP
+            NSString* optionTypeString = @"Button Option";
+            if (SANE_TYPE_GROUP == optionDescr->type)
+                optionTypeString = @"Group Option";
+            option = [[SKScanOption alloc] initWithStringValue: [NSString stringWithCString: optionDescr->title]
+                                                    optionName: optionTypeString
                                                    optionIndex: i];
         }
  
