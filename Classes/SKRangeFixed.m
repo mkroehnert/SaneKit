@@ -8,6 +8,7 @@
 
 #import "SKRangeFixed.h"
 
+#define EPSILON 0.0001
 
 @implementation SKRangeFixed
 
@@ -58,14 +59,16 @@
     if (aDouble > maximum)
         return NO;
     
-    if (0.0 == quantisation)
+    // float safe comparison for (quantisation == 0)
+    if (fabs(quantisation) < EPSILON)
     {
         return YES;
     }
     else
     {
         // difference between anInteger and minimum must be a multiple of quantisation
-        return (0.0 == (fmod((aDouble - minimum), quantisation)));
+        // float safe comparison for ( ((aDouble - minimum) % quantisation) == 0)
+        return (fabs(fmod((aDouble - minimum), quantisation)) < EPSILON);
     }
 }
 
