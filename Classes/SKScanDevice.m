@@ -425,7 +425,7 @@
                 [option setTitle: [NSString stringWithCString: optionDescr->title]];
             if (optionDescr->desc)
                 [option setExplanation: [NSString stringWithCString: optionDescr->desc]];
-            if (optionDescr->cap)
+            if ((optionDescr->cap) && (SANE_TYPE_GROUP != optionDescr->type))
                 [self setCapabilities: optionDescr->cap onOption: option];
 
             [option autorelease];
