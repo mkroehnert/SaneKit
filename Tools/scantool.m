@@ -6,6 +6,8 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 #import <SaneKit/SaneKit.h>
 #import <SaneKit/SKScanDevice.h>
 #import <SaneKit/SKScanOption.h>
@@ -13,6 +15,8 @@
 int main(int argc, char* argv[])
 {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    
+    NSUserDefaults* arguments = [NSUserDefaults standardUserDefaults];
     
     [SaneKit initSane];
     
@@ -27,14 +31,20 @@ int main(int argc, char* argv[])
         {
             NSArray* options = [device scanOptions];
             NSLog(@"Options:\n%@", options);
+            if ([arguments objectForKey:@"mode"])
+                [device setMode: [arguments stringForKey:@"mode"]];
+
+            if ([arguments objectForKey:@"resolution"])
+                [device setResolution: [arguments integerForKey:@"resolution"]];
             
+            if ([arguments objectForKey:@"depth"])
+                [device setDepth: [arguments integerForKey:@"depth"]];
+            
+            if ([arguments objectForKey:@"preview"])
+                [device setPreview: [arguments boolForKey:@"preview"]];
+
             options = [device scanOptions];
             NSLog(@"Options:\n%@", options);
-            [device setMode: @"Gray"];
-            [device setResolution: 300];
-            [device setDepth: 8];
-            [device setPreview: YES];
-
             
             // also call sane_get_parameters to get an idea of the image parameters
             NSLog(@"%@", [device scanParameters]);
