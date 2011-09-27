@@ -29,8 +29,6 @@ int main(int argc, char* argv[])
         BOOL success = [device open];
         if (success)
         {
-            NSArray* options = [device scanOptions];
-            NSLog(@"Options:\n%@", options);
             if ([arguments objectForKey:@"mode"])
                 [device setMode: [arguments stringForKey:@"mode"]];
 
@@ -43,12 +41,9 @@ int main(int argc, char* argv[])
             if ([arguments objectForKey:@"preview"])
                 [device setPreview: [arguments boolForKey:@"preview"]];
 
-            options = [device scanOptions];
+            NSArray* options = [device scanOptions];
             NSLog(@"Options:\n%@", options);
-            
-            // also call sane_get_parameters to get an idea of the image parameters
-            NSLog(@"%@", [device scanParameters]);
-            
+
             NSArray* images = [device doScan];
 
             if (0 < [images count])

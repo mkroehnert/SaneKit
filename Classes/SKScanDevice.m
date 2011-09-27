@@ -259,7 +259,7 @@
 
 
 /**
- * Open the scan device.
+ * Open the scan device and run an initial [self scanOptions] to populate the options dictionary.
  *
  * @return YES if successful, NO otherwise
  */
@@ -267,6 +267,13 @@
 {
 	SANE_Status openStatus = 0;
     openStatus = sane_open([name UTF8String], &(handle->deviceHandle));
+    
+    if (SANE_STATUS_GOOD == openStatus)
+    {
+        // populate the options dictionary
+        [self scanOptions];
+    }
+
     
     return (SANE_STATUS_GOOD == openStatus) ? YES : NO;
 }
@@ -464,6 +471,7 @@
 
 /**
  * This method does a basic scan and stores the data in an instance of NSBitmapImageRep.
+ * Note: you should call scanParameters to get an idea of the expected parameters of the scanned image.
  *
  * @return NSArray instance with all scanned images as NSBitmapImageRep
  */
