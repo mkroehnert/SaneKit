@@ -370,6 +370,12 @@
         return nil;
     }
 
+    // copy the old options dictionary because some values
+    // might disappear on a second options scan
+    NSDictionary* oldOptions = [options copy];
+    // then clear the old values
+    [options removeAllObjects];
+    
     SKScanOption* option;
     
     // start with element #1 as element #0 contains 'only' the number of available options
@@ -381,19 +387,24 @@
         
         // create this string at the beginning as it is used in every if-case
         NSString* optionName = [NSString stringWithCString: optionDescr->name];
+        option = [[oldOptions objectForKey: optionName] retain];
+        
         if (SANE_TYPE_INT == optionDescr->type)
         {
             if (sizeof(SANE_Int) == optionDescr->size)
             {
-                SANE_Int value = 0;
-                optionStatus = [self getValue: &value forOptionWithIndex: i];
+                SANE_Int intValue = 0;
+                optionStatus = [self getValue: &intValue forOptionWithIndex: i];
                 
                 if (SANE_STATUS_GOOD != optionStatus)
                     continue;
-                
-                option = [[SKScanOption alloc] initWithIntValue: value
-                                                     optionName: optionName
-                                                    optionIndex: i];
+                // check if option was already present
+                if (option)
+                    [option setIntegerValue: intValue];
+                else
+                    option = [[SKScanOption alloc] initWithIntValue: intValue
+                                                         optionName: optionName
+                                                        optionIndex: i];
             }
             else
             {
@@ -405,15 +416,19 @@
         {
             if (sizeof(SANE_Int) == optionDescr->size)
             {
-                SANE_Int value = 0;
-                optionStatus = [self getValue: &value forOptionWithIndex: i];
+                SANE_Int fixedValue = 0;
+                optionStatus = [self getValue: &fixedValue forOptionWithIndex: i];
                 
                 if (SANE_STATUS_GOOD != optionStatus)
                     continue;
                 
-                option = [[SKScanOption alloc] initWithFixedValue: value
-                                                       optionName: optionName
-                                                      optionIndex: i];
+                // check if option was already present
+                if (option)
+                    [option setDoubleValue: SANE_UNFIX(fixedValue)];
+                else
+                    option = [[SKScanOption alloc] initWithFixedValue: fixedValue
+                                                           optionName: optionName
+                                                          optionIndex: i];
             }
             else
             {
@@ -423,16 +438,22 @@
         }
         else if (SANE_TYPE_STRING == optionDescr->type && 0 < optionDescr->size)
         {
-            SANE_String value = calloc(optionDescr->size, sizeof(SANE_Char));
-            optionStatus = [self getValue: value forOptionWithIndex: i];
+            SANE_String cStringValue = calloc(optionDescr->size, sizeof(SANE_Char));
+            optionStatus = [self getValue: cStringValue forOptionWithIndex: i];
             
             if (SANE_STATUS_GOOD != optionStatus)
                 continue;
 
-            option = [[SKScanOption alloc] initWithCStringValue: value
-                                                     optionName: optionName
-                                                    optionIndex: i];
-            free(value);
+            NSString* stringValue = [NSString stringWithCString: cStringValue];
+            
+            // check if option was already present
+            if (option)
+                [option setStringValue: stringValue];
+            else
+                option = [[SKScanOption alloc] initWithStringValue: stringValue
+                                                         optionName: optionName
+                                                        optionIndex: i];
+            free(cStringValue);
         }
         else if (SANE_TYPE_BOOL == optionDescr->type
                  && (sizeof(SANE_Word) == optionDescr->size))
@@ -443,7 +464,12 @@
             if (SANE_STATUS_GOOD != optionStatus)
                 continue;
 
-            option = [[SKScanOption alloc] initWithBoolValue: ((SANE_TRUE == value) ? YES : NO)
+            BOOL boolValue = ((SANE_TRUE == value) ? YES : NO);
+            // check if option was already present
+            if (option)
+                [option setBoolValue: boolValue];
+            else
+                option = [[SKScanOption alloc] initWithBoolValue: boolValue
                                                  optionName: optionName
                                                 optionIndex: i];
         }
@@ -454,7 +480,13 @@
             NSString* optionTypeString = @"Button Option";
             if (SANE_TYPE_GROUP == optionDescr->type)
                 optionTypeString = @"Group Option";
-            option = [[SKScanOption alloc] initWithStringValue: [NSString stringWithCString: optionDescr->title]
+            
+            NSString* stringValue = [NSString stringWithCString: optionDescr->title];
+            
+            if (option)
+                [option setStringValue: stringValue];
+            else
+                option = [[SKScanOption alloc] initWithStringValue: stringValue
                                                     optionName: optionTypeString
                                                    optionIndex: i];
         }
@@ -474,6 +506,8 @@
             [options setObject: option forKey: [option name]];
         }
     }
+    
+    [oldOptions release];
 
     return [options allValues];
 }
