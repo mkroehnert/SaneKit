@@ -555,7 +555,7 @@
     else if (SANE_INFO_RELOAD_OPTIONS & info)
         [self reloadScanOptions];
     else if (SANE_INFO_RELOAD_PARAMS & info)
-        NSLog(@"Application should reload all parameters (multiple parameters have been affected by setting this option)");
+        [self reloadScanParameters];
     return YES;
 }
 
