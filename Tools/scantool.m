@@ -34,10 +34,23 @@
 @end
 
 
+static NSDictionary* fileTypes = nil;
+
+
 int main(int argc, char* argv[])
 {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    
+
+    fileTypes = [NSDictionary dictionaryWithObjectsAndKeys:
+     [[SKOutputType alloc] initWithFileType: NSTIFFFileType andExtension: @".tiff"], @"tiff",
+     [[SKOutputType alloc] initWithFileType: NSBMPFileType andExtension: @".bmp"], @"bmp",
+     [[SKOutputType alloc] initWithFileType: NSGIFFileType andExtension: @".gif"], @"gif",
+     [[SKOutputType alloc] initWithFileType: NSJPEGFileType andExtension: @".jpeg"], @"jpeg",
+     [[SKOutputType alloc] initWithFileType: NSPNGFileType andExtension: @".png"], @"png",
+     [[SKOutputType alloc] initWithFileType: NSJPEG2000FileType andExtension: @".j2k"], @"jpeg2000",
+     nil
+    ];
+
     NSUserDefaults* arguments = [NSUserDefaults standardUserDefaults];
     
     [SaneKit initSane];
