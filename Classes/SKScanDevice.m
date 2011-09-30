@@ -233,6 +233,21 @@
 
 
 /**
+ * Init method to initialize the device from an array (e.g. from a stored userdefaults)
+ */
+-(id) initWithDictionary:(NSDictionary*) aDictionary
+{
+	NSString* theName = [aDictionary objectForKey:@"name"];
+	NSString* theVendor = [aDictionary objectForKey:@"vendor"];
+	NSString* theModel = [aDictionary objectForKey:@"model"];
+	NSString* theType = [aDictionary objectForKey:@"type"];
+    if (! (theName && theVendor && theModel && theType) )
+        return nil;
+    return [self initWithName: theName vendor: theVendor model: theModel type: theType];
+}
+
+
+/**
  * Release all ressources
  */
 -(void) dealloc
