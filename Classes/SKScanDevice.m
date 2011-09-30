@@ -529,7 +529,7 @@
     if (SANE_INFO_INEXACT & info)
         NSLog(@"Option value was rounded upon setting the option");
     else if (SANE_INFO_RELOAD_OPTIONS & info)
-        NSLog(@"Application should reload all options (multiple options have been affected by setting this one)");
+        [self reloadScanOptions];
     else if (SANE_INFO_RELOAD_PARAMS & info)
         NSLog(@"Application should reload all parameters (multiple parameters have been affected by setting this option)");
     return YES;
