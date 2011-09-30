@@ -226,7 +226,7 @@
         model = [aModel retain];
         type = [aType retain];
         handle = calloc(1, sizeof(handle));
-        options = [NSMutableDictionary dictionaryWithCapacity: 20];
+        options = [[NSMutableDictionary dictionaryWithCapacity: 20] retain];
     }
     return self;
 }
@@ -252,12 +252,17 @@
  */
 -(void) dealloc
 {
-    [name release];
-    [vendor release];
-    [model release];
-    [type release];
+    if (name)
+        [name release];
+    if (vendor)
+        [vendor release];
+    if (model)
+        [model release];
+    if (type)
+        [type release];
     free(handle);
-    [options release];
+    if (options)
+        [options release];
     
     [super dealloc];
 }
