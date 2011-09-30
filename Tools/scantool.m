@@ -65,43 +65,49 @@ int main(int argc, char* argv[])
     
     [SaneKit initSane];
     
-    NSArray* deviceList = [SaneKit scanForDevices];
-    NSLog(@"Devices:\n%@", deviceList);
-    
-    if (0 < [deviceList count])
+    SKScanDevice* device = (SKScanDevice*)[arguments objectForKey:@"device"];
+    if (!device)
     {
-        SKScanDevice* device = [deviceList lastObject];
-        BOOL success = [device open];
-        if (success)
+        NSArray* deviceList = [SaneKit scanForDevices];
+        NSLog(@"Devices:\n%@", [SaneKit scanForDevices]);
+        if (0 < [deviceList count])
         {
-            if ([arguments objectForKey:@"mode"])
-                [device setMode: [arguments stringForKey:@"mode"]];
-
-            if ([arguments objectForKey:@"resolution"])
-                [device setResolution: [arguments integerForKey:@"resolution"]];
-            
-            if ([arguments objectForKey:@"depth"])
-                [device setDepth: [arguments integerForKey:@"depth"]];
-            
-            if ([arguments objectForKey:@"preview"])
-                [device setPreview: [arguments boolForKey:@"preview"]];
-
-            NSArray* options = [device scanOptions];
-            NSLog(@"Options:\n%@", options);
-
-            NSArray* images = [device doScan];
-
-            if (0 < [images count])
-            {
-                NSDictionary* imageProperties = [NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:1.0] forKey:NSImageCompressionFactor];
-                NSData* bitmapData = [[images lastObject] representationUsingType: NSPNGFileType properties: imageProperties];
-                [bitmapData writeToFile: @"test.png" atomically: NO];
-            }
-            
-            [device close];
+            device = [deviceList lastObject];
         }
     }
     
+    BOOL success = [device open];
+    if (success)
+    {
+        if ([arguments objectForKey:@"mode"])
+            [device setMode: [arguments stringForKey:@"mode"]];
+        
+        if ([arguments objectForKey:@"resolution"])
+            [device setResolution: [arguments integerForKey:@"resolution"]];
+        
+        if ([arguments objectForKey:@"depth"])
+            [device setDepth: [arguments integerForKey:@"depth"]];
+        
+        if ([arguments objectForKey:@"preview"])
+            [device setPreview: [arguments boolForKey:@"preview"]];
+                
+        NSArray* options = [device scanOptions];
+        NSLog(@"Options:\n%@", options);
+        
+        NSArray* images = [device doScan];
+        
+        NSString* imageType = @"png";
+        if ([arguments objectForKey:@"imagetype"])
+            imageType = [[arguments stringForKey:@"imagetype"] lowercaseString];
+        SKOutputType* fileType = [fileTypes objectForKey: imageType];
+        if (0 < [images count] && nil != fileType)
+        {
+            writeImageToFile([images lastObject], fileType);
+        }
+        
+        [device close];
+    }
+
     [SaneKit exitSane];
     
     [pool drain];
