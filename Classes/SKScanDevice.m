@@ -379,6 +379,8 @@
         if (!optionDescr || !optionDescr->name || !optionDescr->type)
             continue;
         
+        // create this string at the beginning as it is used in every if-case
+        NSString* optionName = [NSString stringWithCString: optionDescr->name];
         if (SANE_TYPE_INT == optionDescr->type)
         {
             if (sizeof(SANE_Int) == optionDescr->size)
@@ -390,7 +392,7 @@
                     continue;
                 
                 option = [[SKScanOption alloc] initWithIntValue: value
-                                                     optionName: [NSString stringWithCString: optionDescr->name]
+                                                     optionName: optionName
                                                     optionIndex: i];
             }
             else
@@ -410,7 +412,7 @@
                     continue;
                 
                 option = [[SKScanOption alloc] initWithFixedValue: value
-                                                       optionName: [NSString stringWithCString: optionDescr->name]
+                                                       optionName: optionName
                                                       optionIndex: i];
             }
             else
@@ -428,7 +430,7 @@
                 continue;
 
             option = [[SKScanOption alloc] initWithCStringValue: value
-                                                     optionName: [NSString stringWithCString: optionDescr->name]
+                                                     optionName: optionName
                                                     optionIndex: i];
             free(value);
         }
@@ -442,7 +444,7 @@
                 continue;
 
             option = [[SKScanOption alloc] initWithBoolValue: ((SANE_TRUE == value) ? YES : NO)
-                                                 optionName: [NSString stringWithCString: optionDescr->name]
+                                                 optionName: optionName
                                                 optionIndex: i];
         }
         else
