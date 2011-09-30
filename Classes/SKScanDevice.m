@@ -370,7 +370,6 @@
         return nil;
     }
 
-    NSMutableArray* optionsArray = [NSMutableArray arrayWithCapacity: numOptions];
     SKScanOption* option;
     
     // start with element #1 as element #0 contains 'only' the number of available options
@@ -470,13 +469,11 @@
                 [self setCapabilities: optionDescr->cap onOption: option];
 
             [option autorelease];
-            [optionsArray addObject: option];
             [options setObject: option forKey: [option name]];
         }
     }
 
-    // turn mutable array into non mutable array
-    return [NSArray arrayWithArray: optionsArray];
+    return [options allValues];
 }
 
 
