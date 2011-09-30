@@ -373,7 +373,8 @@
     NSMutableArray* optionsArray = [NSMutableArray arrayWithCapacity: numOptions];
     SKScanOption* option;
     
-    for (int i = 0; i < numOptions; ++i)
+    // start with element #1 as element #0 contains 'only' the number of available options
+    for (int i = 1; i < numOptions; ++i)
     {
         optionDescr = sane_get_option_descriptor(handle->deviceHandle, i);
         if (!optionDescr || !optionDescr->name || !optionDescr->type)
