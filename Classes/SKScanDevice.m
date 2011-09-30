@@ -264,6 +264,15 @@
 
 
 /**
+ * @return a dictionary which can be used to store the device identification in NSUserDefaults
+ */
+-(NSDictionary*) toUserDefaultsDict
+{
+	return [NSDictionary dictionaryWithObjectsAndKeys: name, @"name", vendor, @"vendor", model, @"model", type, @"type", nil];
+}
+
+
+/**
  * Returns an NSString instance describing the SKScanDevice
  */
 -(NSString*) description

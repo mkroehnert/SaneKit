@@ -24,6 +24,7 @@ struct SaneHandle;
 -(id) initWithName:(NSString*) aName vendor:(NSString*) aVendor model:(NSString*) aModel type:(NSString*) aType;
 -(id) initWithDictionary:(NSDictionary*) aDictionary;
 -(void) dealloc;
+-(NSDictionary*) toUserDefaultsDict;
 -(NSString*) description;
 
 -(BOOL) open;
