@@ -39,12 +39,12 @@ typedef enum
                lines:(NSInteger) theLines
                depth:(NSInteger) theDepth;
 
--(id) updateFormat:(SKFrame) aFrame
-           lastFrame:(BOOL) isLastFrame
-        bytesPerLine:(NSInteger) theBytesPerLine
-        pixelsPerLine:(NSInteger) thePixelsPerLine
-               lines:(NSInteger) theLines
-               depth:(NSInteger) theDepth;
+-(void) updateFormat:(SKFrame) aFrame
+         lastFrame:(BOOL) isLastFrame
+      bytesPerLine:(NSInteger) theBytesPerLine
+     pixelsPerLine:(NSInteger) thePixelsPerLine
+             lines:(NSInteger) theLines
+             depth:(NSInteger) theDepth;
 
 -(BOOL) checkParameters;
 -(BOOL) isLastFrame;
