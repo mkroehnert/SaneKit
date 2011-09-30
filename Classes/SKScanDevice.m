@@ -288,7 +288,7 @@
 
 
 /**
- * Open the scan device and run an initial [self scanOptions] to populate the options dictionary.
+ * Open the scan device and run an initial [self reloadScanOptions] to populate the options dictionary.
  *
  * @return YES if successful, NO otherwise
  */
@@ -300,7 +300,7 @@
     if (SANE_STATUS_GOOD == openStatus)
     {
         // populate the options dictionary
-        [self scanOptions];
+        [self reloadScanOptions];
     }
 
     
@@ -347,10 +347,8 @@
 
 /**
  * Reads all options available from the current device and processes them into SKScanOption objects.
- *
- * @return NSArray instance returning all valid options as SKScanOption objects
  */
--(NSArray*) scanOptions
+-(void) reloadScanOptions
 {
     SANE_Int numOptions = 0;
     SANE_Status optionStatus = 0;
@@ -360,14 +358,14 @@
     if (!optionDescr)
     {
     	NSLog(@"Unable to retrieve options");
-        return nil;
+        return;
     }
     
     optionStatus = [self getValue: &numOptions forOptionWithIndex: 0];
     if (SANE_STATUS_GOOD != optionStatus)
     {
     	NSLog(@"Error retrieving number of available options");
-        return nil;
+        return;
     }
 
     // copy the old options dictionary because some values
@@ -508,7 +506,14 @@
     }
     
     [oldOptions release];
+}
 
+
+/**
+ * @return NSArray instance returning all valid options as SKScanOption objects
+ */
+-(NSArray*) scanOptions
+{
     return [options allValues];
 }
 

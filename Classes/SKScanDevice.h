@@ -33,6 +33,7 @@ struct SaneHandle;
 -(NSArray*) doScan;
 
 -(SKScanParameters*) scanParameters;
+-(void) reloadScanOptions;
 -(NSArray*) scanOptions;
 -(BOOL) setScanOption:(SKScanOption*) theOption;
 
