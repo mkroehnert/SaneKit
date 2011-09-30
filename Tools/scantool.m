@@ -65,19 +65,34 @@ int main(int argc, char* argv[])
     
     [SaneKit initSane];
     
-    SKScanDevice* device = (SKScanDevice*)[arguments objectForKey:@"device"];
-    if (!device)
+    NSDictionary* deviceDict = [arguments dictionaryForKey:@"device"];
+    SKScanDevice* device = [[[SKScanDevice alloc] initWithDictionary: deviceDict] autorelease];
+
+    BOOL deviceOpen = [device open];
+    if (!deviceOpen)
     {
+        NSLog(@"Scanning for devices");
         NSArray* deviceList = [SaneKit scanForDevices];
-        NSLog(@"Devices:\n%@", [SaneKit scanForDevices]);
+        NSLog(@"Available Devices:\n%@", [SaneKit scanForDevices]);
         if (0 < [deviceList count])
         {
-            device = [deviceList lastObject];
+            // TODO select device on commandline
+            device = [[[deviceList lastObject] retain] autorelease];
+            
+            deviceOpen = [device open];
+            if (deviceOpen)
+            {
+                // if new device could be opened successfully store it to the userdefaults
+                [arguments setObject: [device toUserDefaultsDict] forKey: @"device"];
+                [arguments synchronize];
+                NSLog(@"New Device:\n %@", device);
+            }
         }
     }
+    else
+        NSLog(@"Using Device:\n %@", device);
     
-    BOOL success = [device open];
-    if (success)
+    if (deviceOpen)
     {
         if ([arguments objectForKey:@"mode"])
             [device setMode: [arguments stringForKey:@"mode"]];
