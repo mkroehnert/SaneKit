@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
 
 #import <SaneKit/SaneKit.h>
 #import <SaneKit/SKScanDevice.h>
@@ -35,6 +36,15 @@
 
 
 static NSDictionary* fileTypes = nil;
+
+
+void writeImageToFile(NSBitmapImageRep* imageRep, SKOutputType* fileType)
+{
+    
+    NSDictionary* imageProperties = [NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:1.0] forKey:NSImageCompressionFactor];
+    NSData* bitmapData = [imageRep representationUsingType: fileType->fileType properties: imageProperties];
+    [bitmapData writeToFile: [NSString stringWithFormat: @"%@%@", @"test", fileType->fileExtension] atomically: NO];
+}
 
 
 int main(int argc, char* argv[])
