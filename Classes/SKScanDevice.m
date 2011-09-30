@@ -227,6 +227,7 @@
         type = [aType retain];
         handle = calloc(1, sizeof(handle));
         options = [[NSMutableDictionary dictionaryWithCapacity: 20] retain];
+        parameters = nil;
     }
     return self;
 }
@@ -263,6 +264,8 @@
     free(handle);
     if (options)
         [options release];
+    if (parameters)
+        [parameters release];
     
     [super dealloc];
 }
@@ -288,7 +291,7 @@
 
 
 /**
- * Open the scan device and run an initial [self reloadScanOptions] to populate the options dictionary.
+ * Open the scan device and run an initial [self reloadScanOptions] and [self reloadScanParameters].
  *
  * @return YES if successful, NO otherwise
  */
@@ -301,9 +304,10 @@
     {
         // populate the options dictionary
         [self reloadScanOptions];
+        // create initial SKScanParameters instance
+        [self reloadScanParameters];
     }
 
-    
     return (SANE_STATUS_GOOD == openStatus) ? YES : NO;
 }
 
@@ -320,10 +324,8 @@
 /**
  * This method reads the current scan parameters from the current SANE_Handle and creates
  * an SKScanParameters instance from them.
- *
- * @return a fully initialized SKScanParameters instance
  */
--(SKScanParameters*) scanParameters
+-(void) reloadScanParameters
 {
     SANE_Status parameterStatus;
     SANE_Parameters scanParameters;
@@ -331,17 +333,39 @@
     if (SANE_STATUS_GOOD != parameterStatus)
     {
         NSLog(@"Sane get parameters error: %s", sane_strstatus(parameterStatus));
-        return nil;
+        if (parameters)
+            [parameters release];
+        parameters = nil;
+        return;
     }
     
-    SKScanParameters* parameters = [[SKScanParameters alloc] initWithFormat: scanParameters.format
-                                                                  lastFrame: scanParameters.last_frame
-                                                               bytesPerLine: scanParameters.bytes_per_line
-                                                               pixelsPerLin: scanParameters.pixels_per_line
-                                                                      lines: scanParameters.lines
-                                                                      depth: scanParameters.depth];
-    
-    return [parameters autorelease];
+    if (parameters)
+    {
+        [parameters updateFormat: scanParameters.format
+                       lastFrame: scanParameters.last_frame
+                    bytesPerLine: scanParameters.bytes_per_line
+                   pixelsPerLine: scanParameters.pixels_per_line
+                           lines: scanParameters.lines
+                           depth: scanParameters.depth];
+    }
+    else
+    {
+        parameters = [[SKScanParameters alloc] initWithFormat: scanParameters.format
+                                                    lastFrame: scanParameters.last_frame
+                                                 bytesPerLine: scanParameters.bytes_per_line
+                                                pixelsPerLine: scanParameters.pixels_per_line
+                                                        lines: scanParameters.lines
+                                                        depth: scanParameters.depth];
+    }
+}
+
+/**
+ * @return the current SKScanParameters instance
+ */
+-(SKScanParameters*) scanParameters
+{
+    [self reloadScanParameters];
+    return [[parameters retain] autorelease];
 }
 
 
@@ -546,7 +570,6 @@
 -(NSArray*) doScan
 {
 	SANE_Status scanStatus = 0;
-    SKScanParameters* parameters = nil;
     NSBitmapImageRep* bitmapRep;
     NSMutableArray* scannedImages = [NSMutableArray arrayWithCapacity: 1];
     
@@ -560,7 +583,7 @@
     
     do
     {
-        parameters = [self scanParameters];
+        [self reloadScanParameters];
         if (![parameters checkParameters])
             continue;
 

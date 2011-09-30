@@ -22,7 +22,8 @@ typedef enum
 
 @class SKScanDevice;
 
-@interface SKScanParameters : NSObject {
+@interface SKScanParameters : NSObject
+{
     SKFrame format;
     BOOL lastFrame;
     NSInteger bytesPerLine;
@@ -34,9 +35,17 @@ typedef enum
 -(id) initWithFormat:(SKFrame) aFrame
            lastFrame:(BOOL) isLastFrame
         bytesPerLine:(NSInteger) theBytesPerLine
-        pixelsPerLin:(NSInteger) thePixelsPerLine
+        pixelsPerLine:(NSInteger) thePixelsPerLine
                lines:(NSInteger) theLines
                depth:(NSInteger) theDepth;
+
+-(id) updateFormat:(SKFrame) aFrame
+           lastFrame:(BOOL) isLastFrame
+        bytesPerLine:(NSInteger) theBytesPerLine
+        pixelsPerLine:(NSInteger) thePixelsPerLine
+               lines:(NSInteger) theLines
+               depth:(NSInteger) theDepth;
+
 -(BOOL) checkParameters;
 -(BOOL) isLastFrame;
 -(NSInteger) totalBytes;

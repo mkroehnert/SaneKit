@@ -19,6 +19,7 @@ struct SaneHandle;
     NSString* type;
     struct SaneHandle* handle;
     NSMutableDictionary* options;
+    SKScanParameters* parameters;
 }
 
 -(id) initWithName:(NSString*) aName vendor:(NSString*) aVendor model:(NSString*) aModel type:(NSString*) aType;
@@ -32,7 +33,9 @@ struct SaneHandle;
 
 -(NSArray*) doScan;
 
+-(void) reloadScanParameters;
 -(SKScanParameters*) scanParameters;
+
 -(void) reloadScanOptions;
 -(NSArray*) scanOptions;
 -(BOOL) setScanOption:(SKScanOption*) theOption;

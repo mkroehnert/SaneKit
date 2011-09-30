@@ -15,21 +15,37 @@
 -(id) initWithFormat:(SKFrame) aFrame
            lastFrame:(BOOL) isLastFrame
         bytesPerLine:(NSInteger) theBytesPerLine
-        pixelsPerLin:(NSInteger) thePixelsPerLine
+        pixelsPerLine:(NSInteger) thePixelsPerLine
                lines:(NSInteger) theLines
                depth:(NSInteger) theDepth;
 {
 	self = [super init];
     if (self)
     {
-    	format = aFrame;
-        lastFrame = isLastFrame;
-        bytesPerLine = theBytesPerLine;
-        pixelsPerLine = thePixelsPerLine;
-        lines = theLines;
-        depth = theDepth;
+        [self updateFormat: aFrame
+                 lastFrame: isLastFrame
+              bytesPerLine: theBytesPerLine
+             pixelsPerLine: thePixelsPerLine
+                     lines: theLines
+                     depth: theDepth];
     }
     return self;
+}
+
+
+-(void) updateFormat:(SKFrame) aFrame
+           lastFrame:(BOOL) isLastFrame
+        bytesPerLine:(NSInteger) theBytesPerLine
+       pixelsPerLine:(NSInteger) thePixelsPerLine
+               lines:(NSInteger) theLines
+               depth:(NSInteger) theDepth
+{
+    format = aFrame;
+    lastFrame = isLastFrame;
+    bytesPerLine = theBytesPerLine;
+    pixelsPerLine = thePixelsPerLine;
+    lines = theLines;
+    depth = theDepth;
 }
 
 
