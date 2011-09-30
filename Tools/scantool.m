@@ -12,6 +12,28 @@
 #import <SaneKit/SKScanDevice.h>
 #import <SaneKit/SKScanOption.h>
 
+@interface SKOutputType : NSObject
+{
+@public
+    NSBitmapImageFileType fileType;
+    NSString* fileExtension;
+}
+@end
+
+@implementation SKOutputType
+-(id) initWithFileType:(NSBitmapImageFileType) aFileType andExtension:(NSString*) anExtension
+{
+	self = [super init];
+    if (self)
+    {
+    	fileType = aFileType;
+        fileExtension = anExtension;
+    }
+    return self;
+}
+@end
+
+
 int main(int argc, char* argv[])
 {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
