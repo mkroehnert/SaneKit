@@ -70,6 +70,17 @@
 }
 
 
+-(double) min
+{
+	return minimum;
+}
+
+
+-(double) max
+{
+	return maximum;
+}
+
 
 -(NSString*) description
 {

@@ -73,6 +73,18 @@
 }
 
 
+-(double) min
+{
+	return minimum;
+}
+
+
+-(double) max
+{
+	return maximum;
+}
+
+
 -(NSString*) description
 {
 	return [NSString stringWithFormat: @"SKRange with Min: %f, Max: %f, Quantisation: %f", minimum, maximum, quantisation];

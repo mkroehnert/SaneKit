@@ -14,4 +14,7 @@
 -(BOOL) isIntegerInRange:(NSInteger) anInteger;
 -(BOOL) isDoubleInRange:(double) aDouble;
 
+-(double) min;
+-(double) max;
+
 @end
