@@ -94,6 +94,8 @@ int main(int argc, char* argv[])
     
     if (deviceOpen)
     {
+        [device setScanRect: [device maxScanRect]];
+        
         if ([arguments objectForKey:@"mode"])
             [device setMode: [arguments stringForKey:@"mode"]];
         
