@@ -724,10 +724,13 @@
  */
 -(NSRect) maxScanRect
 {
-//    SKScanOption* xOption = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_TL_X]];
-//    SKScanOption* yOption = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_TL_Y]];
-//    return NSMakeRect([[xOption rangeConstraint] min], [[yOption rangeConstraint] min], [[xOption rangeConstraint] max], [[yOption rangeConstraint] max])
-    return NSMakeRect(0.0, 0.0, 100.0, 100.0);
+    SKScanOption* xOption = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_TL_X]];
+    SKScanOption* yOption = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_TL_Y]];
+    double xMin = [[xOption rangeConstraint] min];
+    double yMin = [[yOption rangeConstraint] min];
+    double xSize = [[xOption rangeConstraint] max] - xMin;
+    double ySize = [[yOption rangeConstraint] max] - yMin;
+    return NSMakeRect(xMin, yMin, xSize, ySize);
 }
 
 @end
