@@ -1,0 +1,63 @@
+ABOUT
+-----
+
+SaneKit is a small framework for interfacing libsane (http://www.sane-project.org/)
+in Objective-C code.
+
+I started this project because the only way to get our scanner to work on OS X
+was libsane.
+Additionally I only found Snac (https://github.com/fredrikw/Snac) to be the only
+'open-source' scanner application for OS X using libsane.
+However Snac didn't fit my needs because it called the scanimage commandline tool
+from libsane but didn't access libsane natively.
+
+This is how SaneKit was born.
+
+
+FEATURES
+--------
+
+SaneKit allows you to search for attached scan devices and then use those to
+perform scans.
+All options supported by the devices are accessible through the API and can be
+set before scanning.
+
+REQUIREMENTS
+------------
+
+Computer running Mac OS X >= 10.5 is needed.
+Xcode and libsane must be installed to build SaneKit from source (see INSTALLATION).
+
+
+LICENSE
+-------
+
+SaneKit is licensed under the FreeBSD license.
+
+
+DOWNLOADING
+-----------
+
+SaneKit can be downloaded from its GitHub page:
+
+https://github.com/mkroehnert/SaneKit/downloads
+
+
+INSTALLATION
+------------
+
+a) First install libsane by issuing the following command in a terminal:
+
+     brew install sane-backends
+
+b) Download the source from GitHub and compile it with the provided Xcode project.
+
+
+PROBLEMS
+--------
+
+Feature requests and bugs can be reported through on the Github issue page:
+
+http://github.com/mkroehnert/SaneKit/issues
+
+The applications menu entry 'Report Bug ...' will also take you there.

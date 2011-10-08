@@ -55,6 +55,7 @@
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		32DBCF5E0370ADEE00C91783 /* SaneKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaneKit_Prefix.pch; sourceTree = "<group>"; };
 		4D54DA55141271C000E1CCC7 /* libsane.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsane.dylib; path = /usr/local/lib/libsane.dylib; sourceTree = "<absolute>"; };
+		4D2B3C2A1440D4AB000736DD /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		4D54DA691412797600E1CCC7 /* SaneKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SaneKit.h; path = Classes/SaneKit.h; sourceTree = "<group>"; };
 		4D54DA6A1412797600E1CCC7 /* SaneKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SaneKit.m; path = Classes/SaneKit.m; sourceTree = "<group>"; };
 		4D54DA7214127CEB00E1CCC7 /* scantool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = scantool; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				32DBCF5E0370ADEE00C91783 /* SaneKit_Prefix.pch */,
+				4D2B3C2A1440D4AB000736DD /* README */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
