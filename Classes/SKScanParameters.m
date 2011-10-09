@@ -119,8 +119,7 @@
  */
 -(NSInteger) totalBytes
 {
-    const int SCALE_FACTOR = ((format == eRGB || format == eGRAY) ? 1:3);
-    NSInteger totalBytes = bytesPerLine * lines * SCALE_FACTOR;
+    NSInteger totalBytes = [self bytesPerRow] * [self heightPixel];
     
     return totalBytes;
 }
@@ -149,7 +148,7 @@
  */
 -(NSInteger) bitsPerPixel
 {
-    return depth * bytesPerLine / pixelsPerLine;
+    return depth * [self samplesPerPixel];
 }
 
 
@@ -169,7 +168,7 @@
  */
 -(NSInteger) bytesPerRow
 {
-	return [self widthPixel] * [self samplesPerPixel];
+	return [self widthPixel] * ([self bitsPerPixel] / 8);
 }
 
 
@@ -189,7 +188,7 @@
 
 
 /**
- * @return depth parameter used for current scan (numbers of bits per pixel)
+ * @return depth parameter used for current scan in bits.
  */
 -(NSInteger) depth
 {
@@ -211,7 +210,7 @@
                              @"Scanning image of size %dx%d pixels at %d bits/pixel\nFormat: %d\nDepth: %d",
                              pixelsPerLine,
                              lines,
-                             depth * bytesPerLine / pixelsPerLine,
+                             [self bitsPerPixel],
                              format,
                              depth
                              ];
@@ -219,7 +218,7 @@
         descriptionString = [NSString stringWithFormat:
                              @"Scanning image %d pixels wide (variable length) at %d bits/pixel\nFormat: %d\nDepth: %d",
                              pixelsPerLine,
-                             depth * bytesPerLine / pixelsPerLine,
+                             [self bitsPerPixel],
                              format,
                              depth
                              ];
