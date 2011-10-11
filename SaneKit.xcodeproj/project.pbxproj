@@ -18,6 +18,11 @@
 		4D54DABA141286E200E1CCC7 /* SKScanDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D54DAB8141286E200E1CCC7 /* SKScanDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4D54DABB141286E200E1CCC7 /* SKScanDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D54DAB9141286E200E1CCC7 /* SKScanDevice.m */; };
 		4D54DB0F14128E2300E1CCC7 /* SKStructs.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D54DB0E14128E2300E1CCC7 /* SKStructs.h */; };
+		4DB4BE771444F1E100339479 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
+		4DB4BE781444F1E400339479 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D6A5FE840307C02AAC07 /* AppKit.framework */; };
+		4DB4BE7B1444F1F000339479 /* SaneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* SaneKit.framework */; };
+		4DB4BE811444F29000339479 /* InSaneIty.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DB4BE801444F29000339479 /* InSaneIty.xib */; };
+		4DB4BE831444F2DB00339479 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4BE821444F2DB00339479 /* main.m */; };
 		4DE6612B14134FC0001F309B /* SKScanParameters.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DE6612914134FC0001F309B /* SKScanParameters.h */; };
 		4DE6612C14134FC0001F309B /* SKScanParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE6612A14134FC0001F309B /* SKScanParameters.m */; };
 		4DE6625C1415692F001F309B /* compare_images.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE6625B1415692F001F309B /* compare_images.m */; };
@@ -48,6 +53,13 @@
 			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = SaneKit;
 		};
+		4DB4BE751444F1A400339479 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* SaneKit */;
+			remoteInfo = SaneKit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +79,10 @@
 		4D54DAB8141286E200E1CCC7 /* SKScanDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKScanDevice.h; path = Classes/SKScanDevice.h; sourceTree = "<group>"; };
 		4D54DAB9141286E200E1CCC7 /* SKScanDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKScanDevice.m; path = Classes/SKScanDevice.m; sourceTree = "<group>"; };
 		4D54DB0E14128E2300E1CCC7 /* SKStructs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKStructs.h; path = Classes/SKStructs.h; sourceTree = "<group>"; };
+		4DB4BE6F1444F19100339479 /* InSaneIty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = InSaneIty.app; path = build/Debug/InSaneIty.app; sourceTree = "<group>"; };
+		4DB4BE711444F19100339479 /* InSaneIty-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "InSaneIty-Info.plist"; sourceTree = "<group>"; };
+		4DB4BE801444F29000339479 /* InSaneIty.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = InSaneIty.xib; path = Resources/InSaneIty.xib; sourceTree = "<group>"; };
+		4DB4BE821444F2DB00339479 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Gui/main.m; sourceTree = "<group>"; };
 		4DE6612914134FC0001F309B /* SKScanParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKScanParameters.h; path = Classes/SKScanParameters.h; sourceTree = "<group>"; };
 		4DE6612A14134FC0001F309B /* SKScanParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKScanParameters.m; path = Classes/SKScanParameters.m; sourceTree = "<group>"; };
 		4DE662561415690C001F309B /* imagereader */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = imagereader; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +117,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4DB4BE6D1444F19100339479 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4DB4BE771444F1E100339479 /* Foundation.framework in Frameworks */,
+				4DB4BE781444F1E400339479 /* AppKit.framework in Frameworks */,
+				4DB4BE7B1444F1F000339479 /* SaneKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4DE662541415690C001F309B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -126,6 +152,7 @@
 				8DC2EF5B0486A6940098B216 /* SaneKit.framework */,
 				4D54DA7214127CEB00E1CCC7 /* scantool */,
 				4DE662561415690C001F309B /* imagereader */,
+				4DB4BE6F1444F19100339479 /* InSaneIty.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,6 +167,7 @@
 				089C1665FE841158C02AAC07 /* Resources */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
 				034768DFFF38A50411DB9C8B /* Products */,
+				4DB4BE711444F19100339479 /* InSaneIty-Info.plist */,
 			);
 			name = SaneKit;
 			sourceTree = "<group>";
@@ -159,6 +187,7 @@
 			children = (
 				8DC2EF5A0486A6940098B216 /* Info.plist */,
 				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
+				4DB4BE801444F29000339479 /* InSaneIty.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -233,6 +262,7 @@
 		4DB4BE671444F14900339479 /* Gui */ = {
 			isa = PBXGroup;
 			children = (
+				4DB4BE821444F2DB00339479 /* main.m */,
 			);
 			name = Gui;
 			sourceTree = "<group>";
@@ -279,6 +309,24 @@
 			productName = scantool;
 			productReference = 4D54DA7214127CEB00E1CCC7 /* scantool */;
 			productType = "com.apple.product-type.tool";
+		};
+		4DB4BE6E1444F19100339479 /* InSaneIty */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4DB4BE741444F19300339479 /* Build configuration list for PBXNativeTarget "InSaneIty" */;
+			buildPhases = (
+				4DB4BE6B1444F19100339479 /* Resources */,
+				4DB4BE6C1444F19100339479 /* Sources */,
+				4DB4BE6D1444F19100339479 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4DB4BE761444F1A400339479 /* PBXTargetDependency */,
+			);
+			name = InSaneIty;
+			productName = InSaneIty;
+			productReference = 4DB4BE6F1444F19100339479 /* InSaneIty.app */;
+			productType = "com.apple.product-type.application";
 		};
 		4DE662551415690C001F309B /* compare_images */ = {
 			isa = PBXNativeTarget;
@@ -331,11 +379,20 @@
 				8DC2EF4F0486A6940098B216 /* SaneKit */,
 				4D54DA7114127CEB00E1CCC7 /* scantool */,
 				4DE662551415690C001F309B /* compare_images */,
+				4DB4BE6E1444F19100339479 /* InSaneIty */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4DB4BE6B1444F19100339479 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4DB4BE811444F29000339479 /* InSaneIty.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DC2EF520486A6940098B216 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -352,6 +409,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D54DA7B14127D2B00E1CCC7 /* scantool.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4DB4BE6C1444F19100339479 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4DB4BE831444F2DB00339479 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +453,11 @@
 			isa = PBXTargetDependency;
 			target = 8DC2EF4F0486A6940098B216 /* SaneKit */;
 			targetProxy = 4D54DA7614127CF900E1CCC7 /* PBXContainerItemProxy */;
+		};
+		4DB4BE761444F1A400339479 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* SaneKit */;
+			targetProxy = 4DB4BE751444F1A400339479 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -518,6 +588,54 @@
 			};
 			name = Release;
 		};
+		4DB4BE721444F19300339479 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "InSaneIty-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = InSaneIty;
+			};
+			name = Debug;
+		};
+		4DB4BE731444F19300339479 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "InSaneIty-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = InSaneIty;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		4DE662581415690E001F309B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -590,6 +708,15 @@
 			buildConfigurations = (
 				4D54DA7414127CED00E1CCC7 /* Debug */,
 				4D54DA7514127CED00E1CCC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4DB4BE741444F19300339479 /* Build configuration list for PBXNativeTarget "InSaneIty" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4DB4BE721444F19300339479 /* Debug */,
+				4DB4BE731444F19300339479 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
