@@ -133,8 +133,9 @@
 		0867D691FE84028FC02AAC07 /* SaneKit */ = {
 			isa = PBXGroup;
 			children = (
-				4D54DA6E14127C8600E1CCC7 /* Tools */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
+				4DB4BE671444F14900339479 /* Gui */,
+				4D54DA6E14127C8600E1CCC7 /* Tools */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				089C1665FE841158C02AAC07 /* Resources */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
@@ -227,6 +228,13 @@
 				4DE6625B1415692F001F309B /* compare_images.m */,
 			);
 			name = Tools;
+			sourceTree = "<group>";
+		};
+		4DB4BE671444F14900339479 /* Gui */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Gui;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
