@@ -108,6 +108,7 @@ static SANE_Bool SKSearchLocalOnlyScanners = SANE_TRUE;
  *
  * Default is NO.
  *
+ * @warning [SaneKit scanForDevices] must not be called before an NSAutoreleasePool has been created
  * @warning if scanning on the network is enable the call to [SaneKit scanForDevices] will probably take significantly longer
  */
 +(void) setScanNetwork:(BOOL) aBool
