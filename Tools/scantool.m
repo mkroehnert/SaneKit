@@ -35,57 +35,13 @@
 #import <SaneKit/SaneKit.h>
 #import <SaneKit/SKScanDevice.h>
 #import <SaneKit/SKScanOption.h>
-
-@interface SKOutputType : NSObject
-{
-@public
-    NSBitmapImageFileType fileType;
-    NSString* fileExtension;
-}
-@end
-
-@implementation SKOutputType
--(id) initWithFileType:(NSBitmapImageFileType) aFileType andExtension:(NSString*) anExtension
-{
-	self = [super init];
-    if (self)
-    {
-    	fileType = aFileType;
-        fileExtension = anExtension;
-    }
-    return self;
-}
-@end
-
-
-static NSDictionary* fileTypes = nil;
-
-
-void writeImageToFile(NSBitmapImageRep* imageRep, SKOutputType* fileType)
-{
-    
-    NSDictionary* imageProperties = [NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:1.0] forKey:NSImageCompressionFactor];
-    NSData* bitmapData = [imageRep representationUsingType: fileType->fileType properties: imageProperties];
-    [bitmapData writeToFile: [NSString stringWithFormat: @"%@%@", @"test", fileType->fileExtension] atomically: NO];
-}
+#import <SaneKit/NSBitmapImageRep_WriteToFile.h>
 
 
 int main(int argc, char* argv[])
 {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
-    fileTypes = [NSDictionary dictionaryWithObjectsAndKeys:
-     [[SKOutputType alloc] initWithFileType: NSTIFFFileType andExtension: @".tiff"], @"tiff",
-     [[SKOutputType alloc] initWithFileType: NSBMPFileType andExtension: @".bmp"], @"bmp",
-     [[SKOutputType alloc] initWithFileType: NSGIFFileType andExtension: @".gif"], @"gif",
-     [[SKOutputType alloc] initWithFileType: NSJPEGFileType andExtension: @".jpeg"], @"jpeg",
-     [[SKOutputType alloc] initWithFileType: NSPNGFileType andExtension: @".png"], @"png",
-     [[SKOutputType alloc] initWithFileType: NSJPEG2000FileType andExtension: @".j2k"], @"jpeg2000",
-     nil
-    ];
-
-    NSUserDefaults* arguments = [NSUserDefaults standardUserDefaults];
-    
     [SaneKit initSane];
     
     NSDictionary* deviceDict = [arguments dictionaryForKey:@"device"];
@@ -139,11 +95,9 @@ int main(int argc, char* argv[])
         NSString* imageType = @"png";
         if ([arguments objectForKey:@"imagetype"])
             imageType = [[arguments stringForKey:@"imagetype"] lowercaseString];
-        SKOutputType* fileType = [fileTypes objectForKey: imageType];
-        if (0 < [images count] && nil != fileType)
-        {
-            writeImageToFile([images lastObject], fileType);
-        }
+
+        if (0 < [images count])
+            [(NSBitmapImageRep*)[images lastObject] writeToFile: @"test2" imageFormat: imageType];
         
         [device close];
     }
