@@ -96,8 +96,12 @@ int main(int argc, char* argv[])
         if ([arguments objectForKey:@"imagetype"])
             imageType = [[arguments stringForKey:@"imagetype"] lowercaseString];
 
+        NSString* imageFileName = @"scan";
+        if ([arguments objectForKey:@"outputfile"])
+            imageFileName = [arguments stringForKey:@"outputfile"];
+
         if (0 < [images count])
-            [(NSBitmapImageRep*)[images lastObject] writeToFile: @"test2" imageFormat: imageType];
+            [(NSBitmapImageRep*)[images lastObject] writeToFile: imageFileName imageFormat: imageType];
         
         [device close];
     }
