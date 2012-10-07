@@ -103,7 +103,7 @@
     {
         NSLog(@"Scanning for devices");
         NSArray* deviceList = [SaneKit scanForDevices];
-        NSLog(@"Available Devices:\n%@", [SaneKit scanForDevices]);
+        NSLog(@"Available Devices:\n%@", deviceList);
         if (0 < [deviceList count])
         {
             device = [[[deviceList lastObject] retain] autorelease];
