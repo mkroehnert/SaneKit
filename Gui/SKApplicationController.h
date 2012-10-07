@@ -41,6 +41,7 @@
     NSInteger scanResolution;
     NSInteger scanDepth;
     BOOL scanPreview;
+    SKScanDevice* device;
 }
 
 -(IBAction) scan:(id) sender;

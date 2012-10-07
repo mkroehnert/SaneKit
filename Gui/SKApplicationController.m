@@ -52,6 +52,14 @@
     return self;
 }
 
+-(void) dealloc
+{
+    [currentRep release];
+    [device release];
+    [super dealloc];
+}
+
+
 -(void) setUserDefaultsForDevice: (SKScanDevice*) scanDevice
 {
     if (nil == scanDevice)
@@ -90,8 +98,6 @@
 
 -(IBAction) scan:(id)sender
 {
-    SKScanDevice* device = [[[SKScanDevice alloc] initWithDictionary: [self userDefaultsForDevice]] autorelease];
-    
     BOOL deviceOpen = [device open];
     if (!deviceOpen)
     {
@@ -144,12 +150,6 @@
     [currentRep writeToFile: [NSHomeDirectory() stringByAppendingPathComponent: @"/Desktop/Scan"] imageFormat: @"tiff"];
 }
 
--(void) dealloc
-{
-    [currentRep release];
-    [super dealloc];
-}
-
 @end
 
 
@@ -161,6 +161,15 @@
 -(void) applicationWillFinishLaunching:(NSNotification*) aNotification
 {
     [SaneKit initSane];
+}
+
+
+/**
+ * Create SKScanDevice instance.
+ */
+-(void) applicationDidFinishLaunching:(NSNotification*) aNotification
+{
+    device = [[SKScanDevice alloc] initWithDictionary: [self userDefaultsForDevice]];
 }
 
 
