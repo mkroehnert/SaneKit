@@ -23,7 +23,6 @@
 		4DB4BE7B1444F1F000339479 /* SaneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* SaneKit.framework */; };
 		4DB4BE811444F29000339479 /* InSaneIty.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DB4BE801444F29000339479 /* InSaneIty.xib */; };
 		4DB4BE831444F2DB00339479 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4BE821444F2DB00339479 /* main.m */; };
-		4DB4BEAC1448E97100339479 /* SKApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4BEAB1448E97100339479 /* SKApplicationDelegate.m */; };
 		4DB4BEEE1448EDB600339479 /* SKApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4BEED1448EDB600339479 /* SKApplicationController.m */; };
 		4DE6612B14134FC0001F309B /* SKScanParameters.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DE6612914134FC0001F309B /* SKScanParameters.h */; };
 		4DE6612C14134FC0001F309B /* SKScanParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE6612A14134FC0001F309B /* SKScanParameters.m */; };
@@ -59,7 +58,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* SaneKit */;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = SaneKit;
 		};
 /* End PBXContainerItemProxy section */
@@ -81,12 +80,10 @@
 		4D54DAB8141286E200E1CCC7 /* SKScanDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKScanDevice.h; path = Classes/SKScanDevice.h; sourceTree = "<group>"; };
 		4D54DAB9141286E200E1CCC7 /* SKScanDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKScanDevice.m; path = Classes/SKScanDevice.m; sourceTree = "<group>"; };
 		4D54DB0E14128E2300E1CCC7 /* SKStructs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKStructs.h; path = Classes/SKStructs.h; sourceTree = "<group>"; };
-		4DB4BE6F1444F19100339479 /* InSaneIty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = InSaneIty.app; path = build/Debug/InSaneIty.app; sourceTree = "<group>"; };
+		4DB4BE6F1444F19100339479 /* InSaneIty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InSaneIty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DB4BE711444F19100339479 /* InSaneIty-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "InSaneIty-Info.plist"; sourceTree = "<group>"; };
 		4DB4BE801444F29000339479 /* InSaneIty.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = InSaneIty.xib; path = Resources/InSaneIty.xib; sourceTree = "<group>"; };
 		4DB4BE821444F2DB00339479 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Gui/main.m; sourceTree = "<group>"; };
-		4DB4BEAA1448E97100339479 /* SKApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKApplicationDelegate.h; path = Gui/SKApplicationDelegate.h; sourceTree = "<group>"; };
-		4DB4BEAB1448E97100339479 /* SKApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKApplicationDelegate.m; path = Gui/SKApplicationDelegate.m; sourceTree = "<group>"; };
 		4DB4BEEC1448EDB600339479 /* SKApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKApplicationController.h; path = Gui/SKApplicationController.h; sourceTree = "<group>"; };
 		4DB4BEED1448EDB600339479 /* SKApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKApplicationController.m; path = Gui/SKApplicationController.m; sourceTree = "<group>"; };
 		4DE6612914134FC0001F309B /* SKScanParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKScanParameters.h; path = Classes/SKScanParameters.h; sourceTree = "<group>"; };
@@ -269,8 +266,6 @@
 			isa = PBXGroup;
 			children = (
 				4DB4BE821444F2DB00339479 /* main.m */,
-				4DB4BEAA1448E97100339479 /* SKApplicationDelegate.h */,
-				4DB4BEAB1448E97100339479 /* SKApplicationDelegate.m */,
 				4DB4BEEC1448EDB600339479 /* SKApplicationController.h */,
 				4DB4BEED1448EDB600339479 /* SKApplicationController.m */,
 			);
@@ -427,7 +422,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DB4BE831444F2DB00339479 /* main.m in Sources */,
-				4DB4BEAC1448E97100339479 /* SKApplicationDelegate.m in Sources */,
 				4DB4BEEE1448EDB600339479 /* SKApplicationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

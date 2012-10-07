@@ -41,3 +41,10 @@
 -(IBAction) saveToFile:(id) sender;
 
 @end
+
+@interface SKApplicationController (ApplicationDelegate)
+
+-(void) applicationWillFinishLaunching:(NSNotification*) aNotification;
+-(void) applicationWillTerminate:(NSNotification *) aNotification;
+
+@end

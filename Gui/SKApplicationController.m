@@ -100,3 +100,25 @@
 }
 
 @end
+
+@implementation SKApplicationController (ApplicationDelegate)
+
+/**
+ * Setup Sane.
+ */
+-(void) applicationWillFinishLaunching:(NSNotification*) aNotification
+{
+    [SaneKit initSane];
+}
+
+
+/**
+ * Tear down Sane.
+ */
+-(void) applicationWillTerminate:(NSNotification *) aNotification
+{
+    [SaneKit exitSane];
+}
+
+@end
+
