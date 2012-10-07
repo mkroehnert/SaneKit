@@ -41,13 +41,13 @@
     NSInteger scanResolution;
     NSInteger scanDepth;
     BOOL scanPreview;
-    SKScanDevice* device;
+    SKScanDevice* scanDevice;
 }
 
 -(IBAction) scan:(id) sender;
 -(IBAction) saveToFile:(id) sender;
 
--(void) setUserDefaultsForDevice: (SKScanDevice*) scanDevice;
+-(void) setUserDefaultsForDevice: (SKScanDevice*) aScanDevice;
 -(NSDictionary*) userDefaultsForDevice;
 
 @end

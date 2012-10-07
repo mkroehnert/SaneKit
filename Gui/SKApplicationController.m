@@ -55,17 +55,17 @@
 -(void) dealloc
 {
     [currentRep release];
-    [device release];
+    [scanDevice release];
     [super dealloc];
 }
 
 
--(void) setUserDefaultsForDevice: (SKScanDevice*) scanDevice
+-(void) setUserDefaultsForDevice: (SKScanDevice*) aScanDevice
 {
-    if (nil == scanDevice)
+    if (nil == aScanDevice)
         return;
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject: [scanDevice toUserDefaultsDict] forKey: @"device"];
+    [defaults setObject: [aScanDevice toUserDefaultsDict] forKey: @"device"];
 
     [defaults setObject: scanMode forKey:@"mode"];
     [defaults setInteger: scanResolution forKey:@"resolution"];
@@ -98,7 +98,7 @@
 
 -(IBAction) scan:(id)sender
 {
-    BOOL deviceOpen = [device open];
+    BOOL deviceOpen = [scanDevice open];
     if (!deviceOpen)
     {
         NSLog(@"Scanning for devices");
@@ -106,31 +106,31 @@
         NSLog(@"Available Devices:\n%@", deviceList);
         if (0 < [deviceList count])
         {
-            device = [[[deviceList lastObject] retain] autorelease];
+            scanDevice = [[[deviceList lastObject] retain] autorelease];
             
-            deviceOpen = [device open];
+            deviceOpen = [scanDevice open];
             if (deviceOpen)
             {
                 // if new device could be opened successfully store it to the userdefaults
-                [self setUserDefaultsForDevice: device];
-                NSLog(@"New Device:\n %@", device);
+                [self setUserDefaultsForDevice: scanDevice];
+                NSLog(@"New Device:\n %@", scanDevice);
             }
         }
     }
     else
-        NSLog(@"Using Device:\n %@", device);
+        NSLog(@"Using Device:\n %@", scanDevice);
     
     if (deviceOpen)
     {
         NSLog(@"Device successfully opened");
-        [device setScanRect: [device maxScanRect]];
+        [scanDevice setScanRect: [scanDevice maxScanRect]];
         /*
         [device setMode: scanMode];
         [device setResolution: scanResolution];
         [device setDepth: scanDepth];
         [device setPreview: scanPreview];
         */
-        NSArray* images = [(SKScanDevice*)device doScan];
+        NSArray* images = [(SKScanDevice*)scanDevice doScan];
         
         if (0 < [images count])
         {
@@ -141,7 +141,7 @@
             [imageView setImage: currentImage];
         }
         
-        [device close];
+        [scanDevice close];
     }    
 }
 
@@ -169,7 +169,7 @@
  */
 -(void) applicationDidFinishLaunching:(NSNotification*) aNotification
 {
-    device = [[SKScanDevice alloc] initWithDictionary: [self userDefaultsForDevice]];
+    scanDevice = [[SKScanDevice alloc] initWithDictionary: [self userDefaultsForDevice]];
 }
 
 
