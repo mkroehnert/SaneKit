@@ -55,6 +55,7 @@
 @interface SKApplicationController (ApplicationDelegate)
 
 -(void) applicationWillFinishLaunching:(NSNotification*) aNotification;
+-(void) applicationDidFinishLaunching:(NSNotification*) aNotification;
 -(void) applicationWillTerminate:(NSNotification *) aNotification;
 
 @end
