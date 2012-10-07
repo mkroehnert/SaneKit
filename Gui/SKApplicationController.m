@@ -34,6 +34,7 @@
 #import <SaneKit/SaneKit.h>
 #import <SaneKit/SKScanDevice.h>
 #import <SaneKit/SKScanOption.h>
+#import <SaneKit/NSBitmapImageRep_WriteToFile.h>
 
 
 @implementation SKApplicationController
@@ -77,12 +78,25 @@
         if (0 < [images count])
         {
             NSImage* currentImage = [[[NSImage alloc] init] autorelease];
-            [currentImage addRepresentation: [images lastObject]];
+            [currentRep release];
+            currentRep = [[images lastObject] retain];
+            [currentImage addRepresentation: currentRep];
             [imageView setImage: currentImage];
         }
         
         [device close];
     }    
+}
+
+-(IBAction) saveToFile:(id) sender
+{
+    [currentRep writeToFile: [NSHomeDirectory() stringByAppendingPathComponent: @"/Desktop/Scan"] imageFormat: @"tiff"];
+}
+
+-(void) dealloc
+{
+    [currentRep release];
+    [super dealloc];
 }
 
 @end

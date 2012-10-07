@@ -34,8 +34,10 @@
 
 @interface SKApplicationController : NSObject {
     IBOutlet NSImageView* imageView;
+    NSBitmapImageRep* currentRep;
 }
 
 -(IBAction) scan:(id) sender;
+-(IBAction) saveToFile:(id) sender;
 
 @end
