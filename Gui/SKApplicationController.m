@@ -39,20 +39,52 @@
 
 @implementation SKApplicationController
 
+-(id) init
+{
+    self = [super init];
+    if (self)
+    {
+        scanMode = @"Color";
+        scanResolution = 100;
+        scanDepth = 32;
+        scanPreview = TRUE;
+    }
+    return self;
+}
+
 -(void) setUserDefaultsForDevice: (SKScanDevice*) scanDevice
 {
     if (nil == scanDevice)
         return;
-    NSUserDefaults* arguments = [NSUserDefaults standardUserDefaults];
-    [arguments setObject: [scanDevice toUserDefaultsDict] forKey: @"device"];
-    [arguments synchronize];
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject: [scanDevice toUserDefaultsDict] forKey: @"device"];
+
+    [defaults setObject: scanMode forKey:@"mode"];
+    [defaults setInteger: scanResolution forKey:@"resolution"];
+    [defaults setInteger: scanDepth forKey:@"depth"];
+    [defaults setBool: scanPreview forKey:@"preview"];
+    
+    [defaults synchronize];
 }
 
 
 -(NSDictionary*) userDefaultsForDevice
 {
-    NSUserDefaults* arguments = [NSUserDefaults standardUserDefaults];
-    NSDictionary* deviceDict = [arguments dictionaryForKey:@"device"];
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary* deviceDict = [defaults dictionaryForKey:@"device"];
+
+    if ([defaults objectForKey:@"mode"])
+        scanMode = [defaults stringForKey:@"mode"];
+    
+    if ([defaults objectForKey:@"resolution"])
+        scanResolution = [defaults integerForKey:@"resolution"];
+    
+    if ([defaults objectForKey:@"depth"])
+        scanDepth = [defaults integerForKey:@"depth"];
+    
+    if ([defaults objectForKey:@"preview"])
+        scanPreview = [defaults boolForKey:@"preview"];
+    
     return [deviceDict autorelease];
 }
 
@@ -86,7 +118,12 @@
     {
         NSLog(@"Device successfully opened");
         [device setScanRect: [device maxScanRect]];
-
+        /*
+        [device setMode: scanMode];
+        [device setResolution: scanResolution];
+        [device setDepth: scanDepth];
+        [device setPreview: scanPreview];
+        */
         NSArray* images = [(SKScanDevice*)device doScan];
         
         if (0 < [images count])
