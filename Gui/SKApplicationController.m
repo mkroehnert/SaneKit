@@ -39,11 +39,26 @@
 
 @implementation SKApplicationController
 
--(IBAction) scan:(id)sender
+-(void) setUserDefaultsForDevice: (SKScanDevice*) scanDevice
+{
+    if (nil == scanDevice)
+        return;
+    NSUserDefaults* arguments = [NSUserDefaults standardUserDefaults];
+    [arguments setObject: [scanDevice toUserDefaultsDict] forKey: @"device"];
+    [arguments synchronize];
+}
+
+
+-(NSDictionary*) userDefaultsForDevice
 {
     NSUserDefaults* arguments = [NSUserDefaults standardUserDefaults];
     NSDictionary* deviceDict = [arguments dictionaryForKey:@"device"];
-    SKScanDevice* device = [[[SKScanDevice alloc] initWithDictionary: deviceDict] autorelease];
+    return [deviceDict autorelease];
+}
+
+-(IBAction) scan:(id)sender
+{
+    SKScanDevice* device = [[[SKScanDevice alloc] initWithDictionary: [self userDefaultsForDevice]] autorelease];
     
     BOOL deviceOpen = [device open];
     if (!deviceOpen)
@@ -59,8 +74,7 @@
             if (deviceOpen)
             {
                 // if new device could be opened successfully store it to the userdefaults
-                [arguments setObject: [device toUserDefaultsDict] forKey: @"device"];
-                [arguments synchronize];
+                [self setUserDefaultsForDevice: device];
                 NSLog(@"New Device:\n %@", device);
             }
         }
@@ -100,6 +114,7 @@
 }
 
 @end
+
 
 @implementation SKApplicationController (ApplicationDelegate)
 

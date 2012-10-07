@@ -31,14 +31,19 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class SKScanDevice;
 
-@interface SKApplicationController : NSObject {
+@interface SKApplicationController : NSObject
+{
     IBOutlet NSImageView* imageView;
     NSBitmapImageRep* currentRep;
 }
 
 -(IBAction) scan:(id) sender;
 -(IBAction) saveToFile:(id) sender;
+
+-(void) setUserDefaultsForDevice: (SKScanDevice*) scanDevice;
+-(NSDictionary*) userDefaultsForDevice;
 
 @end
 
