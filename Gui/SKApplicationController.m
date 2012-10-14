@@ -45,10 +45,6 @@
     self = [super init];
     if (self)
     {
-        scanMode = @"Color";
-        scanResolution = 100;
-        scanDepth = 16;
-        scanPreview = TRUE;
         model = [[SKApplicationModel alloc] init];
         isDeviceOpen = NO;
     }
@@ -69,12 +65,12 @@
         return;
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject: [aScanDevice toUserDefaultsDict] forKey: @"device"];
-
+/*
     [defaults setObject: scanMode forKey:@"mode"];
     [defaults setInteger: scanResolution forKey:@"resolution"];
     [defaults setInteger: scanDepth forKey:@"depth"];
     [defaults setBool: scanPreview forKey:@"preview"];
-    
+*/
     [defaults synchronize];
 }
 
@@ -83,7 +79,7 @@
 {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary* deviceDict = [defaults dictionaryForKey:@"device"];
-
+/*
     if ([defaults objectForKey:@"mode"])
         scanMode = [defaults stringForKey:@"mode"];
     
@@ -95,7 +91,7 @@
     
     if ([defaults objectForKey:@"preview"])
         scanPreview = [defaults boolForKey:@"preview"];
-    
+*/
     return [deviceDict autorelease];
 }
 
@@ -134,10 +130,6 @@
         NSLog(@"Device successfully opened");
         [[model scanDevice] setScanRect: [[model scanDevice] maxScanRect]];
 
-        [[model scanDevice] setMode: scanMode];
-        [[model scanDevice] setResolution: scanResolution];
-        [[model scanDevice] setDepth: scanDepth];
-        [[model scanDevice] setPreview: scanPreview];
         
         NSArray* images = [[model scanDevice] doScan];
         

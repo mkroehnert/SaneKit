@@ -38,10 +38,6 @@
 {
     IBOutlet NSImageView* imageView;
     NSBitmapImageRep* currentRep;
-    NSString* scanMode;
-    NSInteger scanResolution;
-    NSInteger scanDepth;
-    BOOL scanPreview;
     
     SKApplicationModel* model;
     BOOL isDeviceOpen;
