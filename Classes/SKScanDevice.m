@@ -249,6 +249,7 @@
         model = [aModel retain];
         type = [aType retain];
         handle = calloc(1, sizeof(handle));
+        memset(handle, 0, sizeof(handle));
         options = [[NSMutableDictionary dictionaryWithCapacity: 20] retain];
         parameters = nil;
         delegate = nil;
@@ -354,7 +355,12 @@
  */
 -(void) close
 {
-	sane_close(handle->deviceHandle);
+    if(0 != handle)
+    {
+        // Only allowed to call once on active handle
+        sane_close(handle->deviceHandle);
+        memset(handle, 0, sizeof(handle));
+    }
 }
 
 
