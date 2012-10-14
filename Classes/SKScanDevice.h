@@ -60,6 +60,7 @@ struct SaneHandle;
 -(void) close;
 
 -(NSArray*) doScan;
+-(void) cancelScan;
 
 -(void) reloadScanParameters;
 -(SKScanParameters*) scanParameters;

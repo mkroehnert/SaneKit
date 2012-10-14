@@ -687,6 +687,15 @@
 
 
 /**
+ * Cancel a running scan
+ */
+-(void) cancelScan
+{
+    sane_cancel(handle->deviceHandle);
+}
+
+
+/**
  * Get the scan mode on the current device.
  */
 -(NSString*) mode
