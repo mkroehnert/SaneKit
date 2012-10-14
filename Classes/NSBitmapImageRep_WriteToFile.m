@@ -103,8 +103,15 @@ void setupImageFormatsDictionary()
     NSDictionary* imageProperties = [NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:1.0] forKey:NSImageCompressionFactor];
     // create an NSData object from the representation using the given image type
     NSData* bitmapData = [self representationUsingType: fileType->fileType properties: imageProperties];
+    // create path
+    NSString* filePath = [NSString stringWithFormat: @"%@%@", filename, fileType->fileExtension];
+    // Check if file exists
+    if ([[NSFileManager defaultManager] fileExistsAtPath: filePath])
+    {
+        return NO;
+    }
     // write the NSData object to the file given by \p filename
-    [bitmapData writeToFile: [NSString stringWithFormat: @"%@%@", filename, fileType->fileExtension] atomically: NO];
+    [bitmapData writeToFile: filePath atomically: NO];
     return YES;
 }
 
