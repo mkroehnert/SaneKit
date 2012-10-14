@@ -92,9 +92,15 @@ void setupImageFormatsDictionary()
  * Write the NSBitmapImageRep to the file given by \p filename and use the format given by
  * \p imageFormat.
  * The appropriate file suffix is appended automatically.
+ *
+ * \return YES if file could be written without error, NO otherwise
  */
 -(BOOL) writeToFile:(NSString*) filename imageFormat:(NSString*) imageFormat
 {
+    if (nil == filename)
+        return NO;
+    if (nil == imageFormat)
+        return NO;
     if (!imageFormatsDict)
         setupImageFormatsDictionary();
     SKImageTypeMapping* fileType = [imageFormatsDict objectForKey: imageFormat];
@@ -112,8 +118,7 @@ void setupImageFormatsDictionary()
         return NO;
     }
     // write the NSData object to the file given by \p filename
-    [bitmapData writeToFile: filePath atomically: NO];
-    return YES;
+    return [bitmapData writeToFile: filePath atomically: NO];
 }
 
 @end
