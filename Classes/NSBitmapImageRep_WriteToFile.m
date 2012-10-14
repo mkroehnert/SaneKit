@@ -111,7 +111,7 @@ void setupImageFormatsDictionary()
     // create an NSData object from the representation using the given image type
     NSData* bitmapData = [self representationUsingType: fileType->fileType properties: imageProperties];
     // create path
-    NSString* filePath = [NSString stringWithFormat: @"%@%@", filename, fileType->fileExtension];
+    NSString* filePath = [[NSString stringWithFormat: @"%@%@", filename, fileType->fileExtension] stringByExpandingTildeInPath];
     // Check if file exists
     if ([[NSFileManager defaultManager] fileExistsAtPath: filePath])
     {
