@@ -9,7 +9,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="368"/>
-			<integer value="81"/>
+			<integer value="29"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1018,6 +1018,102 @@
 					</object>
 					<int key="connectionID">524</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: guiElementsEnabled</string>
+						<reference key="source" ref="314255401"/>
+						<reference key="destination" ref="212476164"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="314255401"/>
+							<reference key="NSDestination" ref="212476164"/>
+							<string key="NSLabel">enabled: guiElementsEnabled</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">guiElementsEnabled</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">527</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: guiElementsEnabled</string>
+						<reference key="source" ref="366675210"/>
+						<reference key="destination" ref="212476164"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="366675210"/>
+							<reference key="NSDestination" ref="212476164"/>
+							<string key="NSLabel">enabled: guiElementsEnabled</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">guiElementsEnabled</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">529</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: guiElementsEnabled</string>
+						<reference key="source" ref="852504269"/>
+						<reference key="destination" ref="212476164"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="852504269"/>
+							<reference key="NSDestination" ref="212476164"/>
+							<string key="NSLabel">enabled: guiElementsEnabled</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">guiElementsEnabled</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">531</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: guiElementsEnabled</string>
+						<reference key="source" ref="776162233"/>
+						<reference key="destination" ref="212476164"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="776162233"/>
+							<reference key="NSDestination" ref="212476164"/>
+							<string key="NSLabel">enabled: guiElementsEnabled</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">guiElementsEnabled</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">535</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: guiElementsEnabled</string>
+						<reference key="source" ref="1023925487"/>
+						<reference key="destination" ref="212476164"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="1023925487"/>
+							<reference key="NSDestination" ref="212476164"/>
+							<string key="NSLabel">enabled: guiElementsEnabled</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">guiElementsEnabled</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">537</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: guiElementsEnabled</string>
+						<reference key="source" ref="117038363"/>
+						<reference key="destination" ref="212476164"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="117038363"/>
+							<reference key="NSDestination" ref="212476164"/>
+							<string key="NSLabel">enabled: guiElementsEnabled</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">guiElementsEnabled</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">539</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1677,7 +1773,7 @@
 					<string>com.apple.InterfaceBuilderKit</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1" id="9"/>
-					<string>{{712, 629}, {171, 23}}</string>
+					<string>{{601, 737}, {171, 23}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{596, 852}, {216, 23}}</string>
@@ -1713,7 +1809,7 @@
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{641, 579}, {197, 73}}</string>
+					<string>{{530, 687}, {197, 73}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{525, 802}, {197, 73}}</string>
@@ -1723,7 +1819,7 @@
 					<string>{74, 862}</string>
 					<string>{{11, 977}, {478, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{591, 609}, {234, 43}}</string>
+					<string>{{480, 717}, {234, 43}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{475, 832}, {234, 43}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1821,7 +1917,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">524</int>
+			<int key="maxID">539</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
