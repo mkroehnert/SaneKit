@@ -38,6 +38,8 @@
 @interface SKApplicationController : NSObject <SKScanProgress>
 {
     IBOutlet NSImageView* imageView;
+    IBOutlet NSProgressIndicator* progressIndicator;
+
     NSBitmapImageRep* currentRep;
     
     SKApplicationModel* model;
