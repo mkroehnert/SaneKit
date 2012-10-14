@@ -251,6 +251,7 @@
         handle = calloc(1, sizeof(handle));
         options = [[NSMutableDictionary dictionaryWithCapacity: 20] retain];
         parameters = nil;
+        delegate = nil;
     }
     return self;
 }
@@ -289,10 +290,23 @@
         [options release];
     if (parameters)
         [parameters release];
+    if(delegate)
+        [delegate release];
     
     [super dealloc];
 }
 
+
+/**
+ * Set delegate on SKScanDevice which conforms to the SKScanProgress protocol.
+ */
+-(void) setDelegate:(id<SKScanProgress>) aDelegate
+{
+    if(aDelegate == delegate)
+        return;
+    [delegate release];
+    delegate = [aDelegate retain];
+}
 
 /**
  * @return a dictionary which can be used to store the device identification in NSUserDefaults
@@ -603,6 +617,7 @@
         return scannedImages;
     }
     
+    [delegate scanStarted];
     do
     {
         [self reloadScanParameters];
@@ -610,8 +625,9 @@
             continue;
 
         NSLog(@"Scan parameters:\n%@\n", parameters);
+        
         int totalBytesToRead = [parameters totalBytes];
-        NSLog(@"100%% = %d", totalBytesToRead);
+        [delegate setMaximumScanProgress: totalBytesToRead];
 
         SANE_Int readBytes = 0;
         // TODO: correct for (lines < 0)
@@ -623,9 +639,7 @@
         {
             scanStatus = sane_read(handle->deviceHandle, (buffer + totalBytesRead ), (maxBufferSize - totalBytesRead - 1), &readBytes);
             totalBytesRead += (SANE_Word)readBytes;
-            double progr = ((totalBytesRead * 100.0) / (double) totalBytesToRead);
-            progr = fminl(progr, 100.0);
-            NSLog(@"Progress: %3.1f%%, total bytes: %d\n", progr, totalBytesRead);
+            [delegate setCurrentScanProgress: totalBytesRead];
         }
         while (SANE_STATUS_GOOD == scanStatus || SANE_STATUS_EOF != scanStatus);
         
@@ -659,7 +673,9 @@
     while (![parameters isLastFrame]);
     
     sane_cancel(handle->deviceHandle);
-    
+
+    [delegate scanFinished];
+
     return scannedImages;
 }
 

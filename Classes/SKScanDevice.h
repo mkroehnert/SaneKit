@@ -30,6 +30,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "SKScanProgressProtocol.h"
 
 struct SaneHandle;
 @class SKScanParameters;
@@ -43,11 +44,15 @@ struct SaneHandle;
     struct SaneHandle* handle;
     NSMutableDictionary* options;
     SKScanParameters* parameters;
+    
+    id<SKScanProgress> delegate;
 }
 
 -(id) initWithName:(NSString*) aName vendor:(NSString*) aVendor model:(NSString*) aModel type:(NSString*) aType;
 -(id) initWithDictionary:(NSDictionary*) aDictionary;
 -(void) dealloc;
+-(void) setDelegate:(id<SKScanProgress>) aDelegate;
+
 -(NSDictionary*) toUserDefaultsDict;
 -(NSString*) description;
 
