@@ -58,6 +58,7 @@ struct SaneHandle;
 
 -(BOOL) open;
 -(void) close;
+-(BOOL) isOpen;
 
 -(NSArray*) doScan;
 -(void) cancelScan;

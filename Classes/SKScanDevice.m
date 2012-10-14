@@ -345,6 +345,10 @@
         // create initial SKScanParameters instance
         [self reloadScanParameters];
     }
+    else
+    {
+        memset(handle, 0, sizeof(handle));
+    }
 
     return (SANE_STATUS_GOOD == openStatus) ? YES : NO;
 }
@@ -355,12 +359,21 @@
  */
 -(void) close
 {
-    if(0 != handle)
+    if([self isOpen])
     {
         // Only allowed to call once on active handle
         sane_close(handle->deviceHandle);
         memset(handle, 0, sizeof(handle));
     }
+}
+
+
+/**
+ * Return YES if device handle was successfully created and NO otherwise.
+ */
+-(BOOL) isOpen
+{
+    return (0 != handle);
 }
 
 
@@ -765,7 +778,7 @@
 
 
 /**
- * Return YES if the scan should be a preview scan, NO otherwise
+ * Return YES if preview scan is enabled, NO otherwise.
  */
 -(BOOL) preview
 {
