@@ -36,6 +36,7 @@
 		4DE6648B141B5F7E001F309B /* SKScanOptionBool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE66489141B5F7D001F309B /* SKScanOptionBool.m */; };
 		4DE6648E141B5FBF001F309B /* SKScanOptionString.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DE6648C141B5FBF001F309B /* SKScanOptionString.h */; };
 		4DE6648F141B5FBF001F309B /* SKScanOptionString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE6648D141B5FBF001F309B /* SKScanOptionString.m */; };
+		4DF48B20162AFEF4006AA212 /* SKScanProgressProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DF48B1E162AFEF4006AA212 /* SKScanProgressProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4DFA0C75142EA32D0076728A /* SKScanOptionFixed.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DFA0C73142EA32D0076728A /* SKScanOptionFixed.h */; };
 		4DFA0C76142EA32D0076728A /* SKScanOptionFixed.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFA0C74142EA32D0076728A /* SKScanOptionFixed.m */; };
 		4DFA0D02142F279D0076728A /* SKRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DFA0D00142F279D0076728A /* SKRange.h */; };
@@ -101,6 +102,7 @@
 		4DE66489141B5F7D001F309B /* SKScanOptionBool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKScanOptionBool.m; path = Classes/SKScanOptionBool.m; sourceTree = "<group>"; };
 		4DE6648C141B5FBF001F309B /* SKScanOptionString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKScanOptionString.h; path = Classes/SKScanOptionString.h; sourceTree = "<group>"; };
 		4DE6648D141B5FBF001F309B /* SKScanOptionString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKScanOptionString.m; path = Classes/SKScanOptionString.m; sourceTree = "<group>"; };
+		4DF48B1E162AFEF4006AA212 /* SKScanProgressProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKScanProgressProtocol.h; path = Classes/SKScanProgressProtocol.h; sourceTree = "<group>"; };
 		4DFA0C73142EA32D0076728A /* SKScanOptionFixed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKScanOptionFixed.h; path = Classes/SKScanOptionFixed.h; sourceTree = "<group>"; };
 		4DFA0C74142EA32D0076728A /* SKScanOptionFixed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKScanOptionFixed.m; path = Classes/SKScanOptionFixed.m; sourceTree = "<group>"; };
 		4DFA0D00142F279D0076728A /* SKRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKRange.h; path = Classes/SKRange.h; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4DF48B1E162AFEF4006AA212 /* SKScanProgressProtocol.h */,
 				4D10EEEB145D7E6D00EC0FAC /* NSBitmapImageRep_WriteToFile.m */,
 				4D10EEE0145C561500EC0FAC /* NSBitmapImageRep_WriteToFile.h */,
 				4D54DA691412797600E1CCC7 /* SaneKit.h */,
@@ -297,6 +300,7 @@
 				4DFA0D85142FD08D0076728A /* SKRange_Protocol.h in Headers */,
 				4DFA0D86142FD08D0076728A /* SKRangeFixed.h in Headers */,
 				4D10EEE1145C561500EC0FAC /* NSBitmapImageRep_WriteToFile.h in Headers */,
+				4DF48B20162AFEF4006AA212 /* SKScanProgressProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
