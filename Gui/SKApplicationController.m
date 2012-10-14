@@ -125,12 +125,18 @@
 
 -(IBAction) scan:(id)sender
 {
+    [self performSelectorInBackground:@selector(performScan) withObject:nil];
+}
+
+
+-(void) performScan
+{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     if (isDeviceOpen)
     {
         NSLog(@"Device successfully opened");
         [[model scanDevice] setScanRect: [[model scanDevice] maxScanRect]];
 
-        
         NSArray* images = [[model scanDevice] doScan];
         
         if (0 < [images count])
@@ -141,7 +147,8 @@
             [currentImage addRepresentation: currentRep];
             [imageView setImage: currentImage];
         }
-    }    
+    }
+    [pool release];
 }
 
 -(IBAction) saveToFile:(id) sender

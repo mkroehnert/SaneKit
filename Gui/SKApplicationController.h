@@ -51,6 +51,7 @@
 -(NSDictionary*) userDefaultsForDevice;
 
 -(BOOL) openScanDevice;
+-(void) performScan;
 
 // SKScanProgress protocol
 -(void) setMaximumScanProgress:(NSInteger) aScanProgress;
@@ -61,6 +62,7 @@
 -(void) scanFinished;
 
 @end
+
 
 @interface SKApplicationController (ApplicationDelegate)
 
