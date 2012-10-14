@@ -30,11 +30,12 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import <SaneKit/SKScanProgressProtocol.h>
 
 @class SKScanDevice;
 @class SKApplicationModel;
 
-@interface SKApplicationController : NSObject
+@interface SKApplicationController : NSObject <SKScanProgress>
 {
     IBOutlet NSImageView* imageView;
     NSBitmapImageRep* currentRep;
@@ -50,6 +51,14 @@
 -(NSDictionary*) userDefaultsForDevice;
 
 -(BOOL) openScanDevice;
+
+// SKScanProgress protocol
+-(void) setMaximumScanProgress:(NSInteger) aScanProgress;
+-(void) setCurrentScanProgress:(NSInteger) aScanProgress;
+
+-(void) scanStarted;
+-(void) scanCancelled;
+-(void) scanFinished;
 
 @end
 

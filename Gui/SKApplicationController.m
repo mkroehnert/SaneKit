@@ -149,6 +149,31 @@
     [currentRep writeToFile: [NSHomeDirectory() stringByAppendingPathComponent: @"/Desktop/Scan"] imageFormat: @"tiff"];
 }
 
+-(void) setMaximumScanProgress:(NSInteger) aScanProgress
+{
+    NSLog(@"Max Scan Size: %d", aScanProgress);
+}
+
+-(void) setCurrentScanProgress:(NSInteger) aScanProgress
+{
+    NSLog(@"Current Scan Size: %d", aScanProgress);
+}
+
+-(void) scanStarted
+{
+    NSLog(@"Scan Start");
+}
+
+-(void) scanCancelled
+{
+    NSLog(@"Scan Cancel");
+}
+
+-(void) scanFinished
+{
+    NSLog(@"Scan Finish");
+}
+
 @end
 
 
@@ -170,6 +195,7 @@
 {
     [model setScanDevice: [[SKScanDevice alloc] initWithDictionary: [self userDefaultsForDevice]]];
     isDeviceOpen = [self openScanDevice];
+    [[model scanDevice] setDelegate: self];
 }
 
 
