@@ -32,6 +32,7 @@
 #import <Cocoa/Cocoa.h>
 
 @class SKScanDevice;
+@class SKApplicationModel;
 
 @interface SKApplicationController : NSObject
 {
@@ -41,7 +42,8 @@
     NSInteger scanResolution;
     NSInteger scanDepth;
     BOOL scanPreview;
-    SKScanDevice* scanDevice;
+    
+    SKApplicationModel* model;
 }
 
 -(IBAction) scan:(id) sender;

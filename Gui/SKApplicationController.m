@@ -30,6 +30,7 @@
  */
 
 #import "SKApplicationController.h"
+#import "SKApplicationModel.h"
 
 #import <SaneKit/SaneKit.h>
 #import <SaneKit/SKScanDevice.h>
@@ -46,8 +47,9 @@
     {
         scanMode = @"Color";
         scanResolution = 100;
-        scanDepth = 32;
+        scanDepth = 16;
         scanPreview = TRUE;
+        model = [[SKApplicationModel alloc] init];
     }
     return self;
 }
@@ -55,7 +57,7 @@
 -(void) dealloc
 {
     [currentRep release];
-    [scanDevice release];
+    [model release];
     [super dealloc];
 }
 
@@ -98,7 +100,7 @@
 
 -(IBAction) scan:(id)sender
 {
-    BOOL deviceOpen = [scanDevice open];
+    BOOL deviceOpen = [[model scanDevice] open];
     if (!deviceOpen)
     {
         NSLog(@"Scanning for devices");
@@ -106,31 +108,31 @@
         NSLog(@"Available Devices:\n%@", deviceList);
         if (0 < [deviceList count])
         {
-            scanDevice = [[[deviceList lastObject] retain] autorelease];
+            [model setScanDevice: [[[deviceList lastObject] retain] autorelease]];
             
-            deviceOpen = [scanDevice open];
+            deviceOpen = [[model scanDevice] open];
             if (deviceOpen)
             {
                 // if new device could be opened successfully store it to the userdefaults
-                [self setUserDefaultsForDevice: scanDevice];
-                NSLog(@"New Device:\n %@", scanDevice);
+                [self setUserDefaultsForDevice: [model scanDevice]];
+                NSLog(@"New Device:\n %@", [model scanDevice]);
             }
         }
     }
     else
-        NSLog(@"Using Device:\n %@", scanDevice);
+        NSLog(@"Using Device:\n %@", [model scanDevice]);
     
     if (deviceOpen)
     {
         NSLog(@"Device successfully opened");
-        [scanDevice setScanRect: [scanDevice maxScanRect]];
-        /*
-        [device setMode: scanMode];
-        [device setResolution: scanResolution];
-        [device setDepth: scanDepth];
-        [device setPreview: scanPreview];
-        */
-        NSArray* images = [(SKScanDevice*)scanDevice doScan];
+        [[model scanDevice] setScanRect: [[model scanDevice] maxScanRect]];
+
+        [[model scanDevice] setMode: scanMode];
+        [[model scanDevice] setResolution: scanResolution];
+        [[model scanDevice] setDepth: scanDepth];
+        [[model scanDevice] setPreview: scanPreview];
+        
+        NSArray* images = [[model scanDevice] doScan];
         
         if (0 < [images count])
         {
@@ -140,8 +142,8 @@
             [currentImage addRepresentation: currentRep];
             [imageView setImage: currentImage];
         }
-        
-        [scanDevice close];
+
+        [[model scanDevice] close];
     }    
 }
 
@@ -169,7 +171,7 @@
  */
 -(void) applicationDidFinishLaunching:(NSNotification*) aNotification
 {
-    scanDevice = [[SKScanDevice alloc] initWithDictionary: [self userDefaultsForDevice]];
+    [model setScanDevice: [[SKScanDevice alloc] initWithDictionary: [self userDefaultsForDevice]]];
 }
 
 
