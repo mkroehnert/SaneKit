@@ -39,7 +39,6 @@
     NSArray* scanModes;
     NSArray* scanResolutions;
     NSArray* scanDepths;
-    BOOL scanPreview;
 }
 
 -(SKScanDevice*) scanDevice;

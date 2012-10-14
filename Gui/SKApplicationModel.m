@@ -43,7 +43,6 @@
         scanModes = [NSArray arrayWithObjects: @"Color", @"Gray", @"Lineart", nil];
         scanResolutions = [NSArray arrayWithObjects: [NSNumber numberWithInt:100], [NSNumber numberWithInt:200], [NSNumber numberWithInt:300], nil];
         scanDepths = [NSArray arrayWithObjects: [NSNumber numberWithInt:8], [NSNumber numberWithInt:16], nil];
-        scanPreview = TRUE;
     }
     return self;
 }
