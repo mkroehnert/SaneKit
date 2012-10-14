@@ -50,6 +50,7 @@
         scanDepth = 16;
         scanPreview = TRUE;
         model = [[SKApplicationModel alloc] init];
+        isDeviceOpen = NO;
     }
     return self;
 }
@@ -98,7 +99,8 @@
     return [deviceDict autorelease];
 }
 
--(IBAction) scan:(id)sender
+
+-(BOOL) openScanDevice
 {
     BOOL deviceOpen = [[model scanDevice] open];
     if (!deviceOpen)
@@ -121,8 +123,13 @@
     }
     else
         NSLog(@"Using Device:\n %@", [model scanDevice]);
-    
-    if (deviceOpen)
+
+    return deviceOpen;
+}
+
+-(IBAction) scan:(id)sender
+{
+    if (isDeviceOpen)
     {
         NSLog(@"Device successfully opened");
         [[model scanDevice] setScanRect: [[model scanDevice] maxScanRect]];
@@ -142,8 +149,6 @@
             [currentImage addRepresentation: currentRep];
             [imageView setImage: currentImage];
         }
-
-        [[model scanDevice] close];
     }    
 }
 
@@ -172,6 +177,7 @@
 -(void) applicationDidFinishLaunching:(NSNotification*) aNotification
 {
     [model setScanDevice: [[SKScanDevice alloc] initWithDictionary: [self userDefaultsForDevice]]];
+    isDeviceOpen = [self openScanDevice];
 }
 
 
@@ -180,6 +186,7 @@
  */
 -(void) applicationWillTerminate:(NSNotification *) aNotification
 {
+    [[model scanDevice] close];
     [SaneKit exitSane];
 }
 

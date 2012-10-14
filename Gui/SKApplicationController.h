@@ -44,6 +44,7 @@
     BOOL scanPreview;
     
     SKApplicationModel* model;
+    BOOL isDeviceOpen;
 }
 
 -(IBAction) scan:(id) sender;
@@ -51,6 +52,8 @@
 
 -(void) setUserDefaultsForDevice: (SKScanDevice*) aScanDevice;
 -(NSDictionary*) userDefaultsForDevice;
+
+-(BOOL) openScanDevice;
 
 @end
 
