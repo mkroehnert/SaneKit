@@ -71,6 +71,7 @@ void setupImageFormatsDictionary()
                         [[SKImageTypeMapping alloc] initWithFileType: NSJPEG2000FileType andExtension: @".j2k"], @"jpeg2000",
                         nil
                         ];
+    [imageFormatsDict retain];
 }
 
 
