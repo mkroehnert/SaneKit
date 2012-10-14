@@ -665,6 +665,17 @@
 
 
 /**
+ * Get the scan mode on the current device.
+ */
+-(NSString*) mode
+{
+    SKScanOption* option = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_MODE]];
+    [[option retain] autorelease];
+    return (NSString*)[option value];
+}
+
+
+/**
  * Set the scan mode on the current device.
  */
 -(BOOL) setMode:(NSString*) theMode
@@ -673,6 +684,17 @@
     [[option retain] autorelease];
     [option setStringValue: theMode];
     return [self setScanOption: option];
+}
+
+
+/**
+ * Get the scan depth on the current device.
+ */
+-(NSInteger) depth
+{
+    SKScanOption* option = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_BIT_DEPTH]];
+    [[option retain] autorelease];
+    return *((NSInteger*)[option value]);
 }
 
 
@@ -689,6 +711,17 @@
 
 
 /**
+ * Get the scan resolution on the current device.
+ */
+-(NSInteger) resolution
+{
+    SKScanOption* option = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_RESOLUTION]];
+    [[option retain] autorelease];
+    return *((NSInteger*)[option value]);
+}
+
+
+/**
  * Set the scan resolution on the current device.
  */
 -(BOOL) setResolution:(NSInteger) theResolution
@@ -701,6 +734,17 @@
 
 
 /**
+ * Return YES if the scan should be a preview scan, NO otherwise
+ */
+-(BOOL) preview
+{
+    SKScanOption* option = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_PREVIEW]];
+    [[option retain] autorelease];
+    return *((BOOL*)[option value]);
+}
+
+
+/**
  * Set to YES if the scan should be a preview scan.
  */
 -(BOOL) setPreview:(BOOL) doPreview
@@ -709,6 +753,36 @@
     [[option retain] autorelease];
     [option setBoolValue: doPreview];
     return [self setScanOption: option];
+}
+
+
+/**
+ * Set the rectangle which should be scanned in the next scan.
+ */
+-(NSRect) scanRect
+{
+    double x;
+    double y;
+    double width;
+    double height;
+
+    SKScanOption* option = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_TL_X]];
+    [[option retain] autorelease];
+    x = *((double*)[option value]);
+    
+    option = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_TL_Y]];
+    [[option retain] autorelease];
+    y = *((double*)[option value]);
+    
+    option = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_BR_X]];
+    [[option retain] autorelease];
+    width = *((double*)[option value]) - x;
+    
+    option = (SKScanOption*)[options objectForKey: [NSString stringWithCString: SANE_NAME_SCAN_BR_Y]];
+    [[option retain] autorelease];
+    height = *((double*)[option value]) - y;
+    
+    return NSMakeRect(x, y, width, height);
 }
 
 
