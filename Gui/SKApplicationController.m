@@ -47,6 +47,7 @@
     {
         model = [[SKApplicationModel alloc] init];
         isDeviceOpen = NO;
+        guiElementsEnabled = NO;
     }
     return self;
 }
@@ -158,31 +159,30 @@
 
 -(void) setMaximumScanProgress:(NSInteger) aScanProgress
 {
-    NSLog(@"Max Scan Size: %d", aScanProgress);
     [progressIndicator setMaxValue: aScanProgress];
 }
 
 -(void) setCurrentScanProgress:(NSInteger) aScanProgress
 {
-    NSLog(@"Current Scan Size: %d", aScanProgress);
     [progressIndicator setDoubleValue: aScanProgress];
 }
 
 -(void) scanStarted
 {
-    NSLog(@"Scan Start");
     [progressIndicator setDoubleValue: 0];
+    [self setValue: [NSNumber numberWithBool:NO] forKey: @"guiElementsEnabled"];
 }
 
 -(void) scanCancelled
 {
-    NSLog(@"Scan Cancel");
+    [progressIndicator setDoubleValue: 0];
+    [self setValue: [NSNumber numberWithBool:YES] forKey: @"guiElementsEnabled"];
 }
 
 -(void) scanFinished
 {
-    NSLog(@"Scan Finish");
     [progressIndicator setDoubleValue: 0];
+    [self setValue: [NSNumber numberWithBool:YES] forKey: @"guiElementsEnabled"];
 }
 
 @end
@@ -206,6 +206,8 @@
 {
     [model setScanDevice: [[SKScanDevice alloc] initWithDictionary: [self userDefaultsForDevice]]];
     isDeviceOpen = [self openScanDevice];
+    if (YES == isDeviceOpen)
+        [self setValue: [NSNumber numberWithBool:YES] forKey: @"guiElementsEnabled"];
     [[model scanDevice] setDelegate: self];
 }
 

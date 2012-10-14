@@ -44,6 +44,7 @@
     
     SKApplicationModel* model;
     BOOL isDeviceOpen;
+    BOOL guiElementsEnabled;
 }
 
 -(IBAction) scan:(id) sender;
