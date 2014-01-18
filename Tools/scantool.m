@@ -41,6 +41,7 @@
 int main(int argc, char* argv[])
 {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    NSUserDefaults* arguments = [NSUserDefaults standardUserDefaults];
 
     [SaneKit initSane];
     
